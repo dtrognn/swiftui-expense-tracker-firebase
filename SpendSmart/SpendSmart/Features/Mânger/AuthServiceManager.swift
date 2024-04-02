@@ -21,7 +21,14 @@ class AuthServiceManager: BaseViewModel {
                 return
             }
 
-            
+            let newUser = User(email: email, fullname: fullname)
+            try? FIRUsersCollection.document(newUser.uid).setData(newUser.asDictionary()) { error in
+                if let error = error {
+                    completion(.failure(error))
+                } else {
+                    completion(.success(user))
+                }
+            }
         }
     }
 
