@@ -15,4 +15,8 @@ class AppDataManager: ObservableObject {
     init() {
         self.appState = AppState()
     }
+
+    func updateLoginState(_ loggedIn: Bool) {
+        appState.loginState.loggedIn = loggedIn
+    }
 }

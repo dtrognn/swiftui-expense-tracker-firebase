@@ -12,11 +12,19 @@ struct SplashScreenView: View {
 
     var body: some View {
         Text("SplashScreenView")
-            .onAppear() {
+            .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    router.push(to: .mainTab)
+                    nextScreen()
                 }
             }
+    }
+
+    func nextScreen() {
+        if AppDataManager.shared.isLogout {
+            router.push(to: .login)
+        } else {
+            router.push(to: .mainTab)
+        }
     }
 }
 
