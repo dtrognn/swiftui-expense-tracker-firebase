@@ -7,6 +7,14 @@
 
 import SwiftUI
 
+struct TextFieldStyleConfiguration {
+    public var textColor: Color
+    public var textFont: Font
+    public var padding: EdgeInsets
+    public var cornerRadius: Double
+    public var boderConfiguration: BoderConfiguration?
+}
+
 public struct TextFieldConfiguration {
 //    public var id: String = UUID().uuidString
     public var text: Binding<String>
