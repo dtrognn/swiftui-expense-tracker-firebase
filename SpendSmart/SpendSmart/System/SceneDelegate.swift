@@ -21,8 +21,7 @@
             let window = UIWindow(windowScene: windowScene)
             window.overrideUserInterfaceStyle = .light
 
-//            let rootView = AppRouterView()
-            let rootView = ContentView()
+            let rootView = AppRouterView()
             let host = UIHostingController(rootView: rootView)
 
             window.rootViewController = host
