@@ -84,7 +84,7 @@ struct AppTheme: STheme {
 
     var tfBorderNormalColor: Color { return Color(hexString: "#011222", opacity: 0.1)! }
     var tfBorderActiveColor: Color { return Color(hexString: "#2F6BFF", opacity: 0.8)! }
-    var tfFillNormalColor: Color { return Color(hexString: "#3F2305")! }
+    var tfFillNormalColor: Color { return Color(hexString: "#F5EFE7")! }
     var tfFillDisableColor: Color { return Color(hexString: "#011222", opacity: 0.05)! }
 
     var shadowColor: Color { return Color(hexString: "#000000")!.opacity(0.16) }
