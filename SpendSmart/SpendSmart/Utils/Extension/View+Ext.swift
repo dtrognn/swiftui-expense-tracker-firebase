@@ -12,6 +12,10 @@ extension View {
         return AnyView(self)
     }
 
+    func hidden(_ isHidden: Bool) -> some View {
+        modifier(HiddenModifier(isHidden: isHidden))
+    }
+
     func hiddenTabBar(_ isHidden: Bool) -> some View {
         if isHidden {
             return modifier(HiddenTabBar()).asAnyView
