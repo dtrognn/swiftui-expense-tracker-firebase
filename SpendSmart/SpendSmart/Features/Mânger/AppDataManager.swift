@@ -11,9 +11,11 @@ class AppDataManager: ObservableObject {
     static let shared = AppDataManager()
 
     let appState: AppState
+    let appLanguage: AppLanguage
 
     init() {
         self.appState = AppState()
+        self.appLanguage = AppLanguage()
     }
 
     var isLogout: Bool {
