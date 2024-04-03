@@ -39,7 +39,7 @@ struct LoginView: View {
 private extension LoginView {
     var loginButton: some View {
         return Button {
-            //
+            vm.signIn()
         } label: {
             Text("Login")
         }.buttonStyle(.standard())
