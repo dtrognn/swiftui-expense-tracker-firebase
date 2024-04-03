@@ -8,9 +8,16 @@
 import SwiftUI
 
 class LoginRouter: BaseRouter<LoginRouter.Screen> {
-    enum Screen: IScreen {}
+    enum Screen: IScreen {
+        case register
+    }
 
-    override func getInstanceScreen(_ screen: Screen) -> AnyView {}
+    override func getInstanceScreen(_ screen: Screen) -> AnyView {
+        switch screen {
+        case .register:
+            return RegisterView().environmentObject(self).asAnyView
+        }
+    }
 }
 
 struct LoginRouterView: View {

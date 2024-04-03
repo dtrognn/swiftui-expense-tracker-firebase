@@ -49,8 +49,9 @@ extension NaviBarView {
                 self.navigationStack.pop()
             }
         } label: {
-            Image("ic_arrow_left")
+            Image("ic_back_white")
                 .resizable()
+                .applyTheme(.black)
                 .frame(width: 22, height: 22)
         }
     }

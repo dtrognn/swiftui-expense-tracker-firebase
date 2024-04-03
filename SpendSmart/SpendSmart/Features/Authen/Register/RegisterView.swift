@@ -1,21 +1,20 @@
 //
-//  LoginView.swift
+//  RegisterView.swift
 //  SpendSmart
 //
-//  Created by dtrognn on 02/04/2024.
+//  Created by dtrognn on 03/04/2024.
 //
 
 import SwiftUI
 
-struct LoginView: View {
-    @EnvironmentObject private var router: LoginRouter
-    @StateObject private var vm = LoginVM()
+struct RegisterView: View {
+    @StateObject private var vm = RegisterVM()
 
     private var screenConfiguration: ScreenConfiguration {
         return ScreenConfiguration(
-            title: "",
-            showBackButton: false,
-            showNavibar: false,
+            title: "Create account",
+            showBackButton: true,
+            showNavibar: true,
             hidesBottomBarWhenPushed: false
         )
     }
@@ -27,8 +26,8 @@ struct LoginView: View {
                     VStack(spacing: AppStyle.layout.standardSpace) {
                         emailTextFieldView
                         passwordTextFieldView
-                        register
-                        loginButton
+                        fullnameTextFieldView
+                        registerButton
                     }
                 }.padding(.all, AppStyle.layout.standardSpace)
             }
@@ -36,18 +35,10 @@ struct LoginView: View {
     }
 }
 
-private extension LoginView {
-    var loginButton: some View {
+private extension RegisterView {
+    var registerButton: some View {
         return Button {
-            //
-        } label: {
-            Text("Login")
-        }.buttonStyle(.standard())
-    }
-
-    var register: some View {
-        return Button {
-            router.push(to: .register)
+            vm.register()
         } label: {
             Text("Register")
         }.buttonStyle(.standard())
@@ -66,6 +57,15 @@ private extension LoginView {
             text: $vm.password,
             placeHolder: "Enter your password",
             titleName: "Password",
+            isSecure: true
+        ))
+    }
+
+    var fullnameTextFieldView: some View {
+        return InputTextField(TextFieldConfiguration(
+            text: $vm.fullname,
+            placeHolder: "Enter your fullname",
+            titleName: "Fullname",
             isSecure: true
         ))
     }
