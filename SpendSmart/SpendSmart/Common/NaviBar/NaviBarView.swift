@@ -28,6 +28,8 @@ public struct NaviBarView: View {
                     } else {
                         homeButton.opacity(0)
                     }
+                } else {
+                    homeButton.opacity(0)
                 }
             }.padding(AppStyle.layout.standardSpace)
                 .navigationBarHidden(true)
@@ -35,7 +37,7 @@ public struct NaviBarView: View {
                     AppStyle.theme.naviBackgroundColor
                         .ignoresSafeArea(edges: .top)
                 )
-            StraightLine()
+//            StraightLine()
         }
     }
 }
@@ -49,7 +51,7 @@ extension NaviBarView {
                 self.navigationStack.pop()
             }
         } label: {
-            Image("ic_back_white")
+            Image("ic_arrow_left")
                 .resizable()
                 .applyTheme(.black)
                 .frame(width: 22, height: 22)
@@ -68,7 +70,9 @@ extension NaviBarView {
     var homeButton: some View {
         return Button {
             navigationStack.pop(to: .root)
-        } label: { }
+        } label: {
+            Image("ic_tab_home")
+        }
     }
 }
 
