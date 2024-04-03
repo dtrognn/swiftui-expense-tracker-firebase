@@ -11,7 +11,11 @@ struct SplashScreenView: View {
     @EnvironmentObject private var router: AppRouter
 
     var body: some View {
-        Text("SplashScreenView")
+        ZStack {
+            AppStyle.theme.splashBackgroundColor
+
+            Text("Splash screen")
+        }.ignoresSafeArea()
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     nextScreen()
