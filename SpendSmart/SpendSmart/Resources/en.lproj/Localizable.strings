@@ -20,3 +20,5 @@
 "Register_A_08" = "Sign up";
 "Register_A_09" = "Already have an account?";
 "Register_A_10" = "Sign in";
+"Register_A_11" = "Email invalidate";
+"Register_A_12" = "Password must contain at least 6 characters, 2 types: uppercase, lowercase, numbers, characters.";

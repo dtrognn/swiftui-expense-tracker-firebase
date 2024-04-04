@@ -20,3 +20,5 @@
 "Register_A_08" = "Đăng ký";
 "Register_A_09" = "Đã có tài khoản?";
 "Register_A_10" = "Đăng nhập";
+"Register_A_11" = "Email không đúng định dạng";
+"Register_A_12" = "Mật khẩu phải chứa ít nhất 6 ký tự, 2 loại: chữ hoa, chữ thường, số, ký tự.";

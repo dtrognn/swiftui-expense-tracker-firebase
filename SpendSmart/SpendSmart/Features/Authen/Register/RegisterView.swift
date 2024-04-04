@@ -47,7 +47,7 @@ private extension RegisterView {
             vm.register()
         } label: {
             Text(language("Register_A_08"))
-        }.buttonStyle(.standard())
+        }.buttonStyle(.standard(isActive: vm.isEnableButton))
     }
 
     var signInView: some View {
@@ -89,7 +89,9 @@ private extension RegisterView {
         return InputTextField(TextFieldConfiguration(
             text: $vm.email,
             placeHolder: language("Register_A_04"),
-            titleName: language("Register_A_05")
+            titleName: language("Register_A_05"),
+            errorMessage: language("Register_A_11"),
+            showErrorMessage: $vm.showEmailError
         ))
     }
 
@@ -98,6 +100,8 @@ private extension RegisterView {
             text: $vm.password,
             placeHolder: language("Register_A_06"),
             titleName: language("Register_A_07"),
+            errorMessage: language("Register_A_12"),
+            showErrorMessage: $vm.showPasswordError,
             isSecure: true
         ))
     }
@@ -106,8 +110,7 @@ private extension RegisterView {
         return InputTextField(TextFieldConfiguration(
             text: $vm.fullname,
             placeHolder: language("Register_A_02"),
-            titleName: language("Register_A_03"),
-            isSecure: true
+            titleName: language("Register_A_03")
         ))
     }
 
