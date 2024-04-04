@@ -18,6 +18,11 @@ class LoginVM: BaseViewModel {
     private let KEY_PASSWORD_SAVED = "KEY_PASSWORD_SAVED"
     private let KEY_REMEMBER_PASS = "KEY_REMEMBER_PASS"
 
+    override init() {
+        super.init()
+        loadDataFromLocal()
+    }
+
     override func makeSubscription() {
         Publishers.CombineLatest($email, $password).map { [weak self] email, password in
             !email.isEmpty && self?.isValidPassword(password) ?? false
@@ -42,7 +47,19 @@ class LoginVM: BaseViewModel {
     }
 
     private func savePassword() {
-        // TODO: -
+        StoreLocal.shared.setValue(key: KEY_ACCOUNT_SAVED, value: email)
+
+        if isRememberPassword {
+            StoreLocal.shared.setValue(key: KEY_PASSWORD_SAVED, value: password)
+        } else {
+            StoreLocal.shared.setValue(key: KEY_PASSWORD_SAVED, value: "")
+        }
+    }
+
+    private func loadDataFromLocal() {
+        email = StoreLocal.shared.getStringValue(KEY_ACCOUNT_SAVED)
+        password = StoreLocal.shared.getStringValue(KEY_PASSWORD_SAVED)
+        isRememberPassword = !password.isEmpty
     }
 
     private func isValidPassword(_ password: String) -> Bool {
