@@ -1,0 +1,22 @@
+"SS_Common_A_01" = "";
+
+"Login_A_01" = "Login";
+"Login_A_02" = "Enter email";
+"Login_A_03" = "Email";
+"Login_A_04" = "Enter password";
+"Login_A_05" = "Password";
+"Login_A_06" = "Forgot password?";
+"Login_A_07" = "Remember password";
+"Login_A_08" = "Don't have an account yet?";
+"Login_A_09" = "Sign up";
+
+"Register_A_01" = "Create account";
+"Register_A_02" = "Enter fullname";
+"Register_A_03" = "Fullname";
+"Register_A_04" = "Enter email";
+"Register_A_05" = "Email";
+"Register_A_06" = "Enter password";
+"Register_A_07" = "Password";
+"Register_A_08" = "Sign up";
+"Register_A_09" = "Already have an account?";
+"Register_A_10" = "Sign in";

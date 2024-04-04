@@ -52,7 +52,7 @@ private extension LoginView {
             vm.signIn()
         } label: {
             Text(language("Login_A_01"))
-        }.buttonStyle(.standard())
+        }.buttonStyle(.standard(isActive: vm.isEnableButton))
     }
 
     var registerView: some View {

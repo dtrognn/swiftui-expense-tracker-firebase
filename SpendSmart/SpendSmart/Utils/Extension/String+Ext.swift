@@ -11,4 +11,8 @@ extension String {
     func toLocalizedStringKey() -> LocalizedStringKey {
         return LocalizedStringKey(self)
     }
+
+    func trim(_ characterSet: CharacterSet = .whitespacesAndNewlines) -> String {
+        return self.trimmingCharacters(in: characterSet)
+    }
 }
