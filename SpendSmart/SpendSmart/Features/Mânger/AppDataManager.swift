@@ -16,6 +16,7 @@ class AppDataManager: ObservableObject {
     init() {
         self.appState = AppState()
         self.appLanguage = AppLanguage()
+        configureAlertMessage()
     }
 
     var isLogout: Bool {
@@ -24,5 +25,15 @@ class AppDataManager: ObservableObject {
 
     func updateLoginState(_ loggedIn: Bool) {
         appState.loginState.loggedIn = loggedIn
+    }
+
+    private func configureAlertMessage() {
+        let defaultConfig = DefaultAlertMessageConfiguration()
+        defaultConfig.configure()
+        AlertMessageConfiguration.shared.addAlertMessage(.defaultAlert, alertMessage: defaultConfig)
+
+        let bannerConfig = BannerAlertMessageConfiguration()
+        bannerConfig.configure()
+        AlertMessageConfiguration.shared.addAlertMessage(.banner, alertMessage: bannerConfig)
     }
 }

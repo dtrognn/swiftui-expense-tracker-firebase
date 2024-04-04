@@ -30,4 +30,12 @@ open class BaseViewModel: ObservableObject {
             ProgressHUD.dismiss()
         }
     }
+
+    func showErrorMessage(_ errorMessage: String) {
+        AlertMessageConfiguration.shared.showMessage(errorMessage, alertMessageType: .banner)
+    }
+
+    func showSuccessMessage(_ message: String) {
+        AlertMessageConfiguration.shared.showMessage(message, alertMessageType: .banner, style: .success)
+    }
 }

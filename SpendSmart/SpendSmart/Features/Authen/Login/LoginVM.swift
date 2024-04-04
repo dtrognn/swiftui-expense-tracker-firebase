@@ -11,10 +11,8 @@ import Foundation
 class LoginVM: BaseViewModel {
     @Published var email: String = ""
     @Published var password: String = ""
-    @Published var errorMessage: String = ""
     @Published var isEnableButton: Bool = false
     @Published var isRememberPassword: Bool = false
-    @Published var isShowError: Bool = false
 
     private let KEY_ACCOUNT_SAVED = "KEY_ACCOUNT_SAVED"
     private let KEY_PASSWORD_SAVED = "KEY_PASSWORD_SAVED"
@@ -38,9 +36,7 @@ class LoginVM: BaseViewModel {
             case .failure(let failure):
                 guard let self = self else { return }
                 self.showLoading(false)
-                self.errorMessage = failure.localizedDescription
-                self.isShowError = true
-                print("AAA Login error: \(failure.localizedDescription)")
+                self.showErrorMessage(failure.localizedDescription)
             }
         }
     }
