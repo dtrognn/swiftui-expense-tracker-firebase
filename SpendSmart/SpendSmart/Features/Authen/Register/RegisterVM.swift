@@ -14,11 +14,16 @@ class RegisterVM: BaseViewModel {
     @Published var fullname: String = ""
 
     func register() {
+        showLoading(true)
         AuthServiceManager.shared.signUp(email: email, password: password, fullname: fullname) { [weak self] result in
             switch result {
-            case .success(let success):
+            case .success:
+                guard let self = self else { return }
+                self.showLoading(false)
                 AppDataManager.shared.updateLoginState(true)
             case .failure(let failure):
+                guard let self = self else { return }
+                self.showLoading(false)
                 print("AAA Register failed: \(failure.localizedDescription)")
             }
         }

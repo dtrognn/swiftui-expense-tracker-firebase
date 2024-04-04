@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct RegisterView: View {
+    @EnvironmentObject private var router: LoginRouter
     @StateObject private var vm = RegisterVM()
+    @State private var isSlectCheckbox: Bool = false
 
     private var screenConfiguration: ScreenConfiguration {
         return ScreenConfiguration(
-            title: "Create account",
+            title: language("Register_A_01"),
             showBackButton: true,
             showNavibar: true,
             hidesBottomBarWhenPushed: false
@@ -22,13 +24,17 @@ struct RegisterView: View {
     var body: some View {
         ScreenContainerView(screenConfiguration) {
             ScrollView(.vertical, showsIndicators: false) {
-                VStack {
+                VStack(spacing: AppStyle.layout.zero) {
+                    logoAppView
                     VStack(spacing: AppStyle.layout.standardSpace) {
+                        fullnameTextFieldView
                         emailTextFieldView
                         passwordTextFieldView
-                        fullnameTextFieldView
-                        registerButton
                     }
+                    VStack(spacing: AppStyle.layout.standardSpace) {
+                        registerButton
+                        signInView
+                    }.padding(.top, AppStyle.layout.largeSpace)
                 }.padding(.all, AppStyle.layout.standardSpace)
             }
         }
@@ -40,23 +46,58 @@ private extension RegisterView {
         return Button {
             vm.register()
         } label: {
-            Text("Register")
+            Text(language("Register_A_08"))
         }.buttonStyle(.standard())
+    }
+
+    var signInView: some View {
+        return HStack(alignment: .center, spacing: AppStyle.layout.smallSpace) {
+            alreadyHaveAccountText
+            signInButton
+        }
+    }
+
+    var signInButton: some View {
+        return Button {
+            router.popView()
+        } label: {
+            Text(language("Register_A_10"))
+                .font(AppStyle.font.semibold16)
+                .foregroundColor(AppStyle.theme.textUnderlineColor)
+                .underline(color: AppStyle.theme.textUnderlineColor)
+                .padding([.vertical, .trailing], AppStyle.layout.smallSpace)
+        }
+    }
+
+    var termsView: some View {
+        return HStack {
+            cbTerms
+        }
+    }
+
+    var cbTerms: some View {
+        return Button {
+            isSlectCheckbox.toggle()
+        } label: {
+            Image(systemName: isSlectCheckbox ? "checkmark.square" : "square")
+                .applyTheme(AppStyle.theme.iconColor)
+                .padding(.all, AppStyle.layout.smallSpace)
+        }
     }
 
     var emailTextFieldView: some View {
         return InputTextField(TextFieldConfiguration(
             text: $vm.email,
-            placeHolder: "Enter your email",
-            titleName: "Email"
+            placeHolder: language("Register_A_04"),
+            titleName: language("Register_A_05")
         ))
     }
 
     var passwordTextFieldView: some View {
         return InputTextField(TextFieldConfiguration(
             text: $vm.password,
-            placeHolder: "Enter your password",
-            titleName: "Password",
+            placeHolder: language("Register_A_06"),
+            titleName: language("Register_A_07"),
             isSecure: true
         ))
     }
@@ -64,9 +105,19 @@ private extension RegisterView {
     var fullnameTextFieldView: some View {
         return InputTextField(TextFieldConfiguration(
             text: $vm.fullname,
-            placeHolder: "Enter your fullname",
-            titleName: "Fullname",
+            placeHolder: language("Register_A_02"),
+            titleName: language("Register_A_03"),
             isSecure: true
         ))
+    }
+
+    var logoAppView: some View {
+        return LogoAppView()
+    }
+
+    var alreadyHaveAccountText: some View {
+        return Text(language("Register_A_09"))
+            .font(AppStyle.font.regular16)
+            .foregroundColor(AppStyle.theme.textNoteColor)
     }
 }
