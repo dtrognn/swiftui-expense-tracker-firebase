@@ -51,12 +51,16 @@ protocol STheme {
     var btnDisableColor: Color { get }
     var whiteTextColor: Color { get }
     var authenticationBackgroundColor: Color { get }
+    var splashBackgroundColor: Color { get }
 
     var naviBackgroundColor: Color { get }
+    var textHightlightColor: Color { get }
 }
 
 struct AppTheme: STheme {
-    var naviBackgroundColor: Color { return Color(hexString: "#F2F3F4")! }
+    var splashBackgroundColor: Color { return Color(hexString: "#7F3DFF")! }
+    var textHightlightColor: Color { return Color(hexString: "#7F3DFF")! }
+    var naviBackgroundColor: Color { return Color(hexString: "#FFFFFF")! }
 
     var whiteTextColor: Color { return Color(hexString: "#FFFFFF")! }
     var authenticationBackgroundColor: Color { return Color(hexString: "#836096")! }
@@ -64,9 +68,9 @@ struct AppTheme: STheme {
     var btnEnableColor: Color { return Color(hexString: "#C08261")! }
     var btnDisableColor: Color { return Color(hexString: "#9E9FA5")! }
 
-    var textNoteColor: Color { return Color(hexString: "#3C3C43", opacity: 0.6)! } // "#262626")! }
+    var textNoteColor: Color { return Color(hexString: "#91919F", opacity: 0.6)! } // "#262626")! }
     var textNormalColor: Color { return Color(hexString: "#000000")! }
-    var textUnderlineColor: Color { return Color(hexString: "#007AFF")! } // Color { return Color.blue }
+    var textUnderlineColor: Color { return Color(hexString: "#7F3DFF")! } // Color { return Color.blue }
 
     var textErrorMessageColor: Color { return Color(hexString: "#E60A32")! }
     var textSelectedColor: Color { return Color(hexString: "#22313F")! }
@@ -74,26 +78,26 @@ struct AppTheme: STheme {
     var textDeviceOnlineColor: Color { return Color(hexString: "#34c759")! }
     var textDeviceOfflineColor: Color { return Color(hexString: "#F59000")! }
 
-    var btTextEnableColor: Color { return Color(hexString: "#FFFFFF")! }
-    var btTextDisableColor: Color { return Color(hexString: "#FFFFFF")! }
-    var btBackgroundEnableColor: Color { return Color(hexString: "#3F2305")! }
-    var btBackgroundDisableColor: Color { return Color(hexString: "#A0A1A8")! }
+    var btTextEnableColor: Color { return Color(hexString: "#FCFCFC")! }
+    var btTextDisableColor: Color { return Color(hexString: "#7F3DFF")! }
+    var btBackgroundEnableColor: Color { return Color(hexString: "#7F3DFF")! }
+    var btBackgroundDisableColor: Color { return Color(hexString: "#EEE5FF")! }
 
     var naviBackIconColor: Color { return Color(hexString: "#22313F")! }
     var naviTextColor: Color { return Color(hexString: "#22313F")! }
 
     var tfBorderNormalColor: Color { return Color(hexString: "#011222", opacity: 0.1)! }
     var tfBorderActiveColor: Color { return Color(hexString: "#2F6BFF", opacity: 0.8)! }
-    var tfFillNormalColor: Color { return Color(hexString: "#3F2305")! }
+    var tfFillNormalColor: Color { return Color(hexString: "#FFFFFF")! }
     var tfFillDisableColor: Color { return Color(hexString: "#011222", opacity: 0.05)! }
 
     var shadowColor: Color { return Color(hexString: "#000000")!.opacity(0.16) }
     var lineColor: Color { return Color(hexString: "#E6E6E6")! }
 
-    var iconColor: Color { return Color(hexString: "#86401F")! }
+    var iconColor: Color { return Color(hexString: "#7F3DFF")! }
     var iconNormalColor: Color { return Color(hexString: "#22313F")! }
     var iconHighlightColor: Color { return Color(hexString: "#86401F")! }
-    var backgroundColor: Color { return Color(hexString: "#F5EFE7")! }
+    var backgroundColor: Color { return Color(hexString: "#FFFFFF")! }
     var rowCommonBackgroundColor: Color { return Color(hexString: "#FFFFFF")! }
     var sectionBackgroundColor: Color { return Color(hexString: "#011222", opacity: 0.1)! }
 

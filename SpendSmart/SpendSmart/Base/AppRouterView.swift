@@ -15,10 +15,26 @@ class AppRouter: BaseRouter<AppRouter.Screen> {
     }
 
     @Published var screen: Screen = .appLaunch
+    private let appDataManager = AppDataManager.shared
 
     override init() {
         super.init()
         self.screen = .appLaunch
+    }
+
+    override func makeSubscription() {
+        self.appDataManager.appState.loginState.$loggedIn.sink { [weak self] isLogin in
+            self?.updateScreen(isLogin: isLogin)
+        }.store(in: &cancellableSet)
+    }
+
+    private func updateScreen(isLogin: Bool) {
+        if isLogin == true {
+            self.screen = .mainTab
+        } else {
+            self.screen = .login
+        }
+        popToRootView()
     }
 
     override func getInstanceScreen(_ screen: Screen) -> AnyView {
@@ -36,9 +52,13 @@ class AppRouter: BaseRouter<AppRouter.Screen> {
 struct AppRouterView: View {
     @StateObject private var router: AppRouter = .init()
 
+    init(router: AppRouter = .init()) {
+        _router = StateObject(wrappedValue: router)
+    }
+
     var body: some View {
-        SSNavigationStackView(navigationPath: router.navigationPath) {
-            router.getInstanceScreen(router.screen)
-        }.environmentObject(router)
+        SSNavigationStackView(navigationPath: self.router.navigationPath) {
+            self.router.getInstanceScreen(self.router.screen)
+        }.environmentObject(self.router)
     }
 }

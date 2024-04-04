@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 struct AppState {
     var loginState: LoginState = .init()
@@ -15,6 +16,6 @@ class LoginState: ObservableObject {
     @Published var loggedIn: Bool = true
 
     init() {
-//        loggedIn = !UserContext.shared.userAccessToken.isEmpty
+        loggedIn = Auth.auth().currentUser != nil
     }
 }

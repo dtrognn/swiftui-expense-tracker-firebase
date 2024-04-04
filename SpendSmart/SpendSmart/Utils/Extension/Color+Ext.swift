@@ -39,4 +39,15 @@ public extension Color {
         let blue = hexValue & 0xff
         self.init(red: red, green: green, blue: blue, opacity: opacity)
     }
+
+    static func initWith(hexString: String, opacity: Double = 1.0) -> Color {
+        return Color(hexString: hexString, opacity: opacity) ?? Color.black
+    }
+}
+
+public extension Color {
+    static var red500: Color { return Color.initWith(hexString: "#E60A32", opacity: 1.0) }
+
+    static var ink300: Color { return Color.initWith(hexString: "#011222", opacity: 0.3) }
+    static var ink400: Color { return Color.initWith(hexString: "#011222", opacity: 0.5) }
 }

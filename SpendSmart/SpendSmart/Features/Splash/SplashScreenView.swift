@@ -11,12 +11,24 @@ struct SplashScreenView: View {
     @EnvironmentObject private var router: AppRouter
 
     var body: some View {
-        Text("SplashScreenView")
-            .onAppear() {
+        ZStack {
+            AppStyle.theme.splashBackgroundColor
+
+            Text("Splash screen")
+        }.ignoresSafeArea()
+            .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    router.push(to: .mainTab)
+                    nextScreen()
                 }
             }
+    }
+
+    func nextScreen() {
+        if AppDataManager.shared.isLogout {
+            router.push(to: .login)
+        } else {
+            router.push(to: .mainTab)
+        }
     }
 }
 

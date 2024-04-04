@@ -8,11 +8,19 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @StateObject private var vm = ProfileVM()
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        logout
     }
 }
 
-#Preview {
-    ProfileView()
+private extension ProfileView {
+    var logout: some View {
+        return Button {
+            vm.signOut()
+        } label: {
+            Text("Register")
+        }.buttonStyle(.standard())
+    }
 }

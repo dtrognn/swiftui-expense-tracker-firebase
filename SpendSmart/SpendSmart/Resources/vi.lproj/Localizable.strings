@@ -1,0 +1,24 @@
+"SS_Common_A_01" = "Thông báo";
+
+"Login_A_01" = "Đăng nhập";
+"Login_A_02" = "Nhập email";
+"Login_A_03" = "Email";
+"Login_A_04" = "Nhập password";
+"Login_A_05" = "Password";
+"Login_A_06" = "Quên mật khẩu";
+"Login_A_07" = "Nhớ mật khẩu";
+"Login_A_08" = "Chưa có tài khoản?";
+"Login_A_09" = "Đăng ký";
+
+"Register_A_01" = "Tạo tài khoản";
+"Register_A_02" = "Nhập họ và tên";
+"Register_A_03" = "Họ và tên";
+"Register_A_04" = "Nhập email";
+"Register_A_05" = "Email";
+"Register_A_06" = "Nhập password";
+"Register_A_07" = "Password";
+"Register_A_08" = "Đăng ký";
+"Register_A_09" = "Đã có tài khoản?";
+"Register_A_10" = "Đăng nhập";
+"Register_A_11" = "Email không đúng định dạng";
+"Register_A_12" = "Mật khẩu phải chứa ít nhất 6 ký tự, 2 loại: chữ hoa, chữ thường, số, ký tự.";
