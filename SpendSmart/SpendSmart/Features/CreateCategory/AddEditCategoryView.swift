@@ -11,6 +11,7 @@ struct AddEditCategoryView: View {
     @StateObject private var vm: AddEditCategoryVM
 
     @State private var showColorPickerSheet: Bool = false
+    @State private var showIConPickerSheet: Bool = false
     @State private var heightOfSelectColorView: CGFloat = .zero
 
     init(_ category: Category? = nil) {
@@ -33,6 +34,7 @@ struct AddEditCategoryView: View {
                     VStack(spacing: AppStyle.layout.standardSpace) {
                         categoryNameTextFieldView
                         selectColorRowView
+                        selectIconRowView
                     }
                 }.padding(.all, AppStyle.layout.standardSpace)
             }
@@ -44,6 +46,8 @@ struct AddEditCategoryView: View {
                 showColorPickerSheet = false
             }).presentationDetents([.height(heightOfSelectColorView), .medium, .large])
                 .presentationDragIndicator(.automatic)
+        }.sheet(isPresented: $showIConPickerSheet) {
+            
         }
     }
 }
@@ -59,8 +63,14 @@ private extension AddEditCategoryView {
 
     var selectColorRowView: some View {
         return CategorySelectColorRowView(selectedColor: vm.selectedColor) {
-            Vibration.selection.vibrate()
+
             showColorPickerSheet = true
+        }
+    }
+
+    var selectIconRowView: some View {
+        return CategorySelectIconRowView(bgColor: vm.selectedColor, selectedIcon: vm.selectedIcon) {
+            showIConPickerSheet = true
         }
     }
 }
