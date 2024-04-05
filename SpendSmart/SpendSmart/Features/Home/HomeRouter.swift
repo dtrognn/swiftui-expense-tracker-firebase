@@ -15,7 +15,7 @@ class HomeRouter: BaseRouter<HomeRouter.Screen> {
     override func getInstanceScreen(_ screen: Screen) -> AnyView {
         switch screen {
         case .addNewCategory:
-            return AddNewCategoryView().environmentObject(self).asAnyView
+            return AddEditCategoryView().environmentObject(self).asAnyView
         }
     }
 }

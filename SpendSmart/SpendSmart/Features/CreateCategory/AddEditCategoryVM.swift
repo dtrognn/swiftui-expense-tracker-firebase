@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AddNewCategoryVM: BaseViewModel {
+class AddEditCategoryVM: BaseViewModel {
     @Published var categoryName: String = ""
 //    @Published var selectedColor
 }

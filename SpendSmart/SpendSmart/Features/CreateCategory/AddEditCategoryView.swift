@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct AddNewCategoryView: View {
-    @StateObject private var vm = AddNewCategoryVM()
+struct AddEditCategoryView: View {
+    @StateObject private var vm = AddEditCategoryVM()
 
     @State private var showColorPickerSheet: Bool = false
     @State private var heightOfSelectColorView: CGFloat = .zero
@@ -43,7 +43,7 @@ struct AddNewCategoryView: View {
     }
 }
 
-private extension AddNewCategoryView {
+private extension AddEditCategoryView {
     var categoryNameTextFieldView: some View {
         return InputTextField(TextFieldConfiguration(
             text: $vm.categoryName,
