@@ -29,4 +29,8 @@ extension View {
             Alert.alert(alertConfiguration)
         }
     }
+
+    func applyShadowView(_ colorFill: Color = Color.white, cornerRadius: CGFloat = AppStyle.layout.standardCornerRadius) -> some View {
+        modifier(ViewModifierBackground(colorFill: colorFill, cornerRadius: cornerRadius, shadowConfiguration: ShadowConfiguration()))
+    }
 }
