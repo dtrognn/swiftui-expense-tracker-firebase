@@ -11,7 +11,9 @@ struct AddEditCategoryView: View {
     @StateObject private var vm: AddEditCategoryVM
 
     @State private var showColorPickerSheet: Bool = false
+    @State private var showIConPickerSheet: Bool = false
     @State private var heightOfSelectColorView: CGFloat = .zero
+    @State private var heightOfSelectIconView: CGFloat = .zero
 
     init(_ category: Category? = nil) {
         self._vm = StateObject(wrappedValue: AddEditCategoryVM(category))
@@ -28,13 +30,20 @@ struct AddEditCategoryView: View {
 
     var body: some View {
         ScreenContainerView(screenConfiguration) {
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack {
-                    VStack(spacing: AppStyle.layout.standardSpace) {
-                        categoryNameTextFieldView
-                        selectColorRowView
-                    }
-                }.padding(.all, AppStyle.layout.standardSpace)
+            VStack(spacing: AppStyle.layout.standardSpace) {
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack {
+                        VStack(spacing: AppStyle.layout.standardSpace) {
+                            categoryNameTextFieldView
+                            selectColorRowView
+                            selectIconRowView
+                        }
+                    }.padding(.all, AppStyle.layout.standardSpace)
+                }
+
+                addEditCategoryButton
+                    .padding(.bottom, AppStyle.layout.standardButtonHeight)
+                    .padding(.horizontal, AppStyle.layout.standardSpace)
             }
         }.sheet(isPresented: $showColorPickerSheet) {
             CategorySelectColorView(selectedColor: vm.selectedColor, onUpdateHeight: { height in
@@ -44,6 +53,17 @@ struct AddEditCategoryView: View {
                 showColorPickerSheet = false
             }).presentationDetents([.height(heightOfSelectColorView), .medium, .large])
                 .presentationDragIndicator(.automatic)
+        }.sheet(isPresented: $showIConPickerSheet) {
+            CategorySelectIconView(selectedColor: vm.selectedColor,
+                                   selectedIcon: vm.selectedIcon,
+                                   onUpdateHeight: { height in
+                                       self.heightOfSelectIconView = height
+                                   }) { selectedIcon in
+                vm.selectedIcon = selectedIcon
+                showIConPickerSheet = false
+            }
+        }.onReceive(vm.onAddUpdateCategorySuccess) { _ in
+            // TODO: -
         }
     }
 }
@@ -59,8 +79,22 @@ private extension AddEditCategoryView {
 
     var selectColorRowView: some View {
         return CategorySelectColorRowView(selectedColor: vm.selectedColor) {
-            Vibration.selection.vibrate()
             showColorPickerSheet = true
         }
+    }
+
+    var selectIconRowView: some View {
+        return CategorySelectIconRowView(bgColor: vm.selectedColor, selectedIcon: vm.selectedIcon) {
+            showIConPickerSheet = true
+        }
+    }
+
+    var addEditCategoryButton: some View {
+        return Button {
+            Vibration.selection.vibrate()
+            vm.addEditCategory()
+        } label: {
+            Text(language(vm.isEdit ? "Create_Category_A_07" : "Create_Category_A_06"))
+        }.buttonStyle(.standard(isActive: !vm.categoryName.isEmpty))
     }
 }

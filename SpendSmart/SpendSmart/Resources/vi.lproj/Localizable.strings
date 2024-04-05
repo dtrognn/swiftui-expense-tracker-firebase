@@ -1,4 +1,5 @@
 "SS_Common_A_01" = "Thông báo";
+"SS_Common_A_02" = "Thực hiện thành công";
 
 "Login_A_01" = "Đăng nhập";
 "Login_A_02" = "Nhập email";
@@ -28,3 +29,5 @@
 "Create_Category_A_03" = "Tên danh mục";
 "Create_Category_A_04" = "Màu nền";
 "Create_Category_A_05" = "Biểu tượng";
+"Create_Category_A_06" = "Tạo danh mục";
+"Create_Category_A_07" = "Cập nhật danh mục";

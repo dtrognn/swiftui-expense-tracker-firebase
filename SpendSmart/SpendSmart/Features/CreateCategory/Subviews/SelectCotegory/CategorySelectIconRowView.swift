@@ -1,5 +1,5 @@
 //
-//  CategorySelectColorRowView.swift
+//  CategorySelectIconRowView.swift
 //  SpendSmart
 //
 //  Created by dtrognn on 05/04/2024.
@@ -7,29 +7,31 @@
 
 import SwiftUI
 
-struct CategorySelectColorRowView: View {
-    private var selectedColor: CategoryColor
-    private var onClick: () -> Void
+struct CategorySelectIconRowView: View {
+    private var bgColor: CategoryColor
+    private var selectedIcon: CategoryIcon
+    private var onSelect: (() -> Void)?
 
     private let circleWidth: CGFloat = 30.0
+    private let iconWidth: CGFloat = 20.0
 
-    init(selectedColor: CategoryColor, onClick: @escaping () -> Void) {
-        self.selectedColor = selectedColor
-        self.onClick = onClick
+    init(bgColor: CategoryColor, selectedIcon: CategoryIcon, onSelect: (() -> Void)? = nil) {
+        self.bgColor = bgColor
+        self.selectedIcon = selectedIcon
+        self.onSelect = onSelect
     }
 
     var body: some View {
         Button {
             Vibration.selection.vibrate()
-            onClick()
+            onSelect?()
         } label: {
             VStack {
                 HStack {
                     titleText
-
                     Spacer()
                     HStack(spacing: AppStyle.layout.mediumSpace) {
-                        circleColorView
+                        iconView
                         arrowImage
                     }
                 }.padding(.all, AppStyle.layout.standardSpace)
@@ -38,17 +40,23 @@ struct CategorySelectColorRowView: View {
     }
 }
 
-private extension CategorySelectColorRowView {
+private extension CategorySelectIconRowView {
     var titleText: some View {
-        return Text(language("Create_Category_A_04"))
+        return Text(language("Create_Category_A_05"))
             .font(AppStyle.font.regular16)
             .foregroundColor(AppStyle.theme.textNormalColor)
     }
 
-    var circleColorView: some View {
+    var iconView: some View {
         return Circle()
             .frame(width: circleWidth, height: circleWidth)
-            .foregroundColor(selectedColor.color)
+            .foregroundColor(bgColor.color)
+            .overlay {
+                selectedIcon.image
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: iconWidth, height: iconWidth)
+            }
     }
 
     var arrowImage: some View {

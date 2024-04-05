@@ -22,7 +22,7 @@ struct Category: Identifiable, Codable {
         return CategoryColor(rawValue: color) ?? .bronze
     }
 
-    func getImage() -> Image {
-        return .init(systemName: image)
+    func getIcon() -> CategoryIcon {
+        return CategoryIcon(rawValue: image) ?? .apple
     }
 }
