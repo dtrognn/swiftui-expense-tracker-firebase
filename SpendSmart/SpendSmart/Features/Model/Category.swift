@@ -9,12 +9,13 @@ import SwiftUI
 
 struct Category: Identifiable, Codable {
     var id: String = UUID().uuidString
+    let uid: String
     let name: String
     let color: String
     let image: String
 
     enum CodingKeys: String, CodingKey {
-        case id, name, color, image
+        case uid, id, name, color, image
     }
 
     func getColor() -> Color {
