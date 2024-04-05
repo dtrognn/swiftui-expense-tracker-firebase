@@ -62,6 +62,8 @@ struct AddEditCategoryView: View {
                 vm.selectedIcon = selectedIcon
                 showIConPickerSheet = false
             }
+        }.onReceive(vm.onAddUpdateCategorySuccess) { _ in
+            // TODO: -
         }
     }
 }
@@ -90,6 +92,7 @@ private extension AddEditCategoryView {
     var addEditCategoryButton: some View {
         return Button {
             Vibration.selection.vibrate()
+            vm.addEditCategory()
         } label: {
             Text(language(vm.isEdit ? "Create_Category_A_07" : "Create_Category_A_06"))
         }.buttonStyle(.standard(isActive: !vm.categoryName.isEmpty))
