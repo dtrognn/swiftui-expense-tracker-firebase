@@ -8,11 +8,44 @@
 import SwiftUI
 
 struct HomeView: View {
+    @StateObject private var vm = HomeVM()
+
+    private var screenConfiguration: ScreenConfiguration {
+        return ScreenConfiguration(
+            title: "",
+            showBackButton: false,
+            showNavibar: false,
+            hidesBottomBarWhenPushed: false
+        )
+    }
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScreenContainerView(screenConfiguration) {
+            VStack(spacing: AppStyle.layout.zero) {
+                headerView
+            }
+        }.onAppear {
+            vm.loadDataUser()
+        }
     }
 }
 
-#Preview {
-    HomeView()
+private extension HomeView {
+    var headerView: some View {
+        return HStack {
+            usernameText
+            Spacer()
+            test
+        }.padding(.horizontal, AppStyle.layout.standardSpace)
+    }
+
+    var usernameText: some View {
+        return Text(vm.username)
+            .font(AppStyle.font.medium20)
+            .foregroundColor(AppStyle.theme.textNormalColor)
+    }
+
+    var test: some View {
+        Text("ydbfuydsbf")
+    }
 }

@@ -16,6 +16,6 @@ class LoginState: ObservableObject {
     @Published var loggedIn: Bool = true
 
     init() {
-        loggedIn = Auth.auth().currentUser != nil
+        loggedIn = AuthServiceManager.shared.userSesstion != nil
     }
 }
