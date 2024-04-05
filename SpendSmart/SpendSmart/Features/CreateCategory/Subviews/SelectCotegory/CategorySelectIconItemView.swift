@@ -13,6 +13,8 @@ struct CategorySelectIconItemView: View {
     private var selectedIcon: CategoryIcon
     private var onSelect: ((CategoryIcon) -> Void)?
 
+    private let circleWidth: CGFloat = 50.0
+
     init(bgColor: CategoryColor, icon: CategoryIcon, selectedIcon: CategoryIcon, onSelect: ((CategoryIcon) -> Void)? = nil) {
         self.bgColor = bgColor
         self.icon = icon
@@ -27,8 +29,8 @@ struct CategorySelectIconItemView: View {
             icon.image.padding(.all, AppStyle.layout.mediumSpace)
                 .background(
                     Circle()
-                        .fill(selectedIcon == icon ? AppStyle.theme.btBackgroundDisableColor.opacity(0.5) : Color.clear)
-                        .frame(width: 25, height: 25)
+                        .fill(selectedIcon == icon ? bgColor.color : Color.clear)
+                        .frame(width: circleWidth, height: circleWidth)
                 )
         }
     }
