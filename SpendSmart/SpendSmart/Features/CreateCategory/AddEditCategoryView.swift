@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct AddEditCategoryView: View {
-    @StateObject private var vm = AddEditCategoryVM()
+    @StateObject private var vm: AddEditCategoryVM
 
     @State private var showColorPickerSheet: Bool = false
     @State private var heightOfSelectColorView: CGFloat = .zero
+
+    init(_ category: Category? = nil) {
+        self._vm = StateObject(wrappedValue: AddEditCategoryVM(category))
+    }
 
     private var screenConfiguration: ScreenConfiguration {
         return ScreenConfiguration(
@@ -33,10 +37,11 @@ struct AddEditCategoryView: View {
                 }.padding(.all, AppStyle.layout.standardSpace)
             }
         }.sheet(isPresented: $showColorPickerSheet) {
-            CategorySelectColorView(selectedColor: .bronze, onUpdateHeight: { height in
+            CategorySelectColorView(selectedColor: vm.selectedColor, onUpdateHeight: { height in
                 self.heightOfSelectColorView = height
-            }, onSelect: { _ in
-                // TODO: -
+            }, onSelect: { selectedColor in
+                vm.selectedColor = selectedColor
+                showColorPickerSheet = false
             }).presentationDetents([.height(heightOfSelectColorView), .medium, .large])
                 .presentationDragIndicator(.automatic)
         }
@@ -53,7 +58,7 @@ private extension AddEditCategoryView {
     }
 
     var selectColorRowView: some View {
-        return CategorySelectColorRowView(selectedColor: .bronze) {
+        return CategorySelectColorRowView(selectedColor: vm.selectedColor) {
             Vibration.selection.vibrate()
             showColorPickerSheet = true
         }

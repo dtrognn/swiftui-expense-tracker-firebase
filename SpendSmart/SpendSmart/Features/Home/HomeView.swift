@@ -63,7 +63,7 @@ private extension HomeView {
 
     var addCategoryButton: some View {
         return Button {
-            router.push(to: .addNewCategory)
+            router.push(to: .addNewCategory(nil))
         } label: {
             Image(systemName: "plus.circle")
                 .resizable()

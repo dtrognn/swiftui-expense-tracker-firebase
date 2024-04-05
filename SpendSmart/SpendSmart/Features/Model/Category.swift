@@ -18,8 +18,8 @@ struct Category: Identifiable, Codable {
         case uid, id, name, color, image
     }
 
-    func getColor() -> Color {
-        return .initWith(hexString: color)
+    func getColor() -> CategoryColor {
+        return CategoryColor(rawValue: color) ?? .bronze
     }
 
     func getImage() -> Image {
