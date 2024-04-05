@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject private var router: HomeRouter
     @StateObject private var vm = HomeVM()
 
     private var screenConfiguration: ScreenConfiguration {
@@ -62,7 +63,7 @@ private extension HomeView {
 
     var addCategoryButton: some View {
         return Button {
-            // TODO: -
+            router.push(to: .addNewCategory)
         } label: {
             Image(systemName: "plus.circle")
                 .resizable()

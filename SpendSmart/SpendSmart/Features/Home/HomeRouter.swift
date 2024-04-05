@@ -8,9 +8,16 @@
 import SwiftUI
 
 class HomeRouter: BaseRouter<HomeRouter.Screen> {
-    enum Screen: IScreen {}
+    enum Screen: IScreen {
+        case addNewCategory
+    }
 
-    override func getInstanceScreen(_ screen: Screen) -> AnyView {}
+    override func getInstanceScreen(_ screen: Screen) -> AnyView {
+        switch screen {
+        case .addNewCategory:
+            return AddNewCategoryView().environmentObject(self).asAnyView
+        }
+    }
 }
 
 struct HomeRouterView: View {
