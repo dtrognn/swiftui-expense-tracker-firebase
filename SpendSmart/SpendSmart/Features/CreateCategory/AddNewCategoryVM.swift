@@ -9,4 +9,5 @@ import Foundation
 
 class AddNewCategoryVM: BaseViewModel {
     @Published var categoryName: String = ""
+//    @Published var selectedColor
 }
