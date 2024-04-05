@@ -14,7 +14,7 @@ struct User: Codable {
     let createdAt: Double
     let avatar: String?
 
-    init(uid: String = UUID().uuidString, email: String, fullname: String, avatar: String? = nil, createdAt: Double = Date().timeIntervalSince1970) {
+    init(uid: String, email: String, fullname: String, avatar: String? = nil, createdAt: Double = Date().timeIntervalSince1970) {
         self.uid = uid
         self.email = email
         self.fullname = fullname
