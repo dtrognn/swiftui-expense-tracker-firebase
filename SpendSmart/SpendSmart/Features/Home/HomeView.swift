@@ -35,17 +35,39 @@ private extension HomeView {
         return HStack {
             usernameText
             Spacer()
-            test
+            HStack(spacing: AppStyle.layout.mediumSpace) {
+                addExpenseButton
+                addCategoryButton
+            }
         }.padding(.horizontal, AppStyle.layout.standardSpace)
+            .padding(.bottom, AppStyle.layout.mediumSpace)
     }
 
     var usernameText: some View {
         return Text(vm.username)
-            .font(AppStyle.font.medium20)
+            .font(AppStyle.font.semibold24)
             .foregroundColor(AppStyle.theme.textNormalColor)
     }
 
-    var test: some View {
-        Text("ydbfuydsbf")
+    var addExpenseButton: some View {
+        return Button {
+            // TODO: -
+        } label: {
+            Image(systemName: "plus.app")
+                .resizable()
+                .applyTheme()
+                .frame(width: 22, height: 22)
+        }
+    }
+
+    var addCategoryButton: some View {
+        return Button {
+            // TODO: -
+        } label: {
+            Image(systemName: "plus.circle")
+                .resizable()
+                .applyTheme()
+                .frame(width: 22, height: 22)
+        }
     }
 }
