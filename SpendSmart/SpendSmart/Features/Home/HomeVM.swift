@@ -13,7 +13,7 @@ class HomeVM: BaseViewModel {
 
     private let authService = AuthServiceManager.shared
 
-    func loadDataUser() {
+    override func loadData() {
         apiGetUserInfo()
     }
 

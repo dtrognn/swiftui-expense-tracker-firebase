@@ -25,8 +25,6 @@ struct HomeView: View {
             VStack(spacing: AppStyle.layout.zero) {
                 headerView
             }
-        }.onAppear {
-            vm.loadDataUser()
         }
     }
 }
