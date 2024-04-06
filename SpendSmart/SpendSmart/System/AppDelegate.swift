@@ -19,7 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FirebaseApp.configure()
         AuthServiceManager.shared.loadUser()
-
+        CategoryManager.shared.getCategories()
+        
         return true
     }
 }
