@@ -18,6 +18,18 @@ class CategoryManager: BaseViewModel {
         apiFetchCategoryList()
     }
 
+    func addNewCategory(_ newCategory: Category, completion: @escaping (Result<Void, Error>) -> Void) {
+        apiAddNewCategory(newCategory, completion: completion)
+    }
+
+    func updateCategory(_ category: Category, completion: @escaping (Result<Void, Error>) -> Void) {
+        apiUpdateCagory(category, completion: completion)
+    }
+
+    func deleteCategory(_ categoryID: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        apiDeleteCategory(categoryID, completion: completion)
+    }
+
     private func apiFetchCategoryList() {
         guard let uid = authService.userSesstion?.uid else { return }
 
@@ -33,5 +45,45 @@ class CategoryManager: BaseViewModel {
                     try? document.data(as: Category.self)
                 }
             }
+    }
+
+    private func apiAddNewCategory(_ newCategory: Category, completion: @escaping (Result<Void, Error>) -> Void) {
+        try? FIRCategoryCollection.document(newCategory.id).setData(newCategory.asDictionary()) { [weak self] error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+
+                self?.categories.append(newCategory)
+            }
+        }
+    }
+
+    private func apiUpdateCagory(_ category: Category, completion: @escaping (Result<Void, Error>) -> Void) {
+        try? FIRCategoryCollection.document(category.id).updateData(category.asDictionary()) { [weak self] error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+
+                if let index = self?.categories.firstIndex(where: { $0.id == category.id }) {
+                    self?.categories[index] = category
+                }
+            }
+        }
+    }
+
+    private func apiDeleteCategory(_ categoryID: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        FIRCategoryCollection.document(categoryID).delete { [weak self] error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+
+                if let index = self?.categories.firstIndex(where: { $0.id == categoryID }) {
+                    self?.categories.remove(at: index)
+                }
+            }
+        }
     }
 }

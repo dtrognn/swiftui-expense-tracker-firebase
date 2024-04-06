@@ -16,6 +16,8 @@ class AddEditCategoryVM: BaseViewModel {
 
     var onAddUpdateCategorySuccess = PassthroughSubject<Void, Never>()
 
+    private var categoryManager = CategoryManager.shared
+
     init(_ category: Category?) {
         self.isEdit = category != nil
         self.categoryName = category?.name ?? ""
@@ -34,14 +36,17 @@ class AddEditCategoryVM: BaseViewModel {
         guard let uid = AuthServiceManager.shared.userSesstion?.uid else { return }
         showLoading(true)
         let newCategory = Category(uid: uid, name: categoryName, color: selectedColor.rawValue, image: selectedIcon.rawValue)
-        try? FIRCategoryCollection.document(newCategory.id).setData(newCategory.asDictionary()) { [weak self] error in
-            if let error = error {
-                self?.showLoading(false)
-                self?.showErrorMessage(error.localizedDescription)
-            } else {
-                self?.showLoading(false)
-                self?.showSuccessMessage(language("SS_Common_A_02"))
-                self?.onAddUpdateCategorySuccess.send(())
+        categoryManager.addNewCategory(newCategory) { [weak self] result in
+            switch result {
+            case .success(let success):
+                guard let self = self else { return }
+                self.showLoading(false)
+                self.showSuccessMessage(language("SS_Common_A_02"))
+                self.onAddUpdateCategorySuccess.send(())
+            case .failure(let failure):
+                guard let self = self else { return }
+                self.showLoading(false)
+                self.showErrorMessage(failure.localizedDescription)
             }
         }
     }
