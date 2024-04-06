@@ -50,7 +50,7 @@ private extension HomeView {
 
     var addExpenseButton: some View {
         return Button {
-            // TODO: -
+            router.push(to: .addEditTransaction(nil))
         } label: {
             Image(systemName: "plus.app")
                 .resizable()

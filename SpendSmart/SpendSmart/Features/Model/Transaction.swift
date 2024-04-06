@@ -37,4 +37,8 @@ struct Transaction: Codable {
         case uid, title, description, type, amount, category
         case createdAt = "created_at"
     }
+
+    var transactionType: TransactionType {
+        return TransactionType(rawValue: type) ?? .expense
+    }
 }

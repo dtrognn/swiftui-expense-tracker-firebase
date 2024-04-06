@@ -9,11 +9,15 @@ import SwiftUI
 
 class HomeRouter: BaseRouter<HomeRouter.Screen> {
     enum Screen: IScreen {
+        case addEditTransaction(Transaction?)
         case addNewCategory(Category?)
     }
 
     override func getInstanceScreen(_ screen: Screen) -> AnyView {
         switch screen {
+        case .addEditTransaction(let transaction):
+            let router = AddEditTransactionRouter(navigationPath: navigationPath)
+            return AddEditTransactionRouterView(router: router, transaction: transaction).asAnyView
         case .addNewCategory(let category):
             return AddEditCategoryView(category).environmentObject(self).asAnyView
         }
