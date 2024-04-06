@@ -24,10 +24,10 @@
 "Register_A_11" = "Email invalidate";
 "Register_A_12" = "Password must contain at least 6 characters, 2 types: uppercase, lowercase, numbers, characters.";
 
-"Create_Category_A_01" = "Create new category";
-"Create_Category_A_02" = "Enter category name";
-"Create_Category_A_03" = "Category name";
-"Create_Category_A_04" = "Background";
-"Create_Category_A_05" = "Icon";
-"Create_Category_A_06" = "Create category";
-"Create_Category_A_07" = "Update category";
+"Add_Edit_Category_A_01" = "Create new category";
+"Add_Edit_Category_A_02" = "Enter category name";
+"Add_Edit_Category_A_03" = "Category name";
+"Add_Edit_Category_A_04" = "Background";
+"Add_Edit_Category_A_05" = "Icon";
+"Add_Edit_Category_A_06" = "Create category";
+"Add_Edit_Category_A_07" = "Update category";

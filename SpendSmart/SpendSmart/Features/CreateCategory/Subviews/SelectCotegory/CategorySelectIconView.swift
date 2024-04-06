@@ -43,7 +43,7 @@ struct CategorySelectIconView: View {
 
 private extension CategorySelectIconView {
     var titleText: some View {
-        return Text(language("Create_Category_A_05"))
+        return Text(language("Add_Edit_Category_A_05"))
             .font(AppStyle.font.semibold16)
             .foregroundColor(AppStyle.theme.textNormalColor)
     }
