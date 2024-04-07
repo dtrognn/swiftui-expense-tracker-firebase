@@ -10,12 +10,10 @@ import Foundation
 class CategoryManager: BaseViewModel {
     static let shared = CategoryManager()
 
-    @Published var categories: [Category] = []
-
     private var authService = AuthServiceManager.shared
 
-    func getCategories() {
-        apiFetchCategoryList()
+    func getCategories(completion: @escaping (Result<[Category], Error>) -> Void) {
+        apiGetCategoryList(completion: completion)
     }
 
     func addNewCategory(_ newCategory: Category, completion: @escaping (Result<Void, Error>) -> Void) {
@@ -30,20 +28,25 @@ class CategoryManager: BaseViewModel {
         apiDeleteCategory(categoryID, completion: completion)
     }
 
-    private func apiFetchCategoryList() {
+    private func apiGetCategoryList(completion: @escaping (Result<[Category], Error>) -> Void) {
         guard let uid = authService.userSesstion?.uid else { return }
 
         FIRCategoryCollection
             .whereField("uid", isEqualTo: uid)
-            .addSnapshotListener { querySnapshot, _ in
+            .addSnapshotListener { querySnapshot, error in
+                if let error = error {
+                    completion(.failure(error))
+                }
+
                 guard let documents = querySnapshot?.documents else {
                     print("AAA No documents or an error occurred")
                     return
                 }
 
-                self.categories = documents.compactMap { document in
+                let categories = documents.compactMap { document in
                     try? document.data(as: Category.self)
                 }
+                completion(.success(categories))
             }
     }
 
@@ -53,8 +56,6 @@ class CategoryManager: BaseViewModel {
                 completion(.failure(error))
             } else {
                 completion(.success(()))
-
-                self?.categories.append(newCategory)
             }
         }
     }
@@ -65,10 +66,6 @@ class CategoryManager: BaseViewModel {
                 completion(.failure(error))
             } else {
                 completion(.success(()))
-
-                if let index = self?.categories.firstIndex(where: { $0.id == category.id }) {
-                    self?.categories[index] = category
-                }
             }
         }
     }
@@ -79,10 +76,6 @@ class CategoryManager: BaseViewModel {
                 completion(.failure(error))
             } else {
                 completion(.success(()))
-
-                if let index = self?.categories.firstIndex(where: { $0.id == categoryID }) {
-                    self?.categories.remove(at: index)
-                }
             }
         }
     }

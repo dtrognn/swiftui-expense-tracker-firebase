@@ -20,7 +20,7 @@ class AppDataManager: ObservableObject {
     }
 
     func loadData() {
-        CategoryManager.shared.getCategories()
+        
     }
 
     func loadConfig() {

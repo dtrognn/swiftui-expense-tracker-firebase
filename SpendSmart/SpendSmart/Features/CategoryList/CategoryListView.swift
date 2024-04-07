@@ -24,21 +24,27 @@ struct CategoryListView: View {
         ScreenContainerView(screenConfiguration) {
             VStack(spacing: AppStyle.layout.mediumSpace) {
                 addNewCategoryButton
-                    .padding([.top, .horizontal], AppStyle.layout.standardSpace)
 
-                ScrollView(.vertical, showsIndicators: false) {
-                    VStack(spacing: AppStyle.layout.standardSpace) {
-                        LazyVStack(spacing: AppStyle.layout.zero) {
-                            ForEach(vm.categories) { category in
-                                CategoryItemView(category) { categorySelected in
-                                    print("AAA \(categorySelected)")
+                if vm.categories.isEmpty {
+                    noCategoryView
+                } else {
+                    ScrollView(.vertical, showsIndicators: false) {
+                        VStack(spacing: AppStyle.layout.standardSpace) {
+                            LazyVStack(spacing: AppStyle.layout.zero) {
+                                ForEach(vm.categories) { category in
+                                    CategoryItemView(category) { categorySelected in
+                                        print("AAA \(categorySelected)")
+                                    }
                                 }
-                            }
-                        }.applyShadowView()
-                    }.padding(.horizontal, AppStyle.layout.standardSpace)
-                        .padding(.vertical, AppStyle.layout.mediumSpace)
+                            }.applyShadowView()
+                        }.padding(.vertical, AppStyle.layout.mediumSpace)
+                    }.refreshable {
+                        Task { vm.getData(true) }
+                    }
                 }
-            }
+
+                Spacer()
+            }.padding(.all, AppStyle.layout.standardSpace)
         }
     }
 }
@@ -58,6 +64,18 @@ private extension CategoryListView {
                     Spacer()
                 }.padding(.all, AppStyle.layout.standardSpace)
             }.applyShadowView()
+        }
+    }
+
+    var noCategoryView: some View {
+        return Button {
+            router.push(to: .addEditCategory(nil))
+        } label: {
+            Text(language("Category_List_A_02"))
+                .font(AppStyle.font.regular16)
+                .foregroundColor(AppStyle.theme.textUnderlineColor)
+                .multilineTextAlignment(.center)
+                .padding(.top, AppStyle.layout.standardSpace)
         }
     }
 

@@ -3,6 +3,7 @@
 "SS_Common_A_03" = "Lưu";
 "SS_Common_A_04" = "Cập nhật";
 "SS_Common_A_05" = "Xong";
+"SS_Common_A_06" = "Có lỗi xảy ra, vui lòng thử lại!";
 
 "Login_A_01" = "Đăng nhập";
 "Login_A_02" = "Nhập email";

@@ -14,6 +14,26 @@ class CategoryListVM: BaseViewModel {
 
     override init() {
         super.init()
-        self.categories = categoryManager.categories
+        getData()
+    }
+
+    func getData(_ isLoading: Bool = false) {
+        getCategoryList(isLoading)
+    }
+
+    private func getCategoryList(_ isLoading: Bool = false) {
+        showLoading(isLoading)
+        categoryManager.getCategories { [weak self] result in
+            switch result {
+            case .success(let categories):
+                guard let self = self else { return }
+                self.showLoading(false)
+                self.categories = categories
+            case .failure:
+                guard let self = self else { return }
+                self.showLoading(false)
+                self.showErrorMessage(language("SS_Common_A_06"))
+            }
+        }
     }
 }
