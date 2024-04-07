@@ -19,7 +19,8 @@ class HomeRouter: BaseRouter<HomeRouter.Screen> {
             let router = AddEditTransactionRouter(navigationPath: navigationPath)
             return AddEditTransactionRouterView(router: router, transaction: transaction).asAnyView
         case .addNewCategory(let category):
-            return AddEditCategoryView(category).environmentObject(self).asAnyView
+            let router = AddEditCategoryRouter(navigationPath: navigationPath)
+            return AddEditCategoryRouterView(router: router, category: category).asAnyView
         }
     }
 }

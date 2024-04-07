@@ -15,7 +15,8 @@ class CategoryListRouter: BaseRouter<CategoryListRouter.Screen> {
     override func getInstanceScreen(_ screen: Screen) -> AnyView {
         switch screen {
         case .addEditCategory(let category):
-            return AddEditCategoryView(category).environmentObject(self).asAnyView
+            let router = AddEditCategoryRouter(navigationPath: navigationPath)
+            return AddEditCategoryRouterView(router: router, category: category).asAnyView
         }
     }
 }

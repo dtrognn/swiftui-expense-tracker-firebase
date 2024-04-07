@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AddEditCategoryView: View {
+    @EnvironmentObject private var router: AddEditCategoryRouter
     @StateObject private var vm: AddEditCategoryVM
 
     @State private var showColorPickerSheet: Bool = false
@@ -63,7 +64,7 @@ struct AddEditCategoryView: View {
                 showIConPickerSheet = false
             }
         }.onReceive(vm.onAddUpdateCategorySuccess) { _ in
-            // TODO: -
+            router.popView()
         }
     }
 }
