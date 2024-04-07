@@ -8,9 +8,17 @@
 import SwiftUI
 
 class AddEditTransactionRouter: BaseRouter<AddEditTransactionRouter.Screen> {
-    enum Screen: IScreen {}
+    enum Screen: IScreen {
+        case categoryList
+    }
 
-    override func getInstanceScreen(_ screen: Screen) -> AnyView {}
+    override func getInstanceScreen(_ screen: Screen) -> AnyView {
+        switch screen {
+        case .categoryList:
+            let router = CategoryListRouter(navigationPath: navigationPath)
+            return CategoryListRouterView(router: router).asAnyView
+        }
+    }
 }
 
 struct AddEditTransactionRouterView: View {

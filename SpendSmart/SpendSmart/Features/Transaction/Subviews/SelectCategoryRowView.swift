@@ -17,15 +17,20 @@ struct SelectCategoryRowView: View {
     }
 
     var body: some View {
-        VStack(spacing: AppStyle.layout.zero) {
-            HStack(spacing: AppStyle.layout.zero) {
-                titleText
-                Spacer()
-                HStack(spacing: AppStyle.layout.mediumSpace) {
-                    arrowImage
-                }
-            }.padding(.all, AppStyle.layout.standardSpace)
-        }.applyShadowView()
+        Button {
+            Vibration.selection.vibrate()
+            onClick?()
+        } label: {
+            VStack(spacing: AppStyle.layout.zero) {
+                HStack(spacing: AppStyle.layout.zero) {
+                    titleText
+                    Spacer()
+                    HStack(spacing: AppStyle.layout.mediumSpace) {
+                        arrowImage
+                    }
+                }.padding(.all, AppStyle.layout.standardSpace)
+            }.applyShadowView()
+        }
     }
 }
 
