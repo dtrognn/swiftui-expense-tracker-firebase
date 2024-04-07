@@ -11,6 +11,7 @@ import Foundation
 class AddEditTransactionVM: BaseViewModel {
     @Published var isEdit: Bool
     @Published var amount: String
+    @Published var category: Category?
     @Published var description: String
     @Published var dateSelected: DateSelected
     @Published var dateSelectedString: String = ""
@@ -18,6 +19,7 @@ class AddEditTransactionVM: BaseViewModel {
     init(_ transaction: Transaction?) {
         self.isEdit = transaction != nil
         self.amount = "\(transaction?.amount ?? 0)"
+        self.category = transaction?.category ?? nil
         self.description = transaction?.description ?? ""
 
         let date = Date(timeIntervalSince1970: transaction?.createdAt ?? Date().timeIntervalSince1970)

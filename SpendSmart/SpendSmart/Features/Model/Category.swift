@@ -7,12 +7,19 @@
 
 import SwiftUI
 
-struct Category: Identifiable, Codable {
+class Category: ObservableObject, Identifiable, Codable {
     var id: String = UUID().uuidString
     let uid: String
     let name: String
     let color: String
     let image: String
+
+    init(uid: String, name: String, color: String, image: String) {
+        self.uid = uid
+        self.name = name
+        self.color = color
+        self.image = image
+    }
 
     enum CodingKeys: String, CodingKey {
         case uid, id, name, color, image

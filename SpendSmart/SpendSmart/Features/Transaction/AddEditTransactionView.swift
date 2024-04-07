@@ -30,6 +30,7 @@ struct AddEditTransactionView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: AppStyle.layout.standardSpace) {
                         amountTextFieldView
+                        selectCategoryRowView
                         datePickerRowVBiew
                     }.padding([.horizontal, .top], AppStyle.layout.standardSpace)
                 }
@@ -57,6 +58,12 @@ private extension AddEditTransactionView {
             DatePickerView(dateDefault: vm.dateSelected, dateType: .day, isLimitYear: true) { dateSelected in
                 vm.handleUpdateDateSelected(dateSelected)
             }.show()
+        }
+    }
+
+    var selectCategoryRowView: some View {
+        return SelectCategoryRowView(category: vm.category) {
+            // TODO: -
         }
     }
 
