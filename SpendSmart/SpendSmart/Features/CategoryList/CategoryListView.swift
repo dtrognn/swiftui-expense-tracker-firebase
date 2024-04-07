@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CategoryListView: View {
     @EnvironmentObject private var router: CategoryListRouter
+    @StateObject private var vm = CategoryListVM()
 
     private var screenConfiguration: ScreenConfiguration {
         return ScreenConfiguration(
@@ -21,10 +22,22 @@ struct CategoryListView: View {
 
     var body: some View {
         ScreenContainerView(screenConfiguration) {
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack {
-                    addNewCategoryButton
-                }.padding(.all, AppStyle.layout.standardSpace)
+            VStack(spacing: AppStyle.layout.mediumSpace) {
+                addNewCategoryButton
+                    .padding([.top, .horizontal], AppStyle.layout.standardSpace)
+
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(spacing: AppStyle.layout.standardSpace) {
+                        LazyVStack(spacing: AppStyle.layout.zero) {
+                            ForEach(vm.categories) { category in
+                                CategoryItemView(category) { categorySelected in
+                                    print("AAA \(categorySelected)")
+                                }
+                            }
+                        }.applyShadowView()
+                    }.padding(.horizontal, AppStyle.layout.standardSpace)
+                        .padding(.vertical, AppStyle.layout.mediumSpace)
+                }
             }
         }
     }
@@ -49,7 +62,10 @@ private extension CategoryListView {
     }
 
     var plusImage: some View {
-        return Image(systemName: "plus.circle.fill").applyTheme()
+        return Image(systemName: "plus.circle.fill")
+            .resizable()
+            .applyTheme()
+            .frame(width: 30, height: 30)
     }
 
     var addNewCategoryText: some View {
