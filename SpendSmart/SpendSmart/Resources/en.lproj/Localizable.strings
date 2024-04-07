@@ -1,5 +1,8 @@
 "SS_Common_A_01" = "Notification";
 "SS_Common_A_02" = "Successful implementation";
+"SS_Common_A_03" = "Save";
+"SS_Common_A_04" = "Update";
+"SS_Common_A_05" = "Done";
 
 "Login_A_01" = "Login";
 "Login_A_02" = "Enter email";
@@ -31,3 +34,19 @@
 "Add_Edit_Category_A_05" = "Icon";
 "Add_Edit_Category_A_06" = "Create category";
 "Add_Edit_Category_A_07" = "Update category";
+
+"Add_Edit_Transaction_A_01" = "Add new transaction";
+"Add_Edit_Transaction_A_02" = "Update transaction";
+"Add_Edit_Transaction_A_03" = "Category";
+"Add_Edit_Transaction_A_04" = "Enter note (optional";
+"Add_Edit_Transaction_A_05" = "Note";
+"Add_Edit_Transaction_A_06" = "Enter amount";
+"Add_Edit_Transaction_A_07" = "Amount";
+"Add_Edit_Transaction_A_08" = "Select day";
+
+"Date_Picker_A_01" = "Select day";
+"Date_Picker_A_02" = "Select month";
+"Date_Picker_A_03" = "Select year";
+"Date_Picker_A_04" = "Day";
+"Date_Picker_A_05" = "Month";
+"Date_Picker_A_06" = "Year";

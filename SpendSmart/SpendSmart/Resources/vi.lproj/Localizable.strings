@@ -1,5 +1,8 @@
 "SS_Common_A_01" = "Thông báo";
 "SS_Common_A_02" = "Thực hiện thành công";
+"SS_Common_A_03" = "Lưu";
+"SS_Common_A_04" = "Cập nhật";
+"SS_Common_A_05" = "Xong";
 
 "Login_A_01" = "Đăng nhập";
 "Login_A_02" = "Nhập email";
@@ -31,3 +34,19 @@
 "Add_Edit_Category_A_05" = "Biểu tượng";
 "Add_Edit_Category_A_06" = "Tạo danh mục";
 "Add_Edit_Category_A_07" = "Cập nhật danh mục";
+
+"Add_Edit_Transaction_A_01" = "Thêm chi tiêu mới";
+"Add_Edit_Transaction_A_02" = "Cập nhật chi tiêu";
+"Add_Edit_Transaction_A_03" = "Danh mục";
+"Add_Edit_Transaction_A_04" = "Nhập ghi chú (không bắt buộc)";
+"Add_Edit_Transaction_A_05" = "Ghi chú";
+"Add_Edit_Transaction_A_06" = "Nhập số tiền";
+"Add_Edit_Transaction_A_07" = "Số tiền";
+"Add_Edit_Transaction_A_08" = "Chọn ngày";
+
+"Date_Picker_A_01" = "Chọn ngày";
+"Date_Picker_A_02" = "Chọn tháng";
+"Date_Picker_A_03" = "Chọn năm";
+"Date_Picker_A_04" = "Ngày";
+"Date_Picker_A_05" = "Tháng";
+"Date_Picker_A_06" = "Năm";

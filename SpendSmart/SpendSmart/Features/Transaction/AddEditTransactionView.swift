@@ -30,6 +30,7 @@ struct AddEditTransactionView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: AppStyle.layout.standardSpace) {
                         amountTextFieldView
+                        datePickerRowVBiew
                     }.padding([.horizontal, .top], AppStyle.layout.standardSpace)
                 }
 
@@ -49,6 +50,14 @@ private extension AddEditTransactionView {
         } label: {
             Text(language(vm.isEdit ? "SS_Common_A_04" : "SS_Common_A_03"))
         }.buttonStyle(.standard())
+    }
+
+    var datePickerRowVBiew: some View {
+        return DatePickerRowView(dateString: vm.dateSelectedString) {
+            DatePickerView(dateDefault: vm.dateSelected, dateType: .day, isLimitYear: true) { dateSelected in
+                vm.handleUpdateDateSelected(dateSelected)
+            }.show()
+        }
     }
 
     var amountTextFieldView: some View {
