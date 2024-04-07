@@ -193,10 +193,10 @@ private extension DatePickerView {
         Button {
             self.hide()
         } label: {
-            Image("ic_xmark")
+            Image(systemName: "x.circle")
                 .resizable()
                 .applyTheme()
-                .frame(width: 14, height: 14)
+                .frame(width: 20, height: 20)
                 .frame(width: AppStyle.layout.standardButtonHeight, height: AppStyle.layout.standardButtonHeight)
         }
     }
@@ -207,7 +207,7 @@ private extension DatePickerView {
             onSelect(dateSelected)
             self.hide()
         } label: {
-            Text(language("Date_Picker_A_04"))
+            Text(language("SS_Common_A_05"))
         }.buttonStyle(.standard())
     }
 
@@ -243,19 +243,19 @@ private extension DatePickerView {
     }
 
     var dayText: some View {
-        Text(language("Date_Picker_A_05"))
+        Text(language("Date_Picker_A_04"))
             .font(AppStyle.font.regular16)
             .foregroundColor(AppStyle.theme.textNormalColor)
     }
 
     var monthText: some View {
-        Text(language("Date_Picker_A_06"))
+        Text(language("Date_Picker_A_05"))
             .font(AppStyle.font.regular16)
             .foregroundColor(AppStyle.theme.textNormalColor)
     }
 
     var yearText: some View {
-        Text(language("Date_Picker_A_07"))
+        Text(language("Date_Picker_A_06"))
             .font(AppStyle.font.regular16)
             .foregroundColor(AppStyle.theme.textNormalColor)
     }
