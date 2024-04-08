@@ -19,6 +19,7 @@ class CategoryListVM: BaseViewModel {
     @Published var numberOfItemSelected: Int = 0
     @Published var actionType: CategoryActionType
 
+    var addEditTransitionVM = AddEditTransactionVM.shared
     var categorySelected: Category?
     private var categoryManager = CategoryManager.shared
 
@@ -39,6 +40,53 @@ class CategoryListVM: BaseViewModel {
         apiDeleteCategory()
     }
 
+    func updateCategorySeleted(_ categorySelected: Category) {
+        addEditTransitionVM.updateCategory(categorySelected)
+    }
+}
+
+// MARK: - Handle option select
+
+// not use
+
+extension CategoryListVM {
+    func enableModeSelect(_ isEnable: Bool) {
+        numberOfItemSelected = 0
+        categories.forEach { category in
+            category.isSelected = false
+            category.showOptionSelect = isEnable
+        }
+    }
+
+    func selectAll(_ isSelectAll: Bool) {
+        categories.forEach { category in
+            category.isSelected = isSelectAll
+            category.showOptionSelect = true
+        }
+        updateCountItemSelected()
+    }
+
+    private func subcribeCategory() {
+        categories.forEach { category in
+            category.onValueChanged = { [weak self] _ in
+                self?.updateCountItemSelected()
+            }
+        }
+    }
+
+    private func updateCountItemSelected() {
+        numberOfItemSelected = categories.filter { $0.isSelected }.count
+    }
+
+    private func reloadView() {
+        showOptionSelect = false
+        enableModeSelect(false)
+    }
+}
+
+// MARK: - Handle API
+
+extension CategoryListVM {
     private func getCategoryList(_ isLoading: Bool = false) {
         showLoading(isLoading)
         categoryManager.getCategories { [weak self] result in
@@ -75,40 +123,5 @@ class CategoryListVM: BaseViewModel {
                 self.showErrorMessage(language("SS_Common_A_06"))
             }
         }
-    }
-}
-
-extension CategoryListVM {
-    func enableModeSelect(_ isEnable: Bool) {
-        numberOfItemSelected = 0
-        categories.forEach { category in
-            category.isSelected = false
-            category.showOptionSelect = isEnable
-        }
-    }
-
-    func selectAll(_ isSelectAll: Bool) {
-        categories.forEach { category in
-            category.isSelected = isSelectAll
-            category.showOptionSelect = true
-        }
-        updateCountItemSelected()
-    }
-
-    private func subcribeCategory() {
-        categories.forEach { category in
-            category.onValueChanged = { [weak self] _ in
-                self?.updateCountItemSelected()
-            }
-        }
-    }
-
-    private func updateCountItemSelected() {
-        numberOfItemSelected = categories.filter { $0.isSelected }.count
-    }
-
-    private func reloadView() {
-        showOptionSelect = false
-        enableModeSelect(false)
     }
 }

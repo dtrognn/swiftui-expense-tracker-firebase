@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct SelectCategoryRowView: View {
-    private var category: Category?
+    @ObservedObject private var category: Category
     private var onClick: (() -> Void)?
 
-    init(category: Category? = nil, onClick: (() -> Void)? = nil) {
+    private var backgroundWidth: CGFloat = 40.0
+    private var iconWidth: CGFloat = 25.0
+
+    init(category: Category, onClick: (() -> Void)? = nil) {
         self.category = category
         self.onClick = onClick
     }
@@ -23,7 +26,14 @@ struct SelectCategoryRowView: View {
         } label: {
             VStack(spacing: AppStyle.layout.zero) {
                 HStack(spacing: AppStyle.layout.zero) {
-                    titleText
+                    if !category.name.isEmpty {
+                        HStack(spacing: AppStyle.layout.standardSpace) {
+                            iconView
+                            categoryNameText
+                        }
+                    } else {
+                        titleText
+                    }
                     Spacer()
                     HStack(spacing: AppStyle.layout.mediumSpace) {
                         arrowImage
@@ -37,6 +47,26 @@ struct SelectCategoryRowView: View {
 private extension SelectCategoryRowView {
     var titleText: some View {
         return Text(language("Add_Edit_Transaction_A_09"))
+            .font(AppStyle.font.regular16)
+            .foregroundColor(AppStyle.theme.textNormalColor)
+    }
+
+    var iconView: some View {
+        return ZStack {
+            background
+            category.getIcon().image
+                .frame(width: iconWidth, height: iconWidth)
+        }
+    }
+
+    var background: some View {
+        return Circle()
+            .frame(width: backgroundWidth, height: backgroundWidth)
+            .foregroundColor(category.getColor().color)
+    }
+
+    var categoryNameText: some View {
+        return Text(category.name)
             .font(AppStyle.font.regular16)
             .foregroundColor(AppStyle.theme.textNormalColor)
     }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddEditTransactionView: View {
     @EnvironmentObject private var router: AddEditTransactionRouter
-    @StateObject private var vm: AddEditTransactionVM
+    @StateObject private var vm = AddEditTransactionVM.shared
 
     private var screenConfiguration: ScreenConfiguration {
         return ScreenConfiguration(
@@ -18,10 +18,6 @@ struct AddEditTransactionView: View {
             showNavibar: true,
             hidesBottomBarWhenPushed: true
         )
-    }
-
-    init(_ transaction: Transaction? = nil) {
-        self._vm = StateObject(wrappedValue: AddEditTransactionVM(transaction))
     }
 
     var body: some View {

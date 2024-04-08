@@ -28,10 +28,11 @@ struct AddEditTransactionRouterView: View {
     init(router: AddEditTransactionRouter, transaction: Transaction? = nil) {
         self._router = StateObject(wrappedValue: router)
         self.transaction = transaction
+        AddEditTransactionVM.shared.setParams(transaction)
     }
 
     var body: some View {
-        AddEditTransactionView(transaction)
+        AddEditTransactionView()
             .environmentObject(router)
     }
 }

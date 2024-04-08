@@ -9,24 +9,33 @@ import Combine
 import Foundation
 
 class AddEditTransactionVM: BaseViewModel {
-    @Published var isEdit: Bool
-    @Published var amount: String
-    @Published var category: Category?
-    @Published var description: String
-    @Published var dateSelected: DateSelected
+    static let shared = AddEditTransactionVM()
+
+    @Published var isEdit: Bool = false
+    @Published var amount: String = "0"
+    @Published var category: Category = .init()
+    @Published var description: String = ""
+    @Published var dateSelected: DateSelected = .init(day: 1, month: 1, year: 2024)
     @Published var dateSelectedString: String = ""
 
-    init(_ transaction: Transaction?) {
+    override init() {
+        super.init()
+    }
+
+    func setParams(_ transaction: Transaction?) {
         self.isEdit = transaction != nil
         self.amount = "\(transaction?.amount ?? 0)"
-        self.category = transaction?.category ?? nil
+        self.category = transaction?.category ?? Category()
         self.description = transaction?.description ?? ""
 
         let date = Date(timeIntervalSince1970: transaction?.createdAt ?? Date().timeIntervalSince1970)
         self.dateSelected = DateSelected(day: date.day, month: date.month, year: date.year)
 
-        super.init()
         self.handleUpdateDateSelected(self.dateSelected)
+    }
+
+    func updateCategory(_ category: Category) {
+        self.category = category
     }
 
     func handleUpdateDateSelected(_ dateSelected: DateSelected) {

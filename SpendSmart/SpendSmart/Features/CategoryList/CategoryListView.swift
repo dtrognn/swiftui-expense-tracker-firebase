@@ -40,7 +40,13 @@ struct CategoryListView: View {
                                 LazyVStack(spacing: AppStyle.layout.zero) {
                                     ForEach(vm.categories) { category in
                                         CategoryItemView(category) { categorySelected in
-                                            print("AAA \(categorySelected)")
+                                            switch vm.actionType {
+                                            case .select:
+                                                vm.updateCategorySeleted(categorySelected)
+                                                router.popView()
+                                            case .update:
+                                                print("AAA")
+                                            }
                                         } onDelete: { categoryDeleteSelected in
                                             vm.categorySelected = categoryDeleteSelected
                                             showAlert = true
