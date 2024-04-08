@@ -9,14 +9,14 @@ import SwiftUI
 
 class AddEditTransactionRouter: BaseRouter<AddEditTransactionRouter.Screen> {
     enum Screen: IScreen {
-        case categoryList
+        case categoryList(CategoryActionType)
     }
 
     override func getInstanceScreen(_ screen: Screen) -> AnyView {
         switch screen {
-        case .categoryList:
+        case .categoryList(let actionType):
             let router = CategoryListRouter(navigationPath: navigationPath)
-            return CategoryListRouterView(router: router).asAnyView
+            return CategoryListRouterView(router: router, actionType: actionType).asAnyView
         }
     }
 }

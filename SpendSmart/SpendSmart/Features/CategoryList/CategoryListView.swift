@@ -9,9 +9,13 @@ import SwiftUI
 
 struct CategoryListView: View {
     @EnvironmentObject private var router: CategoryListRouter
-    @StateObject private var vm = CategoryListVM()
+    @StateObject private var vm: CategoryListVM
 
     @State private var showAlert: Bool = false
+
+    init(_ actionType: CategoryActionType) {
+        self._vm = StateObject(wrappedValue: CategoryListVM(actionType))
+    }
 
     private var screenConfiguration: ScreenConfiguration {
         return ScreenConfiguration(

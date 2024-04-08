@@ -63,7 +63,7 @@ private extension AddEditTransactionView {
 
     var selectCategoryRowView: some View {
         return SelectCategoryRowView(category: vm.category) {
-            router.push(to: .categoryList)
+            router.push(to: .categoryList(.select))
         }
     }
 

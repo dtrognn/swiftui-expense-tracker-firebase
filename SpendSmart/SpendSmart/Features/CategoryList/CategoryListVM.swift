@@ -8,16 +8,26 @@
 import Combine
 import Foundation
 
+enum CategoryActionType {
+    case update
+    case select
+}
+
 class CategoryListVM: BaseViewModel {
     @Published var categories: [Category] = []
     @Published var showOptionSelect: Bool = false
     @Published var numberOfItemSelected: Int = 0
+    @Published var actionType: CategoryActionType
 
     var categorySelected: Category?
     private var categoryManager = CategoryManager.shared
 
-    override init() {
+    init(_ actionType: CategoryActionType) {
+        self.actionType = actionType
         super.init()
+    }
+
+    override func loadData() {
         getData()
     }
 

@@ -23,13 +23,15 @@ class CategoryListRouter: BaseRouter<CategoryListRouter.Screen> {
 
 struct CategoryListRouterView: View {
     @StateObject private var router: CategoryListRouter
+    private var actionType: CategoryActionType
 
-    init(router: CategoryListRouter) {
+    init(router: CategoryListRouter, actionType: CategoryActionType) {
         self._router = StateObject(wrappedValue: router)
+        self.actionType = actionType
     }
 
     var body: some View {
-        CategoryListView()
+        CategoryListView(actionType)
             .environmentObject(router)
     }
 }
