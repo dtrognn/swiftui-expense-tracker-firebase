@@ -6,6 +6,8 @@
 "SS_Common_A_06" = "An error occurred, please try again!";
 "SS_Common_A_07" = "Selected";
 "SS_Common_A_08" = "Delete";
+"SS_Common_A_09" = "Cancel";
+"SS_Common_A_10" = "Agree";
 
 "Login_A_01" = "Login";
 "Login_A_02" = "Enter email";
@@ -51,6 +53,8 @@
 "Category_List_A_01" = "Category list";
 "Category_List_A_02" = "There is no category yet, please add a new one!";
 "Category_List_A_03" = "Add new category";
+"Category_List_A_04" = "Delete category";
+"Category_List_A_05" = "Are you sure you want to delete the selected category?";
 
 "Date_Picker_A_01" = "Select day";
 "Date_Picker_A_02" = "Select month";

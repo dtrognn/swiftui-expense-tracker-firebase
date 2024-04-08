@@ -11,6 +11,8 @@ struct CategoryListView: View {
     @EnvironmentObject private var router: CategoryListRouter
     @StateObject private var vm = CategoryListVM()
 
+    @State private var showAlert: Bool = false
+
     private var screenConfiguration: ScreenConfiguration {
         return ScreenConfiguration(
             title: language("Category_List_A_01"),
@@ -35,10 +37,15 @@ struct CategoryListView: View {
                                     ForEach(vm.categories) { category in
                                         CategoryItemView(category) { categorySelected in
                                             print("AAA \(categorySelected)")
+                                        } onDelete: { categoryDeleteSelected in
+                                            vm.categorySelected = categoryDeleteSelected
+                                            showAlert = true
                                         }
                                     }
-                                }.applyShadowView()
-                            }.padding(.vertical, AppStyle.layout.mediumSpace)
+                                }
+                            }.cornerRadius(AppStyle.layout.standardCornerRadius)
+                                .applyShadowView()
+                                .padding(.vertical, AppStyle.layout.mediumSpace)
                         }.refreshable {
                             Task { vm.getData(true) }
                         }
@@ -52,8 +59,9 @@ struct CategoryListView: View {
                 }.padding(.all, AppStyle.layout.standardSpace)
             }
 
-            editButton
+//            editButton
         }.overlay(vm.showOptionSelect ? optionEditView.asAnyView : EmptyView().asAnyView, alignment: .top)
+            .alertView(alerConfiguration)
     }
 }
 
@@ -87,11 +95,23 @@ private extension CategoryListView {
     var deleteButton: some View {
         return Button {
             Vibration.selection.vibrate()
-            // TODO: -
+            showAlert = true
         } label: {
             Text(language("SS_Common_A_08"))
         }.buttonStyle(.standard(isActive: vm.numberOfItemSelected != 0))
             .padding(.bottom, AppStyle.layout.standardButtonHeight)
+    }
+
+    var alerConfiguration: AlertConfiguration {
+        return AlertConfiguration(
+            isPresented: $showAlert,
+            title: language("Category_List_A_04"),
+            message: language("Category_List_A_05"),
+            primaryButtonText: language("SS_Common_A_09"),
+            secondaryButtonText: language("SS_Common_A_10")
+        ) {} secondaryAction: {
+            vm.deleteCategory()
+        }
     }
 }
 

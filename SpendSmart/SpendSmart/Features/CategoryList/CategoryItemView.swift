@@ -10,13 +10,15 @@ import SwiftUI
 struct CategoryItemView: View {
     @ObservedObject private var category: Category
     private var onSelect: ((Category) -> Void)?
+    private var onDelete: ((Category) -> Void)?
 
     private var backgroundWidth: CGFloat = 50.0
     private var iconWidth: CGFloat = 30.0
 
-    init(_ category: Category, onSelect: ((Category) -> Void)? = nil) {
+    init(_ category: Category, onSelect: ((Category) -> Void)? = nil, onDelete: ((Category) -> Void)? = nil) {
         self.category = category
         self.onSelect = onSelect
+        self.onDelete = onDelete
     }
 
     var body: some View {
@@ -32,11 +34,8 @@ struct CategoryItemView: View {
                     }
                     Spacer()
 
-                    if category.showOptionSelect {
-                        checkbox
-                    }
-                }.padding([.vertical, .leading], AppStyle.layout.standardSpace)
-                    .padding(.trailing, category.showOptionSelect ? AppStyle.layout.zero : AppStyle.layout.standardSpace)
+                    deleteButton
+                }.padding(.all, AppStyle.layout.standardSpace)
                 StraightLine()
             }
         }
@@ -47,6 +46,15 @@ private extension CategoryItemView {
     var checkbox: some View {
         return CheckBox(isCheck: $category.isSelected) { value in
             category.onValueChanged?(value)
+        }
+    }
+
+    var deleteButton: some View {
+        return Button {
+            onDelete?(category)
+        } label: {
+            Image(systemName: "trash")
+                .applyTheme(.red)
         }
     }
 

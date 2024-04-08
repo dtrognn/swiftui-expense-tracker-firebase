@@ -5,14 +5,15 @@
 //  Created by dtrognn on 07/04/2024.
 //
 
+import Combine
 import Foundation
 
 class CategoryListVM: BaseViewModel {
     @Published var categories: [Category] = []
-
     @Published var showOptionSelect: Bool = false
     @Published var numberOfItemSelected: Int = 0
 
+    var categorySelected: Category?
     private var categoryManager = CategoryManager.shared
 
     override init() {
@@ -24,6 +25,10 @@ class CategoryListVM: BaseViewModel {
         getCategoryList(isLoading)
     }
 
+    func deleteCategory() {
+        apiDeleteCategory()
+    }
+
     private func getCategoryList(_ isLoading: Bool = false) {
         showLoading(isLoading)
         categoryManager.getCategories { [weak self] result in
@@ -33,6 +38,27 @@ class CategoryListVM: BaseViewModel {
                 self.showLoading(false)
                 self.categories = categories
                 self.subcribeCategory()
+            case .failure:
+                guard let self = self else { return }
+                self.showLoading(false)
+                self.showErrorMessage(language("SS_Common_A_06"))
+            }
+        }
+    }
+
+    private func apiDeleteCategory() {
+        guard let categorySelected = categorySelected else { return }
+
+        categoryManager.deleteCategory(categorySelected.id) { [weak self] result in
+            switch result {
+            case .success:
+                guard let self = self else { return }
+                self.showLoading(false)
+                self.showSuccessMessage(language("SS_Common_A_02"))
+                if let index = categories.firstIndex(where: { $0.id == categorySelected.id }) {
+                    self.categories.remove(at: index)
+                }
+                self.categorySelected = nil
             case .failure:
                 guard let self = self else { return }
                 self.showLoading(false)
@@ -69,5 +95,10 @@ extension CategoryListVM {
 
     private func updateCountItemSelected() {
         numberOfItemSelected = categories.filter { $0.isSelected }.count
+    }
+
+    private func reloadView() {
+        showOptionSelect = false
+        enableModeSelect(false)
     }
 }

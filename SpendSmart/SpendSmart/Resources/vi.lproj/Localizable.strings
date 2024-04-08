@@ -6,6 +6,8 @@
 "SS_Common_A_06" = "Có lỗi xảy ra, vui lòng thử lại!";
 "SS_Common_A_07" = "Đã chọn";
 "SS_Common_A_08" = "Xoá";
+"SS_Common_A_09" = "Huỷ";
+"SS_Common_A_10" = "Đồng ý";
 
 "Login_A_01" = "Đăng nhập";
 "Login_A_02" = "Nhập email";
@@ -51,6 +53,8 @@
 "Category_List_A_01" = "Danh sách danh mục";
 "Category_List_A_02" = "Chưa có danh mục, vui lòng thêm mới!";
 "Category_List_A_03" = "Thêm mới danh mục";
+"Category_List_A_04" = "Xoá danh mục";
+"Category_List_A_05" = "Bạn có chắc chắn muốn xoá danh mục đã chọn không?";
 
 "Date_Picker_A_01" = "Chọn ngày";
 "Date_Picker_A_02" = "Chọn tháng";
