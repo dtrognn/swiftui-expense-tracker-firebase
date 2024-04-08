@@ -28,6 +28,7 @@ struct AddEditTransactionView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: AppStyle.layout.standardSpace) {
                         amountTextFieldView
+                        transactionTypeView
                         descriptionTextEditorView
                         selectCategoryRowView
                         datePickerRowVBiew
@@ -84,5 +85,57 @@ private extension AddEditTransactionView {
             disabledPlaceholder: language("Add_Edit_Transaction_A_04"),
             regExpUse: .none
         ).frame(height: textEditorHeight)
+    }
+
+    var transactionTypeView: some View {
+        return HStack(spacing: AppStyle.layout.hugeSpace) {
+            expenseButton
+            incomeButton
+            Spacer()
+        }
+    }
+
+    var expenseButton: some View {
+        return Button {
+            vm.transactionType = .expense
+        } label: {
+            HStack(spacing: AppStyle.layout.mediumSpace) {
+                radioExpense
+                expenseText
+            }
+        }
+    }
+
+    var incomeButton: some View {
+        return Button {
+            vm.transactionType = .income
+        } label: {
+            HStack(spacing: AppStyle.layout.mediumSpace) {
+                radioIncome
+                incomeText
+            }
+        }
+    }
+
+    var radioExpense: some View {
+        return Image(systemName: vm.transactionType == .expense ? "record.circle" : "circle")
+            .applyTheme(vm.transactionType == .expense ? AppStyle.theme.iconHighlightColor : AppStyle.theme.iconNormalColor)
+    }
+
+    var radioIncome: some View {
+        return Image(systemName: vm.transactionType == .income ? "record.circle" : "circle")
+            .applyTheme(vm.transactionType == .income ? AppStyle.theme.iconHighlightColor : AppStyle.theme.iconNormalColor)
+    }
+
+    var expenseText: some View {
+        return Text(language("SS_Common_A_11"))
+            .font(AppStyle.font.regular16)
+            .foregroundColor(AppStyle.theme.textNormalColor)
+    }
+
+    var incomeText: some View {
+        return Text(language("SS_Common_A_12"))
+            .font(AppStyle.font.regular16)
+            .foregroundColor(AppStyle.theme.textNormalColor)
     }
 }
