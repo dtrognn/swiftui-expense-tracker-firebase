@@ -96,7 +96,7 @@ struct AppTheme: STheme {
 
     var iconColor: Color { return Color(hexString: "#7F3DFF")! }
     var iconNormalColor: Color { return Color(hexString: "#22313F")! }
-    var iconHighlightColor: Color { return Color(hexString: "#86401F")! }
+    var iconHighlightColor: Color { return Color(hexString: "#7F3DFF")! }
     var backgroundColor: Color { return Color(hexString: "#FFFFFF")! }
     var rowCommonBackgroundColor: Color { return Color(hexString: "#FFFFFF")! }
     var sectionBackgroundColor: Color { return Color(hexString: "#011222", opacity: 0.1)! }

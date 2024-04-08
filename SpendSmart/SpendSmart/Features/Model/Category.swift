@@ -14,6 +14,10 @@ class Category: ObservableObject, Identifiable, Codable {
     let color: String
     let image: String
 
+    @Published var isSelected: Bool = false
+    @Published var showOptionSelect: Bool = false
+    var onValueChanged: ((Bool) -> Void)? = nil
+
     init(uid: String, name: String, color: String, image: String) {
         self.uid = uid
         self.name = name
