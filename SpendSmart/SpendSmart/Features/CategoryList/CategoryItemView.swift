@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CategoryItemView: View {
-    private var category: Category
+    @ObservedObject private var category: Category
     private var onSelect: ((Category) -> Void)?
 
     private var backgroundWidth: CGFloat = 50.0
@@ -31,7 +31,12 @@ struct CategoryItemView: View {
                         nameText
                     }
                     Spacer()
-                }.padding(.all, AppStyle.layout.standardSpace)
+
+                    if category.showOptionSelect {
+                        checkbox
+                    }
+                }.padding([.vertical, .leading], AppStyle.layout.standardSpace)
+                    .padding(.trailing, category.showOptionSelect ? AppStyle.layout.zero : AppStyle.layout.standardSpace)
                 StraightLine()
             }
         }
@@ -39,6 +44,12 @@ struct CategoryItemView: View {
 }
 
 private extension CategoryItemView {
+    var checkbox: some View {
+        return CheckBox(isCheck: $category.isSelected) { value in
+            category.onValueChanged?(value)
+        }
+    }
+
     var iconView: some View {
         return ZStack {
             background

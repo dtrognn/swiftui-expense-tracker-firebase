@@ -21,31 +21,77 @@ struct CategoryListView: View {
     }
 
     var body: some View {
-        ScreenContainerView(screenConfiguration) {
-            VStack(spacing: AppStyle.layout.mediumSpace) {
-                addNewCategoryButton
+        ZStack(alignment: .topTrailing) {
+            ScreenContainerView(screenConfiguration) {
+                VStack(spacing: AppStyle.layout.mediumSpace) {
+                    addNewCategoryButton
 
-                if vm.categories.isEmpty {
-                    noCategoryView
-                } else {
-                    ScrollView(.vertical, showsIndicators: false) {
-                        VStack(spacing: AppStyle.layout.standardSpace) {
-                            LazyVStack(spacing: AppStyle.layout.zero) {
-                                ForEach(vm.categories) { category in
-                                    CategoryItemView(category) { categorySelected in
-                                        print("AAA \(categorySelected)")
+                    if vm.categories.isEmpty {
+                        noCategoryView
+                    } else {
+                        ScrollView(.vertical, showsIndicators: false) {
+                            VStack(spacing: AppStyle.layout.standardSpace) {
+                                LazyVStack(spacing: AppStyle.layout.zero) {
+                                    ForEach(vm.categories) { category in
+                                        CategoryItemView(category) { categorySelected in
+                                            print("AAA \(categorySelected)")
+                                        }
                                     }
-                                }
-                            }.applyShadowView()
-                        }.padding(.vertical, AppStyle.layout.mediumSpace)
-                    }.refreshable {
-                        Task { vm.getData(true) }
+                                }.applyShadowView()
+                            }.padding(.vertical, AppStyle.layout.mediumSpace)
+                        }.refreshable {
+                            Task { vm.getData(true) }
+                        }
                     }
-                }
 
-                Spacer()
-            }.padding(.all, AppStyle.layout.standardSpace)
+                    Spacer()
+
+                    if vm.showOptionSelect {
+                        deleteButton
+                    }
+                }.padding(.all, AppStyle.layout.standardSpace)
+            }
+
+            editButton
+        }.overlay(vm.showOptionSelect ? optionEditView.asAnyView : EmptyView().asAnyView, alignment: .top)
+    }
+}
+
+private extension CategoryListView {
+    var optionEditView: some View {
+        return OptionEditView(
+            numberItemSelected: $vm.numberOfItemSelected,
+            onClose: {
+                vm.showOptionSelect = false
+                vm.enableModeSelect(false)
+            }, onSelectAll: { isSelectAll in
+                vm.selectAll(isSelectAll)
+            }
+        )
+    }
+
+    var editButton: some View {
+        return Button {
+            vm.showOptionSelect = true
+            vm.enableModeSelect(true)
+        } label: {
+            Image(systemName: "square.and.pencil")
+                .resizable()
+                .applyTheme(AppStyle.theme.naviBackIconColor)
+                .scaledToFit()
+                .frame(width: 18, height: 18)
+                .padding(.all, AppStyle.layout.standardSpace)
         }
+    }
+
+    var deleteButton: some View {
+        return Button {
+            Vibration.selection.vibrate()
+            // TODO: -
+        } label: {
+            Text(language("SS_Common_A_08"))
+        }.buttonStyle(.standard(isActive: vm.numberOfItemSelected != 0))
+            .padding(.bottom, AppStyle.layout.standardButtonHeight)
     }
 }
 
