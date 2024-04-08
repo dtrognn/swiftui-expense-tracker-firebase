@@ -4,6 +4,7 @@
 "SS_Common_A_04" = "Update";
 "SS_Common_A_05" = "Done";
 "SS_Common_A_06" = "An error occurred, please try again!";
+"SS_Common_A_07" = "Selected";
 
 "Login_A_01" = "Login";
 "Login_A_02" = "Enter email";
