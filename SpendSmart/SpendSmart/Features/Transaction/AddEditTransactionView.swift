@@ -11,6 +11,8 @@ struct AddEditTransactionView: View {
     @EnvironmentObject private var router: AddEditTransactionRouter
     @StateObject private var vm = AddEditTransactionVM.shared
 
+    private var textEditorHeight: CGFloat = 70
+
     private var screenConfiguration: ScreenConfiguration {
         return ScreenConfiguration(
             title: language(vm.isEdit ? "Add_Edit_Transaction_A_02" : "Add_Edit_Transaction_A_01"),
@@ -26,6 +28,7 @@ struct AddEditTransactionView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: AppStyle.layout.standardSpace) {
                         amountTextFieldView
+                        descriptionTextEditorView
                         selectCategoryRowView
                         datePickerRowVBiew
                     }.padding([.horizontal, .top], AppStyle.layout.standardSpace)
@@ -69,5 +72,17 @@ private extension AddEditTransactionView {
             placeHolder: language("Add_Edit_Transaction_A_06"),
             titleName: language("Add_Edit_Transaction_A_07")
         )).keyboardType(.decimalPad)
+    }
+
+    var descriptionTextEditorView: some View {
+        return AutoHeightEditor(
+            text: $vm.description,
+            teHeight: textEditorHeight,
+            maxLine: 5,
+            hasBorder: true,
+            isEnabled: .constant(true),
+            disabledPlaceholder: language("Add_Edit_Transaction_A_04"),
+            regExpUse: .none
+        ).frame(height: textEditorHeight)
     }
 }
