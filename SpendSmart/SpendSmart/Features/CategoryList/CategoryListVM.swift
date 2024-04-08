@@ -8,6 +8,14 @@
 import Combine
 import Foundation
 
+// note:
+// bo xung case check categorySelected from transaction == categoryDeleteSelected thi khong cho xoa
+
+enum CategoryAlertType {
+    case deleteNormal
+    case deleteCategorySelectedFromTransaction
+}
+
 enum CategoryActionType {
     case update
     case select
