@@ -39,6 +39,8 @@ struct AddEditTransactionView: View {
                     .padding(.bottom, AppStyle.layout.standardButtonHeight)
                     .padding(.horizontal, AppStyle.layout.standardSpace)
             }
+        }.onReceive(vm.onAddEditTransitionSuccess) { _ in
+            router.popView()
         }
     }
 }
@@ -47,7 +49,7 @@ private extension AddEditTransactionView {
     var addEditTransactionButton: some View {
         return Button {
             Vibration.selection.vibrate()
-            // TODO: -
+            vm.addUpdateTransaction()
         } label: {
             Text(language(vm.isEdit ? "SS_Common_A_04" : "SS_Common_A_03"))
         }.buttonStyle(.standard())

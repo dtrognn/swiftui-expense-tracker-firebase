@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Transaction: Codable {
+struct Transaction: Identifiable, Codable {
+    let id: String = UUID().uuidString
     let uid: String
     let description: String?
     let type: String

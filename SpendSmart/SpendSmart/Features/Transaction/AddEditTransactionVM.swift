@@ -19,6 +19,11 @@ class AddEditTransactionVM: BaseViewModel {
     @Published var dateSelected: DateSelected = .init(day: 1, month: 1, year: 2024)
     @Published var dateSelectedString: String = ""
 
+    var onAddEditTransitionSuccess = PassthroughSubject<Void, Never>()
+
+    private var authService = AuthServiceManager.shared
+    private var transactionManager = TransactionManager.shared
+
     override init() {
         super.init()
     }
@@ -34,6 +39,14 @@ class AddEditTransactionVM: BaseViewModel {
         self.dateSelected = DateSelected(day: date.day, month: date.month, year: date.year)
 
         self.handleUpdateDateSelected(self.dateSelected)
+    }
+
+    func addUpdateTransaction() {
+        if self.isEdit {
+            // TODO: -
+        } else {
+            apiAddTransaction()
+        }
     }
 
     func updateCategory(_ category: Category) {
@@ -57,5 +70,32 @@ class AddEditTransactionVM: BaseViewModel {
     private func updateDateSelected(_ dateSelected: DateSelected) {
         self.dateSelected = dateSelected
         self.dateSelectedString = String(format: "%02d/%02d/%02d", dateSelected.day, dateSelected.month, dateSelected.year)
+    }
+}
+
+extension AddEditTransactionVM {
+    private func apiAddTransaction() {
+        guard let uid = authService.userSesstion?.uid else { return }
+        let newTransaction = Transaction(uid: uid,
+                                         description: description,
+                                         type: transactionType.rawValue,
+                                         amount: Double(self.amount) ?? 0,
+                                         category: self.category,
+                                         createdAt: self.dateSelected.toDate.timeIntervalSince1970)
+
+        showLoading(true)
+        self.transactionManager.addTransaction(newTransaction) { [weak self] result in
+            switch result {
+            case .success:
+                guard let self = self else { return }
+                self.showLoading(false)
+                self.showSuccessMessage(language("SS_Common_A_02"))
+                self.onAddEditTransitionSuccess.send(())
+            case .failure:
+                guard let self = self else { return }
+                self.showLoading(false)
+                self.showErrorMessage(language("SS_Common_A_06"))
+            }
+        }
     }
 }
