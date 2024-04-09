@@ -24,6 +24,10 @@ struct HomeView: View {
         ScreenContainerView(screenConfiguration) {
             VStack(spacing: AppStyle.layout.zero) {
                 headerView
+
+                ScrollView(.vertical, showsIndicators: false) {
+                    recentTransactionsView
+                }
             }
         }
     }
@@ -67,6 +71,40 @@ private extension HomeView {
                 .resizable()
                 .applyTheme()
                 .frame(width: 22, height: 22)
+        }
+    }
+}
+
+private extension HomeView {
+    var recentTransactionsView: some View {
+        return VStack(spacing: AppStyle.layout.standardSpace) {
+            HStack(spacing: AppStyle.layout.zero) {
+                recentTransactionText
+                Spacer()
+                seeAllButton
+            }
+
+            LazyVStack(spacing: AppStyle.layout.zero) {
+                ForEach(vm.transitions.prefix(5)) { transition in
+                    TransactionItemView(transaction: transition)
+                }
+            }.applyShadowView()
+        }.padding(.all, AppStyle.layout.standardSpace)
+    }
+
+    var recentTransactionText: some View {
+        return Text(language("Home_A_01"))
+            .font(AppStyle.font.semibold16)
+            .foregroundColor(AppStyle.theme.textNormalColor)
+    }
+
+    var seeAllButton: some View {
+        return Button {
+            // TODO: -
+        } label: {
+            Text(language("Home_A_02"))
+                .font(AppStyle.font.regular16)
+                .foregroundColor(AppStyle.theme.textHightlightColor)
         }
     }
 }

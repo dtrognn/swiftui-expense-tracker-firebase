@@ -37,6 +37,15 @@ struct Transaction: Identifiable, Codable {
     }
 
     var transactionType: TransactionType {
-        return TransactionType(rawValue: type) ?? .expense
+        return TransactionType(rawValue: self.type) ?? .expense
+    }
+
+    var formattedAmount: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.groupingSeparator = ","
+        formatter.locale = Locale(identifier: "vi_VN")
+
+        return formatter.string(from: NSNumber(value: self.amount)) ?? "\(self.amount)"
     }
 }
