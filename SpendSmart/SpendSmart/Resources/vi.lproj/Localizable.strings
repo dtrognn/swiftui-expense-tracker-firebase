@@ -8,6 +8,8 @@
 "SS_Common_A_08" = "Xoá";
 "SS_Common_A_09" = "Huỷ";
 "SS_Common_A_10" = "Đồng ý";
+"SS_Common_A_11" = "Chi phí";
+"SS_Common_A_12" = "Thu nhập";
 
 "Login_A_01" = "Đăng nhập";
 "Login_A_02" = "Nhập email";
@@ -31,6 +33,10 @@
 "Register_A_10" = "Đăng nhập";
 "Register_A_11" = "Email không đúng định dạng";
 "Register_A_12" = "Mật khẩu phải chứa ít nhất 6 ký tự, 2 loại: chữ hoa, chữ thường, số, ký tự.";
+
+"Home_A_01" = "Giao dịch gần đây";
+"Home_A_02" = "Xem tất cả";
+"Home_A_03" = "Chưa có giao dịch nào gần đây";
 
 "Add_Edit_Category_A_01" = "Tạo danh mục mới";
 "Add_Edit_Category_A_02" = "Nhập tên danh mục";

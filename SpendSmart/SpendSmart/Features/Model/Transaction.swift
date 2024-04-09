@@ -13,6 +13,7 @@ struct Transaction: Identifiable, Codable {
     let description: String?
     let type: String
     let amount: Double
+    let unit: String
     let category: Category
     let createdAt: Double
 
@@ -20,6 +21,7 @@ struct Transaction: Identifiable, Codable {
          description: String? = nil,
          type: String,
          amount: Double,
+         unit: Unit = .vnd,
          category: Category,
          createdAt: Double = Date().timeIntervalSince1970)
     {
@@ -27,25 +29,30 @@ struct Transaction: Identifiable, Codable {
         self.description = description
         self.type = type
         self.amount = amount
+        self.unit = unit.rawValue
         self.category = category
         self.createdAt = createdAt
     }
 
     enum CodingKeys: String, CodingKey {
-        case uid, description, type, amount, category
+        case uid, description, type, amount, category, unit
         case createdAt = "created_at"
     }
 
+    var tUnit: Unit {
+        return Unit(rawValue: unit) ?? .vnd
+    }
+
     var transactionType: TransactionType {
-        return TransactionType(rawValue: self.type) ?? .expense
+        return TransactionType(rawValue: type) ?? .expense
     }
 
     var formattedAmount: String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.groupingSeparator = ","
-        formatter.locale = Locale(identifier: "vi_VN")
-
-        return formatter.string(from: NSNumber(value: self.amount)) ?? "\(self.amount)"
+        formatter.locale = Locale(identifier: tUnit.identifier)
+        let amountFormatter = formatter.string(from: NSNumber(value: amount)) ?? "\(amount)"
+        return String(format: "%@ %@", tUnit.symbol, amountFormatter)
     }
 }

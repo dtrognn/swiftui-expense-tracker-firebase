@@ -13,6 +13,7 @@ class AddEditTransactionVM: BaseViewModel {
 
     @Published var isEdit: Bool = false
     @Published var amount: String = "0"
+    @Published var unit: Unit = .vnd
     @Published var transactionType: TransactionType = .expense
     @Published var category: Category = .init()
     @Published var description: String = ""
@@ -31,6 +32,7 @@ class AddEditTransactionVM: BaseViewModel {
     func setParams(_ transaction: Transaction?) {
         self.isEdit = transaction != nil
         self.amount = "\(transaction?.amount ?? 0)"
+        self.unit = transaction?.tUnit ?? .vnd
         self.transactionType = transaction?.transactionType ?? .expense
         self.category = transaction?.category ?? Category()
         self.description = transaction?.description ?? ""
