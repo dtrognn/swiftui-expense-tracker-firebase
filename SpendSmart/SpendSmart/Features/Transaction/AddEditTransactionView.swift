@@ -27,7 +27,10 @@ struct AddEditTransactionView: View {
             VStack(spacing: AppStyle.layout.zero) {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: AppStyle.layout.standardSpace) {
-                        amountTextFieldView
+                        HStack(spacing: AppStyle.layout.standardSpace) {
+                            amountTextFieldView
+                            unitButton
+                        }
                         transactionTypeView
                         descriptionTextEditorView
                         selectCategoryRowView
@@ -53,6 +56,31 @@ private extension AddEditTransactionView {
         } label: {
             Text(language(vm.isEdit ? "SS_Common_A_04" : "SS_Common_A_03"))
         }.buttonStyle(.standard())
+    }
+
+    var unitButton: some View {
+        return MenuView(selectUnitMenuConfiguration) {
+            Text(vm.unit.symbol)
+                .font(AppStyle.font.medium16)
+                .foregroundColor(AppStyle.theme.textHightlightColor)
+        }
+    }
+
+    var selectUnitMenuConfiguration: MenuConfiguration {
+        return MenuConfiguration(menuItemList: unitMenuConfigurationList) { menu in
+            didSelectUnitMenu(menu)
+        }
+    }
+
+    var unitMenuConfigurationList: [MenuItemConfiguration] {
+        return Unit.allCases.map {
+            MenuItemConfiguration(title: $0.title, data: $0)
+        }
+    }
+
+    func didSelectUnitMenu(_ menu: MenuItemConfiguration) {
+        guard let unit = menu.data as? Unit else { return }
+        vm.unit = unit
     }
 
     var datePickerRowVBiew: some View {

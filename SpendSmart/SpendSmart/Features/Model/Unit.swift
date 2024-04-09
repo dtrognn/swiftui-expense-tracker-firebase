@@ -7,9 +7,18 @@
 
 import Foundation
 
-enum Unit: String {
+enum Unit: String, CaseIterable {
     case vnd
     case dollar
+
+    var title: String {
+        switch self {
+        case .vnd:
+            return "VND"
+        case .dollar:
+            return "Dollar"
+        }
+    }
 
     var symbol: String {
         switch self {

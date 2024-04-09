@@ -82,6 +82,7 @@ extension AddEditTransactionVM {
                                          description: description,
                                          type: transactionType.rawValue,
                                          amount: Double(self.amount) ?? 0,
+                                         unit: unit,
                                          category: self.category,
                                          createdAt: self.dateSelected.toDate.timeIntervalSince1970)
 
