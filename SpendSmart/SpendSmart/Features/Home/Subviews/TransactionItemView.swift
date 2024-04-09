@@ -27,7 +27,10 @@ struct TransactionItemView: View {
                 HStack(spacing: AppStyle.layout.zero) {
                     HStack(spacing: AppStyle.layout.standardSpace) {
                         iconCategoryView
-                        categoryNameText
+                        VStack(alignment: .leading, spacing: AppStyle.layout.mediumSpace) {
+                            categoryNameText
+                            dateText
+                        }
                     }
 
                     Spacer()
@@ -64,5 +67,11 @@ private extension TransactionItemView {
         return Text(transaction.formattedAmount)
             .font(AppStyle.font.regular16)
             .foregroundColor(transaction.transactionType == .expense ? .red500 : AppStyle.theme.textHightlightColor)
+    }
+
+    var dateText: some View {
+        return Text(UtilsHelper.doubleToDate(data: transaction.createdAt))
+            .font(AppStyle.font.regular14)
+            .foregroundColor(AppStyle.theme.textNoteColor)
     }
 }

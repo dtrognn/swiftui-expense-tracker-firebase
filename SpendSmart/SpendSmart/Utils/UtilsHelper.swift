@@ -70,3 +70,14 @@ extension UtilsHelper {
         }
     }
 }
+
+extension UtilsHelper {
+    static func doubleToDate(data: Double, type: String = "dd/MM/yyyy", isUseGMT: Bool = false) -> String {
+        let formatter = DateFormatter()
+        if isUseGMT {
+            formatter.timeZone = TimeZone(identifier: "GMT")
+        }
+        formatter.dateFormat = type
+        return formatter.string(from: Date(timeIntervalSince1970: data))
+    }
+}
