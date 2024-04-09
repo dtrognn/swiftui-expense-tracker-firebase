@@ -68,3 +68,6 @@
 "Date_Picker_A_04" = "Day";
 "Date_Picker_A_05" = "Month";
 "Date_Picker_A_06" = "Year";
+
+"Chart_A_01" = "Category";
+"Chart_A_02" = "Amount";

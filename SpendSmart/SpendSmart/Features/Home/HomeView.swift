@@ -5,19 +5,23 @@
 //  Created by dtrognn on 02/04/2024.
 //
 
+import Charts
 import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject private var router: HomeRouter
     @StateObject private var vm = HomeVM()
 
+//    let data = [ChartData(type: "bird", count: 1),
+//                ChartData(type: "dog", count: 2),
+//                ChartData(type: "cat", count: 3)]
+
     private var screenConfiguration: ScreenConfiguration {
         return ScreenConfiguration(
             title: "",
             showBackButton: false,
             showNavibar: false,
-            hidesBottomBarWhenPushed: false
-        )
+            hidesBottomBarWhenPushed: false)
     }
 
     var body: some View {
@@ -26,7 +30,10 @@ struct HomeView: View {
                 headerView
 
                 ScrollView(.vertical, showsIndicators: false) {
-                    recentTransactionsView
+                    VStack(spacing: AppStyle.layout.standardSpace) {
+                        barChartView
+                        recentTransactionsView
+                    }.padding(.vertical, AppStyle.layout.standardSpace)
                 }
             }
         }
@@ -44,6 +51,13 @@ private extension HomeView {
             }
         }.padding(.horizontal, AppStyle.layout.standardSpace)
             .padding(.bottom, AppStyle.layout.mediumSpace)
+    }
+
+    var barChartView: some View {
+        return BarChartView(configuration: BarChartConfiguration(
+            data: vm.chartDatas,
+            height: 300))
+        .padding(.horizontal, AppStyle.layout.standardSpace)
     }
 
     var usernameText: some View {
@@ -85,7 +99,7 @@ private extension HomeView {
             }
 
             LazyVStack(spacing: AppStyle.layout.zero) {
-                ForEach(vm.transitions.prefix(5)) { transition in
+                ForEach(vm.transactions.prefix(4)) { transition in
                     TransactionItemView(transaction: transition)
                 }
             }.applyShadowView()
