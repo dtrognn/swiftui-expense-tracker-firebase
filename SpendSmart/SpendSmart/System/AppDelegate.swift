@@ -5,8 +5,8 @@
 //  Created by dtrognn on 01/04/2024.
 //
 
-import UIKit
 import FirebaseCore
+import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
 
         FirebaseApp.configure()
-        AuthServiceManager.shared.loadUser()
+        AppDataManager.shared.loadData()
+        AppDataManager.shared.loadConfig()
 
         return true
     }

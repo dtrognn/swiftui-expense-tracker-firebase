@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AddEditCategoryView: View {
+    @EnvironmentObject private var router: AddEditCategoryRouter
     @StateObject private var vm: AddEditCategoryVM
 
     @State private var showColorPickerSheet: Bool = false
@@ -21,7 +22,7 @@ struct AddEditCategoryView: View {
 
     private var screenConfiguration: ScreenConfiguration {
         return ScreenConfiguration(
-            title: language("Create_Category_A_01"),
+            title: language("Add_Edit_Category_A_01"),
             showBackButton: true,
             showNavibar: true,
             hidesBottomBarWhenPushed: true
@@ -63,7 +64,7 @@ struct AddEditCategoryView: View {
                 showIConPickerSheet = false
             }
         }.onReceive(vm.onAddUpdateCategorySuccess) { _ in
-            // TODO: -
+            router.popView()
         }
     }
 }
@@ -72,8 +73,8 @@ private extension AddEditCategoryView {
     var categoryNameTextFieldView: some View {
         return InputTextField(TextFieldConfiguration(
             text: $vm.categoryName,
-            placeHolder: language("Create_Category_A_02"),
-            titleName: language("Create_Category_A_03")
+            placeHolder: language("Add_Edit_Category_A_02"),
+            titleName: language("Add_Edit_Category_A_03")
         ))
     }
 
@@ -94,7 +95,7 @@ private extension AddEditCategoryView {
             Vibration.selection.vibrate()
             vm.addEditCategory()
         } label: {
-            Text(language(vm.isEdit ? "Create_Category_A_07" : "Create_Category_A_06"))
+            Text(language(vm.isEdit ? "Add_Edit_Category_A_07" : "Add_Edit_Category_A_06"))
         }.buttonStyle(.standard(isActive: !vm.categoryName.isEmpty))
     }
 }

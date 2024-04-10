@@ -14,8 +14,16 @@ class AppDataManager: ObservableObject {
     let appLanguage: AppLanguage
 
     init() {
+        AuthServiceManager.shared.loadUser()
         self.appState = AppState()
         self.appLanguage = AppLanguage()
+    }
+
+    func loadData() {
+        
+    }
+
+    func loadConfig() {
         configureAlertMessage()
     }
 

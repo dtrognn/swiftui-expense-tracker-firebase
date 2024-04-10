@@ -37,7 +37,7 @@ struct CategorySelectColorView: View {
 
 private extension CategorySelectColorView {
     var titleText: some View {
-        return Text(language("Create_Category_A_04"))
+        return Text(language("Add_Edit_Category_A_04"))
             .font(AppStyle.font.semibold16)
             .foregroundColor(AppStyle.theme.textNormalColor)
     }

@@ -1,5 +1,15 @@
 "SS_Common_A_01" = "Thông báo";
 "SS_Common_A_02" = "Thực hiện thành công";
+"SS_Common_A_03" = "Lưu";
+"SS_Common_A_04" = "Cập nhật";
+"SS_Common_A_05" = "Xong";
+"SS_Common_A_06" = "Có lỗi xảy ra, vui lòng thử lại!";
+"SS_Common_A_07" = "Đã chọn";
+"SS_Common_A_08" = "Xoá";
+"SS_Common_A_09" = "Huỷ";
+"SS_Common_A_10" = "Đồng ý";
+"SS_Common_A_11" = "Chi phí";
+"SS_Common_A_12" = "Thu nhập";
 
 "Login_A_01" = "Đăng nhập";
 "Login_A_02" = "Nhập email";
@@ -24,10 +34,44 @@
 "Register_A_11" = "Email không đúng định dạng";
 "Register_A_12" = "Mật khẩu phải chứa ít nhất 6 ký tự, 2 loại: chữ hoa, chữ thường, số, ký tự.";
 
-"Create_Category_A_01" = "Tạo danh mục mới";
-"Create_Category_A_02" = "Nhập tên danh mục";
-"Create_Category_A_03" = "Tên danh mục";
-"Create_Category_A_04" = "Màu nền";
-"Create_Category_A_05" = "Biểu tượng";
-"Create_Category_A_06" = "Tạo danh mục";
-"Create_Category_A_07" = "Cập nhật danh mục";
+"Home_A_01" = "Giao dịch gần đây";
+"Home_A_02" = "Xem tất cả";
+"Home_A_03" = "Chưa có giao dịch nào gần đây";
+"Home_A_04" = "Theo dõi giao dịch";
+
+"Add_Edit_Category_A_01" = "Tạo danh mục mới";
+"Add_Edit_Category_A_02" = "Nhập tên danh mục";
+"Add_Edit_Category_A_03" = "Tên danh mục";
+"Add_Edit_Category_A_04" = "Màu nền";
+"Add_Edit_Category_A_05" = "Biểu tượng";
+"Add_Edit_Category_A_06" = "Tạo danh mục";
+"Add_Edit_Category_A_07" = "Cập nhật danh mục";
+
+"Add_Edit_Transaction_A_01" = "Thêm chi tiêu mới";
+"Add_Edit_Transaction_A_02" = "Cập nhật chi tiêu";
+"Add_Edit_Transaction_A_03" = "Danh mục";
+"Add_Edit_Transaction_A_04" = "Nhập ghi chú (không bắt buộc)";
+"Add_Edit_Transaction_A_05" = "Ghi chú";
+"Add_Edit_Transaction_A_06" = "Nhập số tiền";
+"Add_Edit_Transaction_A_07" = "Số tiền";
+"Add_Edit_Transaction_A_08" = "Chọn ngày";
+"Add_Edit_Transaction_A_09" = "Chọn danh mục";
+
+"Category_List_A_01" = "Danh sách danh mục";
+"Category_List_A_02" = "Chưa có danh mục, vui lòng thêm mới!";
+"Category_List_A_03" = "Thêm mới danh mục";
+"Category_List_A_04" = "Xoá danh mục";
+"Category_List_A_05" = "Bạn có chắc chắn muốn xoá danh mục đã chọn không?";
+
+"Date_Picker_A_01" = "Chọn ngày";
+"Date_Picker_A_02" = "Chọn tháng";
+"Date_Picker_A_03" = "Chọn năm";
+"Date_Picker_A_04" = "Ngày";
+"Date_Picker_A_05" = "Tháng";
+"Date_Picker_A_06" = "Năm";
+
+"Chart_A_01" = "Danh mục";
+"Chart_A_02" = "Số tiền";
+"Chart_A_03" = "Biểu đồ đường";
+"Chart_A_04" = "Biểu đồ cột";
+"Chart_A_05" = "Biểu đồ tròn";

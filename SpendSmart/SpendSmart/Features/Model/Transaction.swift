@@ -7,34 +7,52 @@
 
 import Foundation
 
-struct Transaction: Codable {
+struct Transaction: Identifiable, Codable {
+    let id: String = UUID().uuidString
     let uid: String
-    let title: String
     let description: String?
     let type: String
     let amount: Double
+    let unit: String
     let category: Category
     let createdAt: Double
 
     init(uid: String,
-         title: String,
          description: String? = nil,
          type: String,
          amount: Double,
+         unit: Unit = .vnd,
          category: Category,
          createdAt: Double = Date().timeIntervalSince1970)
     {
         self.uid = uid
-        self.title = title
         self.description = description
         self.type = type
         self.amount = amount
+        self.unit = unit.rawValue
         self.category = category
         self.createdAt = createdAt
     }
 
     enum CodingKeys: String, CodingKey {
-        case uid, title, description, type, amount, category
+        case uid, description, type, amount, category, unit
         case createdAt = "created_at"
+    }
+
+    var tUnit: Unit {
+        return Unit(rawValue: unit) ?? .vnd
+    }
+
+    var transactionType: TransactionType {
+        return TransactionType(rawValue: type) ?? .expense
+    }
+
+    var formattedAmount: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.groupingSeparator = ","
+        formatter.locale = Locale(identifier: tUnit.identifier)
+        let amountFormatter = formatter.string(from: NSNumber(value: amount)) ?? "\(amount)"
+        return String(format: "%@ %@", tUnit.symbol, amountFormatter)
     }
 }

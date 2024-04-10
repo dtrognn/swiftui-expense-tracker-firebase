@@ -33,4 +33,39 @@ extension View {
     func applyShadowView(_ colorFill: Color = Color.white, cornerRadius: CGFloat = AppStyle.layout.standardCornerRadius) -> some View {
         modifier(ViewModifierBackground(colorFill: colorFill, cornerRadius: cornerRadius, shadowConfiguration: ShadowConfiguration()))
     }
+
+    func show() {
+        var window: UIWindow? {
+            guard let scene = UIApplication.shared.connectedScenes.first,
+                let windowSceneDelegate = scene.delegate as? UIWindowSceneDelegate,
+                let window = windowSceneDelegate.window else {
+                return nil
+            }
+            return window
+        }
+        guard let window = window else { return }
+
+        let hostingController = UIHostingController(rootView: self)
+        hostingController.view.tag = (self as? IPopupView)?.tag ?? 100
+
+        window.addSubview(hostingController.view)
+        hostingController.view.frame = UIScreen.main.bounds
+        hostingController.view.backgroundColor = .clear
+    }
+
+    func hide() {
+        var window: UIWindow? {
+            guard let scene = UIApplication.shared.connectedScenes.first,
+                let windowSceneDelegate = scene.delegate as? UIWindowSceneDelegate,
+                let window = windowSceneDelegate.window else {
+                return nil
+            }
+            return window
+        }
+        guard let window = window else { return }
+
+        if let tag = (self as? IPopupView)?.tag {
+            window.viewWithTag(tag)?.removeFromSuperview()
+        }
+    }
 }

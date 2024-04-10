@@ -1,5 +1,15 @@
 "SS_Common_A_01" = "Notification";
 "SS_Common_A_02" = "Successful implementation";
+"SS_Common_A_03" = "Save";
+"SS_Common_A_04" = "Update";
+"SS_Common_A_05" = "Done";
+"SS_Common_A_06" = "An error occurred, please try again!";
+"SS_Common_A_07" = "Selected";
+"SS_Common_A_08" = "Delete";
+"SS_Common_A_09" = "Cancel";
+"SS_Common_A_10" = "Agree";
+"SS_Common_A_11" = "Expense";
+"SS_Common_A_12" = "Income";
 
 "Login_A_01" = "Login";
 "Login_A_02" = "Enter email";
@@ -24,10 +34,44 @@
 "Register_A_11" = "Email invalidate";
 "Register_A_12" = "Password must contain at least 6 characters, 2 types: uppercase, lowercase, numbers, characters.";
 
-"Create_Category_A_01" = "Create new category";
-"Create_Category_A_02" = "Enter category name";
-"Create_Category_A_03" = "Category name";
-"Create_Category_A_04" = "Background";
-"Create_Category_A_05" = "Icon";
-"Create_Category_A_06" = "Create category";
-"Create_Category_A_07" = "Update category";
+"Home_A_01" = "Recent transactions";
+"Home_A_02" = "See all";
+"Home_A_03" = "There have been no recent transactions";
+"Home_A_04" = "Track transactions";
+
+"Add_Edit_Category_A_01" = "Create new category";
+"Add_Edit_Category_A_02" = "Enter category name";
+"Add_Edit_Category_A_03" = "Category name";
+"Add_Edit_Category_A_04" = "Background";
+"Add_Edit_Category_A_05" = "Icon";
+"Add_Edit_Category_A_06" = "Create category";
+"Add_Edit_Category_A_07" = "Update category";
+
+"Add_Edit_Transaction_A_01" = "Add new transaction";
+"Add_Edit_Transaction_A_02" = "Update transaction";
+"Add_Edit_Transaction_A_03" = "Category";
+"Add_Edit_Transaction_A_04" = "Enter note (optional)";
+"Add_Edit_Transaction_A_05" = "Note";
+"Add_Edit_Transaction_A_06" = "Enter amount";
+"Add_Edit_Transaction_A_07" = "Amount";
+"Add_Edit_Transaction_A_08" = "Select day";
+"Add_Edit_Transaction_A_09" = "Select category";
+
+"Category_List_A_01" = "Category list";
+"Category_List_A_02" = "There is no category yet, please add a new one!";
+"Category_List_A_03" = "Add new category";
+"Category_List_A_04" = "Delete category";
+"Category_List_A_05" = "Are you sure you want to delete the selected category?";
+
+"Date_Picker_A_01" = "Select day";
+"Date_Picker_A_02" = "Select month";
+"Date_Picker_A_03" = "Select year";
+"Date_Picker_A_04" = "Day";
+"Date_Picker_A_05" = "Month";
+"Date_Picker_A_06" = "Year";
+
+"Chart_A_01" = "Category";
+"Chart_A_02" = "Amount";
+"Chart_A_03" = "Line chart";
+"Chart_A_04" = "Bar chart";
+"Chart_A_05" = "Pie chart";
