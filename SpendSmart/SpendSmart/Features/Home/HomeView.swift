@@ -9,12 +9,9 @@ import Charts
 import SwiftUI
 
 struct HomeView: View {
+    @Environment(\.safeAreaInsets) private var safeAreaInsets
     @EnvironmentObject private var router: HomeRouter
     @StateObject private var vm = HomeVM()
-
-//    let data = [ChartData(type: "bird", count: 1),
-//                ChartData(type: "dog", count: 2),
-//                ChartData(type: "cat", count: 3)]
 
     private var screenConfiguration: ScreenConfiguration {
         return ScreenConfiguration(
@@ -31,11 +28,14 @@ struct HomeView: View {
 
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: AppStyle.layout.standardSpace) {
-                        barChartView
+                        VStack(spacing: AppStyle.layout.standardSpace) {
+                            tranTransactionsView
+                            barChartView
+                        }
                         recentTransactionsView
                     }.padding(.vertical, AppStyle.layout.standardSpace)
                 }
-            }
+            }.padding(.bottom, UITabBarController().height + safeAreaInsets.bottom)
         }
     }
 }
@@ -51,13 +51,6 @@ private extension HomeView {
             }
         }.padding(.horizontal, AppStyle.layout.standardSpace)
             .padding(.bottom, AppStyle.layout.mediumSpace)
-    }
-
-    var barChartView: some View {
-        return BarChartView(configuration: BarChartConfiguration(
-            data: vm.chartDatas,
-            height: 300))
-        .padding(.horizontal, AppStyle.layout.standardSpace)
     }
 
     var usernameText: some View {
@@ -88,6 +81,56 @@ private extension HomeView {
         }
     }
 }
+
+// MARK: - Charts
+
+private extension HomeView {
+    var tranTransactionsView: some View {
+        return HStack {
+            trackTransactionsText
+            Spacer()
+            selectChartTypeButton
+        }.padding(.horizontal, AppStyle.layout.standardSpace)
+    }
+
+    var barChartView: some View {
+        return BarChartView(configuration: BarChartConfiguration(
+            data: vm.chartDatas,
+            height: 300))
+            .padding(.horizontal, AppStyle.layout.standardSpace)
+    }
+
+    var selectChartTypeButton: some View {
+        return MenuView(selectChartTypeMenuConfiguration) {
+            vm.chartType.icon
+        }
+    }
+
+    var selectChartTypeMenuConfiguration: MenuConfiguration {
+        return MenuConfiguration(menuItemList: chartMenuConfigurationList) { menu in
+            didSelectChartTypeMenu(menu)
+        }
+    }
+
+    var chartMenuConfigurationList: [MenuItemConfiguration] {
+        return ChartType.allCases.map {
+            MenuItemConfiguration(title: $0.title, trailingImage: $0.icon, data: $0)
+        }
+    }
+
+    func didSelectChartTypeMenu(_ menu: MenuItemConfiguration) {
+        guard let type = menu.data as? ChartType else { return }
+        vm.chartType = type
+    }
+
+    var trackTransactionsText: some View {
+        return Text(language("Home_A_04"))
+            .font(AppStyle.font.semibold16)
+            .foregroundColor(AppStyle.theme.textNormalColor)
+    }
+}
+
+// MARK: - Recent transactions
 
 private extension HomeView {
     var recentTransactionsView: some View {

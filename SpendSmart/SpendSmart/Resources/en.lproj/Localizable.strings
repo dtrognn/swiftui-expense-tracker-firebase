@@ -37,6 +37,7 @@
 "Home_A_01" = "Recent transactions";
 "Home_A_02" = "See all";
 "Home_A_03" = "There have been no recent transactions";
+"Home_A_04" = "Track transactions";
 
 "Add_Edit_Category_A_01" = "Create new category";
 "Add_Edit_Category_A_02" = "Enter category name";
@@ -71,3 +72,6 @@
 
 "Chart_A_01" = "Category";
 "Chart_A_02" = "Amount";
+"Chart_A_03" = "Line chart";
+"Chart_A_04" = "Bar chart";
+"Chart_A_05" = "Pie chart";

@@ -12,6 +12,7 @@ class HomeVM: BaseViewModel {
     @Published var username: String = ""
     @Published var transactions: [Transaction] = []
     @Published var chartDatas: [ChartData] = []
+    @Published var chartType: ChartType = .bar
 
     private let authService = AuthServiceManager.shared
     private let transactionManager = TransactionManager.shared

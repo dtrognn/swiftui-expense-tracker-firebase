@@ -37,6 +37,7 @@
 "Home_A_01" = "Giao dịch gần đây";
 "Home_A_02" = "Xem tất cả";
 "Home_A_03" = "Chưa có giao dịch nào gần đây";
+"Home_A_04" = "Theo dõi giao dịch";
 
 "Add_Edit_Category_A_01" = "Tạo danh mục mới";
 "Add_Edit_Category_A_02" = "Nhập tên danh mục";
@@ -71,3 +72,6 @@
 
 "Chart_A_01" = "Danh mục";
 "Chart_A_02" = "Số tiền";
+"Chart_A_03" = "Biểu đồ đường";
+"Chart_A_04" = "Biểu đồ cột";
+"Chart_A_05" = "Biểu đồ tròn";
