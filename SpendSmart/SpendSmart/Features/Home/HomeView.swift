@@ -30,8 +30,8 @@ struct HomeView: View {
                     VStack(spacing: AppStyle.layout.standardSpace) {
                         VStack(spacing: AppStyle.layout.standardSpace) {
                             tranTransactionsView
-                            barChartView
-                        }
+                            chartView()
+                        }.padding(.horizontal, AppStyle.layout.standardSpace)
                         recentTransactionsView
                     }.padding(.vertical, AppStyle.layout.standardSpace)
                 }
@@ -90,7 +90,19 @@ private extension HomeView {
             trackTransactionsText
             Spacer()
             selectChartTypeButton
-        }.padding(.horizontal, AppStyle.layout.standardSpace)
+        }
+    }
+
+    @ViewBuilder
+    func chartView() -> some View {
+        switch vm.chartType {
+        case .line:
+            EmptyView().asAnyView
+        case .bar:
+            barChartView.asAnyView
+        case .pie:
+            pieChartView.asAnyView
+        }
     }
 
     var barChartView: some View {
@@ -98,6 +110,10 @@ private extension HomeView {
             data: vm.chartDatas,
             height: 300))
             .padding(.horizontal, AppStyle.layout.standardSpace)
+    }
+
+    var pieChartView: some View {
+        return PieChartView(PieChartConfiguration(datas: vm.chartDatas))
     }
 
     var selectChartTypeButton: some View {
