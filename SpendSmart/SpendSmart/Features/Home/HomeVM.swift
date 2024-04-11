@@ -17,7 +17,7 @@ class HomeVM: BaseViewModel {
     private let authService = AuthServiceManager.shared
     private let transactionManager = TransactionManager.shared
 
-    override func loadData() {
+    override func makeSubscription() {
         apiGetUserInfo()
         apiGetTransitionList()
     }
@@ -41,7 +41,7 @@ extension HomeVM {
             switch result {
             case .success(let transactions):
                 guard let self = self else { return }
-                self.transactions = transactions
+                self.transactions = transactions.sorted(by: { $0.createdAt < $1.createdAt })
                 self.handleFilterData(transactions)
             case .failure:
                 print("AAA get transition error")

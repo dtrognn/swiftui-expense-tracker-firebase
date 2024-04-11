@@ -36,7 +36,7 @@ class CategoryListVM: BaseViewModel {
         super.init()
     }
 
-    override func loadData() {
+    override func makeSubscription() {
         getData()
     }
 

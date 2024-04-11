@@ -173,7 +173,7 @@ private extension HomeView {
 
     var seeAllButton: some View {
         return Button {
-            // TODO: -
+            router.push(to: .recentTransaction)
         } label: {
             Text(language("Home_A_02"))
                 .font(AppStyle.font.regular16)
