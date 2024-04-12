@@ -49,7 +49,7 @@ class AddEditTransactionVM: BaseViewModel {
 
     func addUpdateTransaction() {
         if self.isEdit {
-            // TODO: -
+            apiUpdateTransaction()
         } else {
             apiAddTransaction()
         }
@@ -98,6 +98,32 @@ extension AddEditTransactionVM {
 
         showLoading(true)
         self.transactionManager.addTransaction(newTransaction) { [weak self] result in
+            switch result {
+            case .success:
+                guard let self = self else { return }
+                self.showLoading(false)
+                self.showSuccessMessage(language("SS_Common_A_02"))
+                self.onAddEditTransitionSuccess.send(())
+            case .failure:
+                guard let self = self else { return }
+                self.showLoading(false)
+                self.showErrorMessage(language("SS_Common_A_06"))
+            }
+        }
+    }
+
+    private func apiUpdateTransaction() {
+        guard let uid = authService.userSesstion?.uid else { return }
+        let transaction = Transaction(id: id,
+                                      uid: uid,
+                                      description: description,
+                                      type: transactionType.rawValue,
+                                      amount: Double(self.amount) ?? 0,
+                                      unit: self.unit,
+                                      category: self.category,
+                                      createdAt: self.dateSelected.toDate.timeIntervalSince1970)
+        showLoading(true)
+        self.transactionManager.updateTransaction(transaction) { [weak self] result in
             switch result {
             case .success:
                 guard let self = self else { return }
