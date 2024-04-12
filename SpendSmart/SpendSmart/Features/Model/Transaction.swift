@@ -35,7 +35,7 @@ struct Transaction: Identifiable, Codable {
     }
 
     enum CodingKeys: String, CodingKey {
-        case uid, description, type, amount, category, unit
+        case id, uid, description, type, amount, category, unit
         case createdAt = "created_at"
     }
 

@@ -38,6 +38,7 @@
 "Home_A_02" = "See all";
 "Home_A_03" = "There have been no recent transactions";
 "Home_A_04" = "Track transactions";
+"Home_A_05" = "Add new transaction";
 
 "Add_Edit_Category_A_01" = "Create new category";
 "Add_Edit_Category_A_02" = "Enter category name";
@@ -79,3 +80,4 @@
 
 "Recent_Transactions_A_01" = "Recent transactions";
 "Recent_Transactions_A_02" = "There have been no recent transactions";
+"Recent_Transactions_A_03" = "Add new transaction";

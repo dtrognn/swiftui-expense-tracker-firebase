@@ -38,11 +38,17 @@ struct AddEditTransactionView: View {
                     }.padding([.horizontal, .top], AppStyle.layout.standardSpace)
                 }
 
-                addEditTransactionButton
-                    .padding(.bottom, AppStyle.layout.standardButtonHeight)
+                HStack(spacing: AppStyle.layout.standardSpace) {
+                    if vm.isEdit {
+                        deleteButton
+                    }
+                    addEditTransactionButton
+                }.padding(.bottom, AppStyle.layout.standardButtonHeight)
                     .padding(.horizontal, AppStyle.layout.standardSpace)
             }
         }.onReceive(vm.onAddEditTransitionSuccess) { _ in
+            router.popView()
+        }.onReceive(vm.onDeleteSuccess) { _ in
             router.popView()
         }
     }
@@ -55,6 +61,15 @@ private extension AddEditTransactionView {
             vm.addUpdateTransaction()
         } label: {
             Text(language(vm.isEdit ? "SS_Common_A_04" : "SS_Common_A_03"))
+        }.buttonStyle(.standard())
+    }
+
+    var deleteButton: some View {
+        return Button {
+            Vibration.selection.vibrate()
+            vm.deleteTransaction()
+        } label: {
+            Text(language("SS_Common_A_08"))
         }.buttonStyle(.standard())
     }
 

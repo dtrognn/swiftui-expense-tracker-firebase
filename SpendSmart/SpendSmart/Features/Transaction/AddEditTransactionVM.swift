@@ -20,7 +20,10 @@ class AddEditTransactionVM: BaseViewModel {
     @Published var dateSelected: DateSelected = .init(day: 1, month: 1, year: 2024)
     @Published var dateSelectedString: String = ""
 
+    private var id: String = ""
+
     var onAddEditTransitionSuccess = PassthroughSubject<Void, Never>()
+    var onDeleteSuccess = PassthroughSubject<Void, Never>()
 
     private var authService = AuthServiceManager.shared
     private var transactionManager = TransactionManager.shared
@@ -31,6 +34,7 @@ class AddEditTransactionVM: BaseViewModel {
 
     func setParams(_ transaction: Transaction?) {
         self.isEdit = transaction != nil
+        self.id = transaction?.id ?? UUID().uuidString
         self.amount = "\(transaction?.amount ?? 0)"
         self.unit = transaction?.tUnit ?? .vnd
         self.transactionType = transaction?.transactionType ?? .expense
@@ -48,6 +52,12 @@ class AddEditTransactionVM: BaseViewModel {
             // TODO: -
         } else {
             apiAddTransaction()
+        }
+    }
+
+    func deleteTransaction() {
+        if self.isEdit {
+            apiDeleteTransaction()
         }
     }
 
@@ -82,7 +92,7 @@ extension AddEditTransactionVM {
                                          description: description,
                                          type: transactionType.rawValue,
                                          amount: Double(self.amount) ?? 0,
-                                         unit: unit,
+                                         unit: self.unit,
                                          category: self.category,
                                          createdAt: self.dateSelected.toDate.timeIntervalSince1970)
 
@@ -94,6 +104,23 @@ extension AddEditTransactionVM {
                 self.showLoading(false)
                 self.showSuccessMessage(language("SS_Common_A_02"))
                 self.onAddEditTransitionSuccess.send(())
+            case .failure:
+                guard let self = self else { return }
+                self.showLoading(false)
+                self.showErrorMessage(language("SS_Common_A_06"))
+            }
+        }
+    }
+
+    private func apiDeleteTransaction() {
+        showLoading(true)
+        self.transactionManager.deleteTransaction(self.id) { [weak self] result in
+            switch result {
+            case .success:
+                guard let self = self else { return }
+                self.showLoading(false)
+                self.showSuccessMessage(language("SS_Common_A_02"))
+                self.onDeleteSuccess.send(())
             case .failure:
                 guard let self = self else { return }
                 self.showLoading(false)
