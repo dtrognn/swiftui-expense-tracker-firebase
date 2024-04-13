@@ -21,6 +21,26 @@ class AuthServiceManager: BaseViewModel {
     }
 
     func signUp(email: String, password: String, fullname: String, completion: @escaping (Result<FirebaseAuth.User, Error>) -> Void) {
+        self.apiSignUp(email: email, password: password, fullname: fullname, completion: completion)
+    }
+
+    func signIn(email: String, password: String, completion: @escaping (Result<FirebaseAuth.User, Error>) -> Void) {
+        self.apiSignIn(email: email, password: password, completion: completion)
+    }
+
+    func getUserInfo(completion: @escaping (Result<User?, Error>) -> Void) {
+        self.apiGetUserInfo(completion: completion)
+    }
+
+    func updateUserInfo(_ user: User, completion: @escaping (Result<Void, Error>) -> Void) {
+        apiUpdateUserInfo(user, completion: completion)
+    }
+
+    func signOut(completion: @escaping (Result<Void, Error>) -> Void) {
+        self.apiSignOut(completion: completion)
+    }
+
+    private func apiSignUp(email: String, password: String, fullname: String, completion: @escaping (Result<FirebaseAuth.User, Error>) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
             guard let user = authResult?.user, error == nil else {
                 completion(.failure(error!))
@@ -40,7 +60,7 @@ class AuthServiceManager: BaseViewModel {
         }
     }
 
-    func signIn(email: String, password: String, completion: @escaping (Result<FirebaseAuth.User, Error>) -> Void) {
+    private func apiSignIn(email: String, password: String, completion: @escaping (Result<FirebaseAuth.User, Error>) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
             if let user = authResult?.user {
                 self?.userSesstion = user
@@ -51,7 +71,7 @@ class AuthServiceManager: BaseViewModel {
         }
     }
 
-    func getUserInfo(completion: @escaping (Result<User?, Error>) -> Void) {
+    private func apiGetUserInfo(completion: @escaping (Result<User?, Error>) -> Void) {
         guard let uid = userSesstion?.uid else { return }
 
         let docRef = FIRUsersCollection.document(uid)
@@ -68,7 +88,17 @@ class AuthServiceManager: BaseViewModel {
         }
     }
 
-    func signOut(completion: @escaping (Result<Void, Error>) -> Void) {
+    private func apiUpdateUserInfo(_ user: User, completion: @escaping (Result<Void, Error>) -> Void) {
+        try? FIRUsersCollection.document(user.uid).updateData(user.asDictionary()) { [weak self] error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+
+    private func apiSignOut(completion: @escaping (Result<Void, Error>) -> Void) {
         do {
             try Auth.auth().signOut()
             self.userSesstion = nil

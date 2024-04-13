@@ -10,6 +10,7 @@
 "SS_Common_A_10" = "Đồng ý";
 "SS_Common_A_11" = "Chi phí";
 "SS_Common_A_12" = "Thu nhập";
+"SS_Common_A_13" = "Đóng";
 
 "Login_A_01" = "Đăng nhập";
 "Login_A_02" = "Nhập email";
@@ -85,3 +86,7 @@
 "Profile_A_01" = "Thông tin cá nhân";
 "Profile_A_02" = "Quản lý danh mục";
 "Profile_A_03" = "Đăng xuất";
+
+"Upload_A_01" = "Lựa chọn";
+"Upload_A_02" = "Chụp ảnh";
+"Upload_A_03" = "Chọn ảnh có sẵn";

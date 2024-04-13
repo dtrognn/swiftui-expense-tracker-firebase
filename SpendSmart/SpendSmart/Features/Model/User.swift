@@ -13,18 +13,30 @@ struct User: Codable {
     let fullname: String
     let createdAt: Double
     let avatar: String?
+    let phoneNumber: String?
+    let address: String?
 
-    init(uid: String, email: String, fullname: String, avatar: String? = nil, createdAt: Double = Date().timeIntervalSince1970) {
+    init(uid: String,
+         email: String,
+         fullname: String,
+         createdAt: Double = Date().timeIntervalSince1970,
+         avatar: String? = nil,
+         phoneNumber: String? = nil,
+         address: String? = nil)
+    {
         self.uid = uid
         self.email = email
         self.fullname = fullname
-        self.avatar = avatar
         self.createdAt = createdAt
+        self.avatar = avatar
+        self.phoneNumber = phoneNumber
+        self.address = address
     }
 
     enum CodingKeys: String, CodingKey {
-        case uid, email, avatar
+        case uid, email, avatar, address
         case fullname = "full_name"
         case createdAt = "created_at"
+        case phoneNumber = "phone_number"
     }
 }
