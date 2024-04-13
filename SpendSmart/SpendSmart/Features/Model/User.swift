@@ -16,6 +16,16 @@ struct User: Codable {
     let phoneNumber: String?
     let address: String?
 
+    init() {
+        self.uid = UUID().uuidString
+        self.email = ""
+        self.fullname = ""
+        self.createdAt = Date().timeIntervalSince1970
+        self.avatar = ""
+        self.phoneNumber = ""
+        self.address = ""
+    }
+
     init(uid: String,
          email: String,
          fullname: String,
