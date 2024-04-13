@@ -46,7 +46,9 @@ struct ProfileRowCommonView: View {
 private extension ProfileRowCommonView {
     var leftImage: some View {
         return image
+            .resizable()
             .applyTheme()
+            .frame(width: 20, height: 20)
     }
 
     var titleText: some View {

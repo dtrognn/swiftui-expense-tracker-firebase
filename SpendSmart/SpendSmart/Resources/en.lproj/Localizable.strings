@@ -81,3 +81,7 @@
 "Recent_Transactions_A_01" = "Recent transactions";
 "Recent_Transactions_A_02" = "There have been no recent transactions";
 "Recent_Transactions_A_03" = "Add new transaction";
+
+"Profile_A_01" = "Personal information";
+"Profile_A_02" = "Category management";
+"Profile_A_03" = "Log out";
