@@ -79,10 +79,7 @@ private extension ProfileView {
     }
 
     var avatarDefault: some View {
-        return Image(systemName: "person.crop.circle")
-            .resizable()
-            .applyTheme()
-            .frame(width: 50, height: 50)
+        return UserAvararDefaultView(width: 50, height: 50)
     }
 
     var avatarFromUrlView: some View {
@@ -98,7 +95,7 @@ private extension ProfileView {
 private extension ProfileView {
     var profileInfoRowView: some View {
         return ProfileRowCommonView(image: .init(systemName: "person"), title: language("Profile_A_01")) {
-            // TODO: -
+            router.push(to: .profileInfo)
         }
     }
 

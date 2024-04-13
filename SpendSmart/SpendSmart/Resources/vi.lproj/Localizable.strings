@@ -87,6 +87,14 @@
 "Profile_A_02" = "Quản lý danh mục";
 "Profile_A_03" = "Đăng xuất";
 
+"Profile_Info_A_01" = "Thông tin cá nhân";
+"Profile_Info_A_02" = "Email";
+"Profile_Info_A_03" = "Họ và tên";
+"Profile_Info_A_04" = "Số điện thoại";
+"Profile_Info_A_05" = "Ngày tạo";
+"Profile_Info_A_06" = "Địa chỉ";
+"Profile_Info_A_07" = "Chỉnh sửa thông tin";
+
 "Upload_A_01" = "Lựa chọn";
 "Upload_A_02" = "Chụp ảnh";
 "Upload_A_03" = "Chọn ảnh có sẵn";

@@ -9,11 +9,14 @@ import SwiftUI
 
 class ProfileRouter: BaseRouter<ProfileRouter.Screen> {
     enum Screen: IScreen {
+        case profileInfo
         case categoryList(CategoryActionType)
     }
 
     override func getInstanceScreen(_ screen: Screen) -> AnyView {
         switch screen {
+        case .profileInfo:
+            return ProfileInfoView().environmentObject(self).asAnyView
         case .categoryList(let actionType):
             let router = CategoryListRouter(navigationPath: navigationPath)
             return CategoryListRouterView(router: router, actionType: actionType).asAnyView

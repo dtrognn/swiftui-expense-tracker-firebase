@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct UserAvararDefaultView: View {
-    private let circleWidth: CGFloat = 50.0
+    private let width: CGFloat
+    private let height: CGFloat
+
+    init(width: CGFloat, height: CGFloat) {
+        self.width = width
+        self.height = height
+    }
 
     var body: some View {
         Image(systemName: "person.crop.circle")
             .resizable()
             .applyTheme()
-            .frame(width: circleWidth, height: circleWidth)
+            .frame(width: width, height: height)
             .overlay(Circle().stroke(AppStyle.theme.iconColor, lineWidth: 1))
     }
 }
