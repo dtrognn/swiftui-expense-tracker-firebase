@@ -15,11 +15,13 @@ class AddEditCategoryVM: BaseViewModel {
     @Published var isEdit: Bool
 
     var onAddUpdateCategorySuccess = PassthroughSubject<Void, Never>()
+    private var id: String
 
     private var categoryManager = CategoryManager.shared
 
     init(_ category: Category?) {
         self.isEdit = category != nil
+        self.id = category?.id ?? UUID().uuidString
         self.categoryName = category?.name ?? ""
         self.selectedColor = category?.getColor() ?? CategoryColor.allCases.randomElement() ?? .bronze
         self.selectedIcon = category?.getIcon() ?? CategoryIcon.allCases.randomElement() ?? .apple
@@ -27,6 +29,7 @@ class AddEditCategoryVM: BaseViewModel {
 
     func addEditCategory() {
         if isEdit {
+            apiUpdateCategory()
         } else {
             addNewCategory()
         }
@@ -38,7 +41,26 @@ class AddEditCategoryVM: BaseViewModel {
         let newCategory = Category(uid: uid, name: categoryName, color: selectedColor.rawValue, image: selectedIcon.rawValue)
         categoryManager.addNewCategory(newCategory) { [weak self] result in
             switch result {
-            case .success(let success):
+            case .success:
+                guard let self = self else { return }
+                self.showLoading(false)
+                self.showSuccessMessage(language("SS_Common_A_02"))
+                self.onAddUpdateCategorySuccess.send(())
+            case .failure(let failure):
+                guard let self = self else { return }
+                self.showLoading(false)
+                self.showErrorMessage(failure.localizedDescription)
+            }
+        }
+    }
+
+    private func apiUpdateCategory() {
+        guard let uid = AuthServiceManager.shared.userSesstion?.uid else { return }
+        showLoading(true)
+        let category = Category(id: id, uid: uid, name: categoryName, color: selectedColor.rawValue, image: selectedIcon.rawValue)
+        categoryManager.updateCategory(category) { [weak self] result in
+            switch result {
+            case .success:
                 guard let self = self else { return }
                 self.showLoading(false)
                 self.showSuccessMessage(language("SS_Common_A_02"))

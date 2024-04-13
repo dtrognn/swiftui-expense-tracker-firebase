@@ -38,6 +38,7 @@
 "Home_A_02" = "Xem tất cả";
 "Home_A_03" = "Chưa có giao dịch nào gần đây";
 "Home_A_04" = "Theo dõi giao dịch";
+"Home_A_05" = "Thêm giao dịch mới";
 
 "Add_Edit_Category_A_01" = "Tạo danh mục mới";
 "Add_Edit_Category_A_02" = "Nhập tên danh mục";
@@ -75,3 +76,12 @@
 "Chart_A_03" = "Biểu đồ đường";
 "Chart_A_04" = "Biểu đồ cột";
 "Chart_A_05" = "Biểu đồ tròn";
+"Chart_A_06" = "Chọn danh mục";
+
+"Recent_Transactions_A_01" = "Giao dịch gần đây";
+"Recent_Transactions_A_02" = "Chưa có giao dịch gần đây";
+"Recent_Transactions_A_03" = "Thêm giao dịch mới";
+
+"Profile_A_01" = "Thông tin cá nhân";
+"Profile_A_02" = "Quản lý danh mục";
+"Profile_A_03" = "Đăng xuất";

@@ -26,7 +26,7 @@ struct BarChartView: View {
                 BarMark(x: .value(language("Chart_A_01"), dataPoint.type.name),
                         y: .value(language("Chart_A_02"), dataPoint.count))
                     .foregroundStyle(dataPoint.type.getColor().color)
-                    .foregroundStyle(by: .value(language("Chart_A_01"), dataPoint.type.name))
+                    .foregroundStyle(by: .value("Type", dataPoint.type.name))
                     .annotation {
                         Text(String(format: "%.0f", dataPoint.count))
                             .font(AppStyle.font.regular12)

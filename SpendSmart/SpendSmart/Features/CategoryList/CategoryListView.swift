@@ -45,7 +45,7 @@ struct CategoryListView: View {
                                                 vm.updateCategorySeleted(categorySelected)
                                                 router.popView()
                                             case .update:
-                                                print("AAA")
+                                                router.push(to: .addEditCategory(categorySelected))
                                             }
                                         } onDelete: { categoryDeleteSelected in
                                             vm.categorySelected = categoryDeleteSelected

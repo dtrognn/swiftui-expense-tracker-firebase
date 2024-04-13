@@ -8,7 +8,7 @@
 import SwiftUI
 
 class Category: ObservableObject, Identifiable, Codable {
-    var id: String = UUID().uuidString
+    var id: String
     let uid: String
     let name: String
     let color: String
@@ -19,13 +19,15 @@ class Category: ObservableObject, Identifiable, Codable {
     var onValueChanged: ((Bool) -> Void)? = nil
 
     init() {
+        self.id = UUID().uuidString
         self.uid = ""
         self.name = ""
         self.color = ""
         self.image = ""
     }
 
-    init(uid: String, name: String, color: String, image: String) {
+    init(id: String = UUID().uuidString, uid: String, name: String, color: String, image: String) {
+        self.id = id
         self.uid = uid
         self.name = name
         self.color = color

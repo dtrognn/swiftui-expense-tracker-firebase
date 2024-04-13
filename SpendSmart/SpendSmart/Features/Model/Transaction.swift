@@ -8,7 +8,7 @@
 import Foundation
 
 struct Transaction: Identifiable, Codable {
-    let id: String = UUID().uuidString
+    let id: String
     let uid: String
     let description: String?
     let type: String
@@ -17,7 +17,8 @@ struct Transaction: Identifiable, Codable {
     let category: Category
     let createdAt: Double
 
-    init(uid: String,
+    init(id: String = UUID().uuidString,
+         uid: String,
          description: String? = nil,
          type: String,
          amount: Double,
@@ -25,6 +26,7 @@ struct Transaction: Identifiable, Codable {
          category: Category,
          createdAt: Double = Date().timeIntervalSince1970)
     {
+        self.id = id
         self.uid = uid
         self.description = description
         self.type = type
@@ -35,7 +37,7 @@ struct Transaction: Identifiable, Codable {
     }
 
     enum CodingKeys: String, CodingKey {
-        case uid, description, type, amount, category, unit
+        case id, uid, description, type, amount, category, unit
         case createdAt = "created_at"
     }
 

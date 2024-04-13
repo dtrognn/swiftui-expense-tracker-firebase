@@ -30,8 +30,12 @@ struct HomeView: View {
                     VStack(spacing: AppStyle.layout.standardSpace) {
                         VStack(spacing: AppStyle.layout.standardSpace) {
                             tranTransactionsView
-                            barChartView
-                        }
+                            if vm.chartDatas.isEmpty {
+                                noRecentTransView
+                            } else {
+                                chartView()
+                            }
+                        }.padding(.horizontal, AppStyle.layout.standardSpace)
                         recentTransactionsView
                     }.padding(.vertical, AppStyle.layout.standardSpace)
                 }
@@ -90,7 +94,19 @@ private extension HomeView {
             trackTransactionsText
             Spacer()
             selectChartTypeButton
-        }.padding(.horizontal, AppStyle.layout.standardSpace)
+        }
+    }
+
+    @ViewBuilder
+    func chartView() -> some View {
+        switch vm.chartType {
+        case .line:
+            EmptyView().asAnyView
+        case .bar:
+            barChartView.asAnyView
+        case .pie:
+            pieChartView.asAnyView
+        }
     }
 
     var barChartView: some View {
@@ -98,6 +114,10 @@ private extension HomeView {
             data: vm.chartDatas,
             height: 300))
             .padding(.horizontal, AppStyle.layout.standardSpace)
+    }
+
+    var pieChartView: some View {
+        return PieChartView(PieChartConfiguration(datas: vm.chartDatas))
     }
 
     var selectChartTypeButton: some View {
@@ -141,11 +161,18 @@ private extension HomeView {
                 seeAllButton
             }
 
-            LazyVStack(spacing: AppStyle.layout.zero) {
-                ForEach(vm.transactions.prefix(4)) { transition in
-                    TransactionItemView(transaction: transition)
+            if vm.transactions.isEmpty {
+                VStack(spacing: AppStyle.layout.standardSpace) {
+                    noRecentTransView
+                    addTransLargeButton
                 }
-            }.applyShadowView()
+            } else {
+                LazyVStack(spacing: AppStyle.layout.zero) {
+                    ForEach(vm.transactions.prefix(4)) { transition in
+                        TransactionItemView(transaction: transition)
+                    }
+                }.applyShadowView()
+            }
         }.padding(.all, AppStyle.layout.standardSpace)
     }
 
@@ -157,11 +184,32 @@ private extension HomeView {
 
     var seeAllButton: some View {
         return Button {
-            // TODO: -
+            router.push(to: .recentTransaction)
         } label: {
             Text(language("Home_A_02"))
                 .font(AppStyle.font.regular16)
                 .foregroundColor(AppStyle.theme.textHightlightColor)
         }
+    }
+
+    var addTransLargeButton: some View {
+        return Button {
+            Vibration.selection.vibrate()
+            router.push(to: .addEditTransaction(nil))
+        } label: {
+            Text(language("Home_A_05"))
+                .font(AppStyle.font.semibold16)
+                .foregroundColor(AppStyle.theme.btTextEnableColor)
+                .padding(.vertical, AppStyle.layout.mediumSpace)
+                .padding(.horizontal, AppStyle.layout.standardSpace)
+                .background(AppStyle.theme.btBackgroundEnableColor)
+                .cornerRadius(AppStyle.layout.standardCornerRadius)
+        }
+    }
+
+    var noRecentTransView: some View {
+        return Text(language("Home_A_03"))
+            .font(AppStyle.font.regular16)
+            .foregroundColor(AppStyle.theme.textNormalColor)
     }
 }
