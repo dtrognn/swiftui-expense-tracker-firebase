@@ -95,6 +95,16 @@
 "Profile_Info_A_06" = "Địa chỉ";
 "Profile_Info_A_07" = "Chỉnh sửa thông tin";
 
+"Edit_Profile_A_01" = "Chỉnh sửa thông tin";
+"Edit_Profile_A_02" = "Nhập email";
+"Edit_Profile_A_03" = "Email";
+"Edit_Profile_A_04" = "Nhập tên đầy đủ";
+"Edit_Profile_A_05" = "Tên đầy đủ";
+"Edit_Profile_A_06" = "Nhập số điện thoại";
+"Edit_Profile_A_07" = "Số điện thoại";
+"Edit_Profile_A_08" = "Nhập địa chỉ";
+"Edit_Profile_A_09" = "Địa chỉ";
+
 "Upload_A_01" = "Lựa chọn";
 "Upload_A_02" = "Chụp ảnh";
 "Upload_A_03" = "Chọn ảnh có sẵn";

@@ -82,7 +82,7 @@ private extension ProfileInfoView {
     var editInfoButton: some View {
         return Button {
             Vibration.selection.vibrate()
-            // TODO: -
+            router.push(to: .editProfile(vm.user))
         } label: {
             Text(language("Profile_Info_A_07"))
         }.buttonStyle(.standard())

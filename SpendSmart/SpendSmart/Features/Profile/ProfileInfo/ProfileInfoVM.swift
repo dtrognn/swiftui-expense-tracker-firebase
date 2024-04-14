@@ -17,6 +17,8 @@ class ProfileInfoVM: BaseViewModel {
     @Published var phoneNumber: String = ""
     @Published var address: String = ""
 
+    var user = User()
+
     override func makeSubscription() {
         loadData()
     }
@@ -32,6 +34,7 @@ class ProfileInfoVM: BaseViewModel {
             case .success(let user):
                 guard let self = self, let user = user else { return }
                 self.showLoading(false)
+                self.user = user
                 self.avatarUrl = user.avatar ?? ""
                 self.fullname = user.fullname
                 self.email = user.email
