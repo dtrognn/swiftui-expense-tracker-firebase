@@ -28,6 +28,7 @@ class HomeVM: BaseViewModel {
             case .success(let user):
                 guard let user = user else { return }
                 self?.username = user.fullname
+                UserDataManager.shared.saveUserInfo(user)
             case .failure(let failure):
                 print("AAA get user failed: \(failure.localizedDescription)")
             }

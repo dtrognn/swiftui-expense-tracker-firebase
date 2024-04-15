@@ -10,6 +10,7 @@
 "SS_Common_A_10" = "Agree";
 "SS_Common_A_11" = "Expense";
 "SS_Common_A_12" = "Income";
+"SS_Common_A_13" = "Close";
 
 "Login_A_01" = "Login";
 "Login_A_02" = "Enter email";
@@ -85,3 +86,25 @@
 "Profile_A_01" = "Personal information";
 "Profile_A_02" = "Category management";
 "Profile_A_03" = "Log out";
+
+"Profile_Info_A_01" = "Profile infomation";
+"Profile_Info_A_02" = "Email";
+"Profile_Info_A_03" = "Full name";
+"Profile_Info_A_04" = "Phone number";
+"Profile_Info_A_05" = "Date created";
+"Profile_Info_A_06" = "Address";
+"Profile_Info_A_07" = "Edit infomation";
+
+"Edit_Profile_A_01" = "Edit infomation";
+"Edit_Profile_A_02" = "Enter email";
+"Edit_Profile_A_03" = "Email";
+"Edit_Profile_A_04" = "Enter full name";
+"Edit_Profile_A_05" = "Full name";
+"Edit_Profile_A_06" = "Enter phone number";
+"Edit_Profile_A_07" = "Phone number";
+"Edit_Profile_A_08" = "Enter address";
+"Edit_Profile_A_09" = "Address";
+
+"Upload_A_01" = "Select";
+"Upload_A_02" = "Take a photo";
+"Upload_A_03" = "Choose fron an existing photo";

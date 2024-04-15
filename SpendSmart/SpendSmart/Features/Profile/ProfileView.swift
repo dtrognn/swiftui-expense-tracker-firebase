@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileView: View {
     @EnvironmentObject private var router: ProfileRouter
     @StateObject private var vm = ProfileVM()
+    @State private var image: UIImage?
 
     private var screenConfiguration: ScreenConfiguration {
         return ScreenConfiguration(
@@ -39,6 +40,8 @@ struct ProfileView: View {
     }
 }
 
+// MARK: - Profile info
+
 private extension ProfileView {
     var userInfoView: some View {
         return HStack(spacing: AppStyle.layout.standardSpace) {
@@ -58,10 +61,15 @@ private extension ProfileView {
     }
 
     var userImage: some View {
-        return Image(systemName: "person.crop.circle")
-            .resizable()
-            .applyTheme()
-            .frame(width: 50, height: 50)
+        return UploadFileView {
+            if vm.avatarUser.isEmpty {
+                avatarDefault.asAnyView
+            } else {
+                avatarFromUrlView.asAnyView
+            }
+        } onImageResult: { image in
+            vm.uploadImage(image)
+        }.overlay(Circle().stroke(AppStyle.theme.iconColor, lineWidth: 1))
     }
 
     var emailText: some View {
@@ -70,9 +78,24 @@ private extension ProfileView {
             .foregroundColor(AppStyle.theme.textNoteColor)
     }
 
+    var avatarDefault: some View {
+        return UserAvararDefaultView(width: 50, height: 50)
+    }
+
+    var avatarFromUrlView: some View {
+        return ImageUrl(configuration: ImageConfiguration(urlString: vm.avatarUser), contentMode: .fit) {
+            ProgressView()
+        }.frame(width: 50, height: 50)
+            .clipShape(Circle())
+    }
+}
+
+// MARK: -
+
+private extension ProfileView {
     var profileInfoRowView: some View {
         return ProfileRowCommonView(image: .init(systemName: "person"), title: language("Profile_A_01")) {
-            // TODO: -
+            router.push(to: .profileInfo)
         }
     }
 
