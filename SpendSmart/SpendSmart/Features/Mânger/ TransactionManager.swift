@@ -28,6 +28,10 @@ class TransactionManager: BaseViewModel {
         apiDeleteTransaction(transactionID, completion: completion)
     }
 
+    func getTransWithCondition(fromTime: Double, toTime: Double, completion: @escaping (Result<[Transaction], Error>) -> Void) {
+        apiGetTransWithCondition(fromTime: fromTime, toTime: toTime, completion: completion)
+    }
+
     private func apiGetTransactionList(type: String, completion: @escaping (Result<[Transaction], Error>) -> Void) {
         guard let uid = authService.userSesstion?.uid else { return }
 
@@ -81,6 +85,35 @@ class TransactionManager: BaseViewModel {
                 } else {
                     completion(.success(()))
                 }
+            }
+    }
+
+    private func apiGetTransWithCondition(fromTime: Double, toTime: Double, completion: @escaping (Result<[Transaction], Error>) -> Void) {
+        guard let uid = authService.userSesstion?.uid else { return }
+
+        let fromTimeInt = Int(fromTime)
+        let toTimeInt = Int(toTime)
+
+        FIRTransactionsCollection
+            .whereField("uid", isEqualTo: uid)
+            .whereField("created_at", isGreaterThanOrEqualTo: fromTimeInt)
+            .whereField("created_at", isLessThanOrEqualTo: toTimeInt)
+            .getDocuments { [weak self] snapshot, error in
+                if let error = error {
+                    print("AAA error: \(error.localizedDescription)")
+                    completion(.failure(error))
+                    return
+                }
+
+                guard let snapshot = snapshot else {
+                    completion(.failure(NSError(domain: "Snapshot is nil", code: -1, userInfo: nil)))
+                    return
+                }
+
+                let transactions = snapshot.documents.compactMap { document in
+                    try? document.data(as: Transaction.self)
+                }
+                completion(.success(transactions))
             }
     }
 }

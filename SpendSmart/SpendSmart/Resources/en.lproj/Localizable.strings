@@ -82,6 +82,9 @@
 "Recent_Transactions_A_01" = "Recent transactions";
 "Recent_Transactions_A_02" = "There have been no recent transactions";
 "Recent_Transactions_A_03" = "Add new transaction";
+"Recent_Transactions_A_04" = "Day";
+"Recent_Transactions_A_05" = "Month";
+"Recent_Transactions_A_06" = "Year";
 
 "Profile_A_01" = "Personal information";
 "Profile_A_02" = "Category management";

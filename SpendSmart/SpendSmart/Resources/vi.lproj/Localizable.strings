@@ -82,6 +82,9 @@
 "Recent_Transactions_A_01" = "Giao dịch gần đây";
 "Recent_Transactions_A_02" = "Chưa có giao dịch gần đây";
 "Recent_Transactions_A_03" = "Thêm giao dịch mới";
+"Recent_Transactions_A_04" = "Ngày";
+"Recent_Transactions_A_05" = "Tháng";
+"Recent_Transactions_A_06" = "Năm";
 
 "Profile_A_01" = "Thông tin cá nhân";
 "Profile_A_02" = "Quản lý danh mục";
