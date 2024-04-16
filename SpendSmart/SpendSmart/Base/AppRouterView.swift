@@ -51,6 +51,7 @@ class AppRouter: BaseRouter<AppRouter.Screen> {
 
 struct AppRouterView: View {
     @StateObject private var router: AppRouter = .init()
+    @StateObject private var languageManager = LanguageManager.shared
 
     init(router: AppRouter = .init()) {
         _router = StateObject(wrappedValue: router)
@@ -60,5 +61,7 @@ struct AppRouterView: View {
         SSNavigationStackView(navigationPath: self.router.navigationPath) {
             self.router.getInstanceScreen(self.router.screen)
         }.environmentObject(self.router)
+            .environmentObject(self.languageManager)
+            .environment(\.locale, .init(identifier: self.languageManager.currentLanguage.getLanguageCode()))
     }
 }

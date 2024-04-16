@@ -45,11 +45,11 @@ class TabbarRouter: ObservableObject {
         func tabItemData() -> TabItemData {
             switch self {
             case .home:
-                return TabItemData(title: "Home", normalImage: Image("ic_tab_home"), slectedImage: Image("ic_tab_home"))
+                return TabItemData(title: language("Tabbar_A_01"), normalImage: Image("ic_tab_home_2"), slectedImage: Image("ic_tab_home_2"))
             case .search:
-                return TabItemData(title: "Search", normalImage: Image(systemName: "magnifyingglass"), slectedImage: Image(systemName: "magnifyingglass"))
+                return TabItemData(title: language("Tabbar_A_02"), normalImage: Image("ic_tab_chart"), slectedImage: Image("ic_tab_chart"))
             case .profile:
-                return TabItemData(title: "Profile", normalImage: Image("ic_tab_profile"), slectedImage: Image("ic_tab_profile"))
+                return TabItemData(title: language("Tabbar_A_03"), normalImage: Image("ic_tab_profile"), slectedImage: Image("ic_tab_profile"))
             }
         }
     }

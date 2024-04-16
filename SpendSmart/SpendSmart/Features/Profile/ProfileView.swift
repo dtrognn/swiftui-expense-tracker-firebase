@@ -30,6 +30,7 @@ struct ProfileView: View {
                         VStack(spacing: AppStyle.layout.zero) {
                             profileInfoRowView
                             categoryManageRowView
+                            changeLanguageRowView
                         }
                     }.applyShadowView()
 
@@ -94,14 +95,20 @@ private extension ProfileView {
 
 private extension ProfileView {
     var profileInfoRowView: some View {
-        return ProfileRowCommonView(image: .init(systemName: "person"), title: language("Profile_A_01")) {
+        return ProfileRowCommonView(image: .init("ic_profile_user"), title: language("Profile_A_01")) {
             router.push(to: .profileInfo)
         }
     }
 
     var categoryManageRowView: some View {
-        return ProfileRowCommonView(image: .init(systemName: "folder"), title: language("Profile_A_02")) {
+        return ProfileRowCommonView(image: .init("ic_profile_folder"), title: language("Profile_A_02")) {
             router.push(to: .categoryList(.update))
+        }
+    }
+
+    var changeLanguageRowView: some View {
+        return ProfileRowCommonView(image: .init("ic_profile_setting"), title: language("Profile_A_04")) {
+            router.push(to: .changeLanguage)
         }
     }
 

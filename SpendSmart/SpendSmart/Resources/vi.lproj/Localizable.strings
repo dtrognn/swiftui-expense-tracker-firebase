@@ -12,6 +12,10 @@
 "SS_Common_A_12" = "Thu nhập";
 "SS_Common_A_13" = "Đóng";
 
+"Tabbar_A_01" = "Home";
+"Tabbar_A_02" = "Phân tích";
+"Tabbar_A_03" = "Cá nhân";
+
 "Login_A_01" = "Đăng nhập";
 "Login_A_02" = "Nhập email";
 "Login_A_03" = "Email";
@@ -89,6 +93,7 @@
 "Profile_A_01" = "Thông tin cá nhân";
 "Profile_A_02" = "Quản lý danh mục";
 "Profile_A_03" = "Đăng xuất";
+"Profile_A_04" = "Ngôn ngữ";
 
 "Profile_Info_A_01" = "Thông tin cá nhân";
 "Profile_Info_A_02" = "Email";
@@ -111,3 +116,8 @@
 "Upload_A_01" = "Lựa chọn";
 "Upload_A_02" = "Chụp ảnh";
 "Upload_A_03" = "Chọn ảnh có sẵn";
+
+"Language_A_01" = "Ngôn ngữ";
+"Language_A_02" = "Hệ thống";
+"Language_A_03" = "Tiếng Việt";
+"Language_A_04" = "Tiếng Anh";
