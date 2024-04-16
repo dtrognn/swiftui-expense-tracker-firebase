@@ -12,12 +12,12 @@ open class BaseViewModel: ObservableObject {
     var cancellableSet: Set<AnyCancellable> = []
 
     init() {
-//        loadData()
+        initData()
         makeSubscription()
         subcribe()
     }
 
-//    open func loadData() {}
+    open func initData() {}
 
     open func makeSubscription() {}
 

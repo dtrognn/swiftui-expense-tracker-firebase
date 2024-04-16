@@ -61,10 +61,6 @@ extension HomeVM {
             }
         }
 
-        categoryGroup.forEach { c in
-            print("AAA \(c.category.name) - \(c.amount)")
-        }
-
         handleCalcChartData(categoryGroup)
     }
 

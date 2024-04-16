@@ -10,6 +10,7 @@ import SwiftUI
 struct RecentTransactionsView: View {
     @EnvironmentObject private var router: RecentTransactionsRouter
     @StateObject private var vm = RecentTransactionsVM()
+    @State private var dateFormat: String = ""
 
     private var screenConfiguration: ScreenConfiguration {
         return ScreenConfiguration(
@@ -23,7 +24,12 @@ struct RecentTransactionsView: View {
     var body: some View {
         ScreenContainerView(screenConfiguration) {
             ScrollView(.vertical, showsIndicators: false) {
-                VStack {
+                VStack(spacing: AppStyle.layout.standardSpace) {
+                    VStack(spacing: AppStyle.layout.standardSpace) {
+                        timeSegmentView
+                        selectDateView
+                    }
+
                     if vm.transactions.isEmpty {
                         noRecentTransView
                     } else {
@@ -38,8 +44,102 @@ struct RecentTransactionsView: View {
                     }
                 }.padding(.all, AppStyle.layout.standardSpace)
             }.refreshable {
-                vm.loadData()
+                updateData()
             }
+        }.onAppear {
+            updateData()
+        }.onChange(of: vm.timeType) { _ in
+            updateData()
+        }
+    }
+}
+
+private extension RecentTransactionsView {
+    private func updateData() {
+        updateDateFormat()
+        vm.loadData()
+    }
+
+    private func updateDateFormat() {
+        let dateSelected = vm.getDateSelecteBy()
+
+        switch vm.timeType {
+        case .day:
+            dateFormat = String(format: "%d/%d/%d", dateSelected.day, dateSelected.month, dateSelected.year)
+        case .month:
+            dateFormat = String(format: "%@ %d/%d", language("Recent_Transactions_A_05"), dateSelected.month, dateSelected.year)
+        case .year:
+            dateFormat = String(format: "%d", dateSelected.year)
+        }
+    }
+
+    var timeSegmentView: some View {
+        return Picker("", selection: $vm.timeType) {
+            ForEach(RecentTransTimeType.allCases) { type in
+                Text(type.title)
+                    .font(AppStyle.font.regular16)
+                    .foregroundColor(AppStyle.theme.textNormalColor)
+                    .tag(type)
+            }
+        }.pickerStyle(.segmented)
+    }
+
+    var selectDateView: some View {
+        VStack(spacing: AppStyle.layout.zero) {
+            HStack(spacing: AppStyle.layout.zero) {
+                decreaseButton
+                Spacer()
+                datePickerButton
+                Spacer()
+                increaseButton
+            }
+        }.applyShadowView()
+    }
+
+    var datePickerButton: some View {
+        Button {
+            var dateType: DateType
+            let dateSelected: DateSelected = vm.getDateSelecteBy()
+            switch vm.timeType {
+            case .day:
+                dateType = .day
+            case .month:
+                dateType = .month
+            case .year:
+                dateType = .year
+            }
+
+            DatePickerView(dateDefault: dateSelected, dateType: dateType) { dateSelected in
+                vm.updateDateSelected(dateSelected)
+                updateData()
+            }.show()
+        } label: {
+            Text(dateFormat)
+                .font(AppStyle.font.medium16)
+                .foregroundColor(AppStyle.theme.textNormalColor)
+        }
+    }
+
+    var decreaseButton: some View {
+        Button {
+            vm.increaseAndDecreaseDateSelected(.decrease)
+            updateData()
+        } label: {
+            Image("ic_arrow_right").applyTheme()
+                .frame(width: AppStyle.layout.standardButtonHeight,
+                       height: AppStyle.layout.standardButtonHeight)
+                .rotationEffect(.init(degrees: -180))
+        }
+    }
+
+    var increaseButton: some View {
+        Button {
+            vm.increaseAndDecreaseDateSelected(.increase)
+            updateData()
+        } label: {
+            Image("ic_arrow_right").applyTheme()
+                .frame(width: AppStyle.layout.standardButtonHeight,
+                       height: AppStyle.layout.standardButtonHeight)
         }
     }
 }
