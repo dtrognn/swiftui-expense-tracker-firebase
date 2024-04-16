@@ -12,7 +12,7 @@ class ProfileRouter: BaseRouter<ProfileRouter.Screen> {
         case profileInfo
         case editProfile(User)
         case categoryList(CategoryActionType)
-        case changeLanguage
+        case setting
     }
 
     override func getInstanceScreen(_ screen: Screen) -> AnyView {
@@ -24,8 +24,9 @@ class ProfileRouter: BaseRouter<ProfileRouter.Screen> {
         case .categoryList(let actionType):
             let router = CategoryListRouter(navigationPath: navigationPath)
             return CategoryListRouterView(router: router, actionType: actionType).asAnyView
-        case .changeLanguage:
-            return ChangeLanguageView().environmentObject(self).asAnyView
+        case .setting:
+            let router = ProfileSettingRouter(navigationPath: navigationPath)
+            return ProfileSettingRouterView(router).asAnyView
         }
     }
 }

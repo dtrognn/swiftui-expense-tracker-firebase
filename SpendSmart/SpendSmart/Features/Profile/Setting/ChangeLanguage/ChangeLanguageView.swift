@@ -20,13 +20,16 @@ struct ChangeLanguageView: View {
 
     var body: some View {
         ScreenContainerView(screenConfiguration) {
-            VStack(spacing: AppStyle.layout.zero) {
-                ForEach(vm.languageList) { item in
-                    LanguageItemView(data: item)
-                }
+            VStack {
+                VStack(spacing: AppStyle.layout.zero) {
+                    ForEach(vm.languageList) { item in
+                        LanguageItemView(data: item)
+                    }
+                }.applyShadowView()
+                    .padding(.all, AppStyle.layout.standardSpace)
+
                 Spacer()
-            }.padding(.all, AppStyle.layout.standardSpace)
-                .applyShadowView()
+            }
         }.environment(\.locale, .init(identifier: LanguageManager.shared.currentLanguage.getLanguageCode()))
     }
 }
