@@ -9,12 +9,14 @@ import SwiftUI
 
 struct ProfileRowCommonView: View {
     private var image: Image
+    private var themeImage: Color
     private var title: String
     private var showUnderline: Bool
     private var onClick: (() -> Void)?
 
-    init(image: Image, title: String, showUnderline: Bool = true, onClick: (() -> Void)? = nil) {
+    init(image: Image, themeImage: Color = AppStyle.theme.iconColor, title: String, showUnderline: Bool = true, onClick: (() -> Void)? = nil) {
         self.image = image
+        self.themeImage = themeImage
         self.title = title
         self.showUnderline = showUnderline
         self.onClick = onClick
@@ -47,7 +49,7 @@ private extension ProfileRowCommonView {
     var leftImage: some View {
         return image
             .resizable()
-            .applyTheme()
+            .applyTheme(themeImage)
             .frame(width: 20, height: 20)
     }
 

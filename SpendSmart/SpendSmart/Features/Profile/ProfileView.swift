@@ -113,7 +113,7 @@ private extension ProfileView {
     }
 
     var logoutRowView: some View {
-        return ProfileRowCommonView(image: .init("ic_logout"), title: language("Profile_A_03"), showUnderline: false) {
+        return ProfileRowCommonView(image: .init("ic_logout"), themeImage: .red, title: language("Profile_A_03"), showUnderline: false) {
             vm.signOut()
         }.applyShadowView()
     }
