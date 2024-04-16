@@ -30,7 +30,7 @@ struct ProfileView: View {
                         VStack(spacing: AppStyle.layout.zero) {
                             profileInfoRowView
                             categoryManageRowView
-                            changeLanguageRowView
+                            settingRowView
                         }
                     }.applyShadowView()
 
@@ -106,9 +106,9 @@ private extension ProfileView {
         }
     }
 
-    var changeLanguageRowView: some View {
+    var settingRowView: some View {
         return ProfileRowCommonView(image: .init("ic_profile_setting"), title: language("Profile_A_04")) {
-            router.push(to: .changeLanguage)
+            router.push(to: .setting)
         }
     }
 
