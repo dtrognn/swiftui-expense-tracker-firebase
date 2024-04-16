@@ -69,7 +69,7 @@ struct TabbarRouterView: View {
             HomeRouterView().tabItem { TabItem(tabType: .home) }
                 .tag(TabbarRouter.TabType.home)
 
-            SearchRouterView().tabItem { TabItem(tabType: .search) }
+            AnalyticsRouterView().tabItem { TabItem(tabType: .search) }
                 .tag(TabbarRouter.TabType.search)
 
             ProfileRouterView().tabItem { TabItem(tabType: .profile) }

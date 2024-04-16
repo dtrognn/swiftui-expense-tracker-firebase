@@ -7,18 +7,18 @@
 
 import SwiftUI
 
-class SearchRouter: BaseRouter<SearchRouter.Screen> {
+class AnalyticsRouter: BaseRouter<AnalyticsRouter.Screen> {
     enum Screen: IScreen {}
 
     override func getInstanceScreen(_ screen: Screen) -> AnyView {}
 }
 
-struct SearchRouterView: View {
-    @StateObject private var router = SearchRouter()
+struct AnalyticsRouterView: View {
+    @StateObject private var router = AnalyticsRouter()
 
     var body: some View {
         SSNavigationStackView(navigationPath: router.navigationPath) {
-            SearchView()
+            AnalyticsView()
         }.environmentObject(router)
     }
 }
