@@ -25,6 +25,7 @@ class AppDataManager: ObservableObject {
 
     func loadConfig() {
         configureAlertMessage()
+        loadThemeConfig()
     }
 
     var isLogout: Bool {
@@ -43,5 +44,10 @@ class AppDataManager: ObservableObject {
         let bannerConfig = BannerAlertMessageConfiguration()
         bannerConfig.configure()
         AlertMessageConfiguration.shared.addAlertMessage(.banner, alertMessage: bannerConfig)
+    }
+
+    private func loadThemeConfig() {
+        let isDarkMode = StoreLocal.shared.getBoolValue(.KEY_IS_DARK_MODE)
+        AppStyle.isDarkMode = isDarkMode
     }
 }

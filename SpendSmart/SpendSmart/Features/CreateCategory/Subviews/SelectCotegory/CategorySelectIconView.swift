@@ -31,7 +31,8 @@ struct CategorySelectIconView: View {
             titleText.padding(.top, AppStyle.layout.hugeSpace)
             iconGridView
             Spacer()
-        }.background(
+        }.background(AppStyle.theme.backgroundColor)
+            .background(
             GeometryReader { proxy in
                 Color.clear.onAppear {
                     onUpdateHeight?(proxy.size.height)

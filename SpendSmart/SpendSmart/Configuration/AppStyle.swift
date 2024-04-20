@@ -5,7 +5,7 @@
 //  Created by dtrognn on 01/04/2024.
 //
 
-import Foundation
+import UIKit
 
 struct AppStyle {
     static var font: SFont = AppFont()
@@ -18,6 +18,7 @@ struct AppStyle {
     static var isDarkMode: Bool = false {
         didSet {
             theme = isDarkMode ? darkTheme : lightTheme
+            UITabBar.appearance().backgroundColor = theme.tabbarBackgroundViewColor.asUIColor()
         }
     }
 

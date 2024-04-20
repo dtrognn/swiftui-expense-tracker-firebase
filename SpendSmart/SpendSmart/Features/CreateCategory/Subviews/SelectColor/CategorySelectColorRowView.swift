@@ -33,7 +33,9 @@ struct CategorySelectColorRowView: View {
                         arrowImage
                     }
                 }.padding(.all, AppStyle.layout.standardSpace)
-            }.applyShadowView()
+            }.background(AppStyle.theme.rowCommonBackgroundColor)
+                .cornerRadius(AppStyle.layout.standardCornerRadius)
+                .applyShadowView()
         }
     }
 }

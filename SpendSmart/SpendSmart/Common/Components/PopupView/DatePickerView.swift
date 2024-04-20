@@ -112,7 +112,9 @@ struct DatePickerView: View, IPopupView {
                 selectButton
                     .padding(.horizontal, AppStyle.layout.standardSpace)
                     .padding(.bottom, AppStyle.layout.standardSpace)
-            }.applyShadowView()
+            }.background(AppStyle.theme.rowCommonBackgroundColor)
+                .cornerRadius(AppStyle.layout.standardCornerRadius)
+                .applyShadowView()
                 .padding(.horizontal, AppStyle.layout.standardSpace)
         }.ignoresSafeArea()
     }
@@ -126,6 +128,8 @@ private extension DatePickerView {
                 Picker("", selection: $selectedDay) {
                     ForEach(1 ... numberOfDaysInMonth(month: selectedMonth, year: selectedYear), id: \.self) { index in
                         Text(String(index)).tag(index)
+                            .font(AppStyle.font.regular14)
+                            .foregroundColor(AppStyle.theme.textNormalColor)
                     }
                 }.frame(width: geo.size.width)
                     .labelsHidden()
@@ -141,6 +145,8 @@ private extension DatePickerView {
                 Picker("", selection: $selectedMonth) {
                     ForEach(1 ... 12, id: \.self) { index in
                         Text(String(index)).tag(index)
+                            .font(AppStyle.font.regular14)
+                            .foregroundColor(AppStyle.theme.textNormalColor)
                     }
                 }.frame(width: geo.size.width)
                     .labelsHidden()
@@ -156,6 +162,8 @@ private extension DatePickerView {
                 Picker("", selection: $selectedYear) {
                     ForEach(getRangeOfYear(), id: \.self) { index in
                         Text(String(index)).tag(index)
+                            .font(AppStyle.font.regular14)
+                            .foregroundColor(AppStyle.theme.textNormalColor)
                     }
                 }.frame(width: geo.size.width)
                     .labelsHidden()

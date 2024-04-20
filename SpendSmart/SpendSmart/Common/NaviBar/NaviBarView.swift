@@ -53,7 +53,7 @@ extension NaviBarView {
         } label: {
             Image("ic_arrow_left")
                 .resizable()
-                .applyTheme(.black)
+                .applyTheme(AppStyle.theme.naviBackIconColor)
                 .frame(width: 22, height: 22)
         }
     }

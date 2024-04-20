@@ -207,6 +207,7 @@ private extension AutoHeightEditor {
                                 horizontalInset: const.TEXTEDITOR_INSET_HORIZONTAL,
                                 bottomInset: const.TEXTEDITOR_INSET_BOTTOM))
                         .padding(.top, AppStyle.layout.mediumSpace)
+                        .background(AppStyle.theme.backgroundColor)
 
                     if text.wrappedValue.isEmpty {
                         placeholderText

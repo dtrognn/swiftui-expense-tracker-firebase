@@ -91,16 +91,16 @@ private extension PieChartView {
             VStack(spacing: AppStyle.layout.mediumSpace) {
                 Text(dataSelected.type.name)
                     .font(AppStyle.font.semibold14)
-                    .foregroundColor(AppStyle.theme.textHightlightColor)
+                    .foregroundColor(AppStyle.theme.textNormalColor)
 
                 Text(String(format: "%.1f", dataSelected.count))
                     .font(AppStyle.font.semibold14)
-                    .foregroundColor(AppStyle.theme.textHightlightColor)
+                    .foregroundColor(AppStyle.theme.textNormalColor)
             }.asAnyView
         } else {
             Text(language("Chart_A_06"))
                 .font(AppStyle.font.regular14)
-                .foregroundColor(AppStyle.theme.textHightlightColor)
+                .foregroundColor(AppStyle.theme.textNormalColor)
                 .asAnyView
         }
     }

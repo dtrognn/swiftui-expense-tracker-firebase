@@ -24,7 +24,7 @@ struct ProfileSettingView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: AppStyle.layout.standardSpace) {
                     languageRowView
-                    darkModeRowView
+//                    darkModeRowView
                 }.padding(.all, AppStyle.layout.standardSpace)
             }
         }

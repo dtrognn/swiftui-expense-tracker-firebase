@@ -28,7 +28,7 @@ struct HomeView: View {
 
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: AppStyle.layout.standardSpace) {
-                        VStack(spacing: AppStyle.layout.standardSpace) {
+                        VStack(spacing: AppStyle.layout.zero) {
                             tranTransactionsView
                             if vm.chartDatas.isEmpty {
                                 noRecentTransView
@@ -51,7 +51,6 @@ private extension HomeView {
             Spacer()
             HStack(spacing: AppStyle.layout.mediumSpace) {
                 addExpenseButton
-                addCategoryButton
             }
         }.padding(.horizontal, AppStyle.layout.standardSpace)
             .padding(.bottom, AppStyle.layout.mediumSpace)
@@ -68,17 +67,6 @@ private extension HomeView {
             router.push(to: .addEditTransaction(nil))
         } label: {
             Image(systemName: "plus.app")
-                .resizable()
-                .applyTheme()
-                .frame(width: 22, height: 22)
-        }
-    }
-
-    var addCategoryButton: some View {
-        return Button {
-            router.push(to: .addNewCategory(nil))
-        } label: {
-            Image(systemName: "plus.circle")
                 .resizable()
                 .applyTheme()
                 .frame(width: 22, height: 22)
@@ -123,6 +111,7 @@ private extension HomeView {
     var selectChartTypeButton: some View {
         return MenuView(selectChartTypeMenuConfiguration) {
             vm.chartType.icon
+                .frame(width: AppStyle.layout.hugeSpace, height: AppStyle.layout.standardButtonHeight)
         }
     }
 

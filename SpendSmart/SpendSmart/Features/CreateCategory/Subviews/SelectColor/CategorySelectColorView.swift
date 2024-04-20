@@ -25,7 +25,8 @@ struct CategorySelectColorView: View {
             titleText.padding(.top, AppStyle.layout.hugeSpace)
             colorGridView
             Spacer()
-        }.background(
+        }.background(AppStyle.theme.backgroundColor)
+            .background(
             GeometryReader { proxy in
                 Color.clear.onAppear {
                     onUpdateHeight?(proxy.size.height)
