@@ -8,11 +8,21 @@
 import SwiftUI
 
 struct AnalyticsView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    private var screenConfiguration: ScreenConfiguration {
+        return ScreenConfiguration(
+            title: "",
+            showBackButton: false,
+            showNavibar: false,
+            hidesBottomBarWhenPushed: false)
     }
-}
 
-#Preview {
-    AnalyticsView()
+    var body: some View {
+        ScreenContainerView(screenConfiguration) {
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack {
+                    //
+                }
+            }
+        }
+    }
 }

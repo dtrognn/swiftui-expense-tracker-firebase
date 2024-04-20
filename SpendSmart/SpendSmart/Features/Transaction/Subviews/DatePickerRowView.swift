@@ -30,7 +30,9 @@ struct DatePickerRowView: View {
                         arrowImage
                     }
                 }.padding(.all)
-            }.applyShadowView()
+            }.background(AppStyle.theme.rowCommonBackgroundColor)
+                .cornerRadius(AppStyle.layout.standardCornerRadius)
+                .applyShadowView()
         }
     }
 }

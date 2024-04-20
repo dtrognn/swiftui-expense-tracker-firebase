@@ -9,13 +9,15 @@ import SwiftUI
 
 struct TransactionItemView: View {
     private var transaction: Transaction
+    private var isCornerRadius: Bool
     private var onClick: ((Transaction) -> Void)?
 
     private var backgroundWidth: CGFloat = 40.0
     private var iconWidth: CGFloat = 25.0
 
-    init(transaction: Transaction, onClick: ((Transaction) -> Void)? = nil) {
+    init(transaction: Transaction, isCornerRadius: Bool = false, onClick: ((Transaction) -> Void)? = nil) {
         self.transaction = transaction
+        self.isCornerRadius = isCornerRadius
         self.onClick = onClick
     }
 
@@ -36,7 +38,8 @@ struct TransactionItemView: View {
                     Spacer()
                     amountText
                 }.padding(.all, AppStyle.layout.standardSpace)
-            }
+            }.background(AppStyle.theme.rowCommonBackgroundColor)
+                .cornerRadius(isCornerRadius ? AppStyle.layout.standardCornerRadius : AppStyle.layout.zero)
         }
     }
 }

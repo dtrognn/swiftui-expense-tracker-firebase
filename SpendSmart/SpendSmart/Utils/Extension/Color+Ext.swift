@@ -43,6 +43,10 @@ public extension Color {
     static func initWith(hexString: String, opacity: Double = 1.0) -> Color {
         return Color(hexString: hexString, opacity: opacity) ?? Color.black
     }
+
+    func asUIColor() -> UIColor {
+        return UIColor(self)
+    }
 }
 
 public extension Color {

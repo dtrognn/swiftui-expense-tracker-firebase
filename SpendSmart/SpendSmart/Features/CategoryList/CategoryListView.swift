@@ -53,7 +53,8 @@ struct CategoryListView: View {
                                         }
                                     }
                                 }
-                            }.cornerRadius(AppStyle.layout.standardCornerRadius)
+                            }.background(AppStyle.theme.rowCommonBackgroundColor)
+                                .cornerRadius(AppStyle.layout.standardCornerRadius)
                                 .applyShadowView()
                                 .padding(.vertical, AppStyle.layout.mediumSpace)
                         }.refreshable {
@@ -139,7 +140,9 @@ private extension CategoryListView {
                     }
                     Spacer()
                 }.padding(.all, AppStyle.layout.standardSpace)
-            }.applyShadowView()
+            }.background(AppStyle.theme.rowCommonBackgroundColor)
+                .cornerRadius(AppStyle.layout.standardCornerRadius)
+                .applyShadowView()
         }
     }
 

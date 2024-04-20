@@ -35,7 +35,7 @@ struct RecentTransactionsView: View {
                     } else {
                         LazyVStack(spacing: AppStyle.layout.standardSpace) {
                             ForEach(vm.transactions) { transaction in
-                                TransactionItemView(transaction: transaction, onClick: { transactionSelected in
+                                TransactionItemView(transaction: transaction, isCornerRadius: true, onClick: { transactionSelected in
                                     router.push(to: .addEditTransaction(transactionSelected))
                                 })
                                 .applyShadowView()
@@ -93,7 +93,9 @@ private extension RecentTransactionsView {
                 Spacer()
                 increaseButton
             }
-        }.applyShadowView()
+        }.background(AppStyle.theme.rowCommonBackgroundColor)
+            .cornerRadius(AppStyle.layout.standardCornerRadius)
+            .applyShadowView()
     }
 
     var datePickerButton: some View {

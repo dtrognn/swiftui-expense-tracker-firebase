@@ -40,7 +40,7 @@ struct ProfileRowCommonView: View {
                 if showUnderline {
                     StraightLine()
                 }
-            }
+            }.background(AppStyle.theme.rowCommonBackgroundColor)
         }
     }
 }
