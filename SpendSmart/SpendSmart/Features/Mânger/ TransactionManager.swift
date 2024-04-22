@@ -28,8 +28,8 @@ class TransactionManager: BaseViewModel {
         apiDeleteTransaction(transactionID, completion: completion)
     }
 
-    func getTransWithCondition(fromTime: Double, toTime: Double, completion: @escaping (Result<[Transaction], Error>) -> Void) {
-        apiGetTransWithCondition(fromTime: fromTime, toTime: toTime, completion: completion)
+    func getTransWithCondition(type: TransactionType = .expense, fromTime: Double, toTime: Double, completion: @escaping (Result<[Transaction], Error>) -> Void) {
+        apiGetTransWithCondition(type: type.rawValue, fromTime: fromTime, toTime: toTime, completion: completion)
     }
 
     private func apiGetTransactionList(type: String, completion: @escaping (Result<[Transaction], Error>) -> Void) {
@@ -88,7 +88,7 @@ class TransactionManager: BaseViewModel {
             }
     }
 
-    private func apiGetTransWithCondition(fromTime: Double, toTime: Double, completion: @escaping (Result<[Transaction], Error>) -> Void) {
+    private func apiGetTransWithCondition(type: String, fromTime: Double, toTime: Double, completion: @escaping (Result<[Transaction], Error>) -> Void) {
         guard let uid = authService.userSesstion?.uid else { return }
 
         let fromTimeInt = Int(fromTime)
@@ -96,6 +96,7 @@ class TransactionManager: BaseViewModel {
 
         FIRTransactionsCollection
             .whereField("uid", isEqualTo: uid)
+            .whereField("type", isEqualTo: type)
             .whereField("created_at", isGreaterThanOrEqualTo: fromTimeInt)
             .whereField("created_at", isLessThanOrEqualTo: toTimeInt)
             .getDocuments { [weak self] snapshot, error in

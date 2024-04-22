@@ -28,14 +28,6 @@ struct HomeView: View {
 
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: AppStyle.layout.standardSpace) {
-                        VStack(spacing: AppStyle.layout.zero) {
-                            tranTransactionsView
-                            if vm.chartDatas.isEmpty {
-                                noRecentTransView
-                            } else {
-                                chartView()
-                            }
-                        }.padding(.horizontal, AppStyle.layout.standardSpace)
                         recentTransactionsView
                     }.padding(.vertical, AppStyle.layout.standardSpace)
                 }
@@ -53,7 +45,6 @@ private extension HomeView {
                 addExpenseButton
             }
         }.padding(.horizontal, AppStyle.layout.standardSpace)
-            .padding(.bottom, AppStyle.layout.mediumSpace)
     }
 
     var usernameText: some View {
@@ -71,71 +62,6 @@ private extension HomeView {
                 .applyTheme()
                 .frame(width: 22, height: 22)
         }
-    }
-}
-
-// MARK: - Charts
-
-private extension HomeView {
-    var tranTransactionsView: some View {
-        return HStack {
-            trackTransactionsText
-            Spacer()
-            selectChartTypeButton
-        }
-    }
-
-    @ViewBuilder
-    func chartView() -> some View {
-        switch vm.chartType {
-        case .line:
-            EmptyView().asAnyView
-        case .bar:
-            barChartView.asAnyView
-        case .pie:
-            pieChartView.asAnyView
-        }
-    }
-
-    var barChartView: some View {
-        return BarChartView(configuration: BarChartConfiguration(
-            data: vm.chartDatas,
-            height: 300))
-            .padding(.horizontal, AppStyle.layout.standardSpace)
-    }
-
-    var pieChartView: some View {
-        return PieChartView(PieChartConfiguration(datas: vm.chartDatas))
-    }
-
-    var selectChartTypeButton: some View {
-        return MenuView(selectChartTypeMenuConfiguration) {
-            vm.chartType.icon
-                .frame(width: AppStyle.layout.hugeSpace, height: AppStyle.layout.standardButtonHeight)
-        }
-    }
-
-    var selectChartTypeMenuConfiguration: MenuConfiguration {
-        return MenuConfiguration(menuItemList: chartMenuConfigurationList) { menu in
-            didSelectChartTypeMenu(menu)
-        }
-    }
-
-    var chartMenuConfigurationList: [MenuItemConfiguration] {
-        return ChartType.allCases.map {
-            MenuItemConfiguration(title: $0.title, trailingImage: $0.icon, data: $0)
-        }
-    }
-
-    func didSelectChartTypeMenu(_ menu: MenuItemConfiguration) {
-        guard let type = menu.data as? ChartType else { return }
-        vm.chartType = type
-    }
-
-    var trackTransactionsText: some View {
-        return Text(language("Home_A_04"))
-            .font(AppStyle.font.semibold16)
-            .foregroundColor(AppStyle.theme.textNormalColor)
     }
 }
 
@@ -157,7 +83,7 @@ private extension HomeView {
                 }
             } else {
                 LazyVStack(spacing: AppStyle.layout.zero) {
-                    ForEach(vm.transactions.prefix(4)) { transition in
+                    ForEach(vm.transactions) { transition in
                         TransactionItemView(transaction: transition)
                     }
                 }.applyShadowView()
