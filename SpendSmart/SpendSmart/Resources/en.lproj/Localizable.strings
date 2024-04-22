@@ -11,6 +11,7 @@
 "SS_Common_A_11" = "Expense";
 "SS_Common_A_12" = "Income";
 "SS_Common_A_13" = "Close";
+"SS_Common_A_14" = "Add";
 
 "Tabbar_A_01" = "Home";
 "Tabbar_A_02" = "Analysis";
@@ -137,3 +138,15 @@
 "Saving_A_01" = "Saving";
 "Saving_A_02" = "There are no savings yet";
 "Saving_A_03" = "Add new savings";
+
+"Add_Edit_Saving_A_01" = "Add new savings";
+"Add_Edit_Saving_A_02" = "Edit savings";
+"Add_Edit_Saving_A_03" = "Enter the savings amount";
+"Add_Edit_Saving_A_04" = "Savings amount";
+"Add_Edit_Saving_A_05" = "Enter description (optional)";
+"Add_Edit_Saving_A_06" = "Description";
+"Add_Edit_Saving_A_07" = "Update savings";
+"Add_Edit_Saving_A_08" = "There have been no recent updates";
+"Add_Edit_Saving_A_09" = "Add more savings";
+"Add_Edit_Saving_A_10" = "Enter amount";
+"Add_Edit_Saving_A_11" = "Amount";

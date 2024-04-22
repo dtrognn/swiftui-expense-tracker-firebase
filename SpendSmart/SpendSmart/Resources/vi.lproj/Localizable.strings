@@ -11,6 +11,7 @@
 "SS_Common_A_11" = "Chi phí";
 "SS_Common_A_12" = "Thu nhập";
 "SS_Common_A_13" = "Đóng";
+"SS_Common_A_14" = "Thêm";
 
 "Tabbar_A_01" = "Home";
 "Tabbar_A_02" = "Phân tích";
@@ -137,3 +138,15 @@
 "Saving_A_01" = "Tiết kiệm";
 "Saving_A_02" = "Chưa có khoản tiết kiệm nào";
 "Saving_A_03" = "Thêm khoản tiết kiệm mới";
+
+"Add_Edit_Saving_A_01" = "Thêm khoản tiết kiệm mới";
+"Add_Edit_Saving_A_02" = "Chỉnh sửa khoản tiết kiệm";
+"Add_Edit_Saving_A_03" = "Nhập số tiền tiết kiệm";
+"Add_Edit_Saving_A_04" = "Số tiền tiết kiệm";
+"Add_Edit_Saving_A_05" = "Nhập mô tả (không bắt buộc)";
+"Add_Edit_Saving_A_06" = "Mô tả";
+"Add_Edit_Saving_A_07" = "Cập nhật tiết kiệm";
+"Add_Edit_Saving_A_08" = "Chưa có cập nhật nào gần đây";
+"Add_Edit_Saving_A_09" = "Thêm số tiền tiết kiệm";
+"Add_Edit_Saving_A_10" = "Nhập số tiền";
+"Add_Edit_Saving_A_11" = "Số tiền";
