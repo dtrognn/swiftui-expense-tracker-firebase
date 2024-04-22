@@ -15,15 +15,14 @@ class AddEditSavingRouter: BaseRouter<AddEditSavingRouter.Screen> {
 
 struct AddEditSavingRouterView: View {
     @StateObject private var router: AddEditSavingRouter
-    private var saving: Saving?
 
     init(router: AddEditSavingRouter, saving: Saving? = nil) {
         self._router = StateObject(wrappedValue: router)
-        self.saving = saving
+        AddEditSavingVM.shared.setParams(saving)
     }
 
     var body: some View {
-        return AddEditSavingView(saving)
+        return AddEditSavingView()
             .environmentObject(router)
     }
 }
