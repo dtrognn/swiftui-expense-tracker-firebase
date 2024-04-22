@@ -125,3 +125,8 @@
 "Language_A_02" = "System";
 "Language_A_03" = "Vietnamese";
 "Language_A_04" = "English";
+
+"Analystic_A_01" = "Analystic";
+"Analystic_A_02" = "There have been no recent transactions";
+"Analystic_A_03" = "Track transactions";
+"Analystic_A_04" = "Month";
