@@ -12,6 +12,7 @@ public class ScreenConfiguration: ObservableObject {
     @Published public var showBackButton: Bool
     @Published public var hidesBottomBarWhenPushed: Bool
     @Published public var showNavibar: Bool
+    @Published public var showNaviUnderline: Bool
     @Published public var onBackAction: (() -> Void)?
     @Published public var swipeToBack: Bool
     @Published public var showPopToRootButton: Bool
@@ -23,12 +24,14 @@ public class ScreenConfiguration: ObservableObject {
         showPopToRootButton: Bool = true,
         depthScreen: Int = 4,
         hidesBottomBarWhenPushed: Bool = true,
+        showNaviUnderline: Bool = false,
         swipeToBack: Bool = true,
         onBackAction: (() -> Void)? = nil) {
         self.title = title
         self.showBackButton = showBackButton
         self.hidesBottomBarWhenPushed = hidesBottomBarWhenPushed
         self.showNavibar = showNavibar
+        self.showNaviUnderline = showNaviUnderline
         self.swipeToBack = swipeToBack
         self.onBackAction = onBackAction
         self.showPopToRootButton = showPopToRootButton

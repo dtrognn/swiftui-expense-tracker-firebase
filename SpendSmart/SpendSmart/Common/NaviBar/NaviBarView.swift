@@ -37,7 +37,9 @@ public struct NaviBarView: View {
                     AppStyle.theme.naviBackgroundColor
                         .ignoresSafeArea(edges: .top)
                 )
-//            StraightLine()
+            if screenConfiguration.showNaviUnderline {
+                StraightLine()
+            }
         }
     }
 }
