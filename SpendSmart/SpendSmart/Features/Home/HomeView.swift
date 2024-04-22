@@ -13,6 +13,8 @@ struct HomeView: View {
     @EnvironmentObject private var router: HomeRouter
     @StateObject private var vm = HomeVM()
 
+    private let columns: [GridItem] = Array(repeating: .init(.flexible(), spacing: AppStyle.layout.standardSpace), count: 4)
+
     private var screenConfiguration: ScreenConfiguration {
         return ScreenConfiguration(
             title: "",
@@ -28,6 +30,7 @@ struct HomeView: View {
 
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: AppStyle.layout.standardSpace) {
+                        featuresView
                         recentTransactionsView
                     }.padding(.vertical, AppStyle.layout.standardSpace)
                 }
@@ -62,6 +65,41 @@ private extension HomeView {
                 .applyTheme()
                 .frame(width: 22, height: 22)
         }
+    }
+}
+
+// MARK: - Features
+
+private extension HomeView {
+    var featuresView: some View {
+        return VStack(spacing: AppStyle.layout.standardSpace) {
+            featureHeaderView
+
+            LazyVGrid(columns: columns, spacing: AppStyle.layout.standardSpace) {
+                ForEach(Feature.allCases) { feature in
+                    FeatureItemView(feature) { featureSelected in
+                        print("AAA \(featureSelected)")
+                    }
+                }
+            }.frame(maxWidth: .infinity)
+                .padding(.vertical, AppStyle.layout.mediumSpace)
+                .background(AppStyle.theme.rowCommonBackgroundColor)
+                .cornerRadius(AppStyle.layout.standardCornerRadius)
+                .applyShadowView()
+        }.padding(.horizontal, AppStyle.layout.standardSpace)
+    }
+
+    var featureHeaderView: some View {
+        return HStack {
+            featureText
+            Spacer()
+        }
+    }
+
+    var featureText: some View {
+        return Text(language("Home_A_06"))
+            .font(AppStyle.font.semibold16)
+            .foregroundColor(AppStyle.theme.textNormalColor)
     }
 }
 

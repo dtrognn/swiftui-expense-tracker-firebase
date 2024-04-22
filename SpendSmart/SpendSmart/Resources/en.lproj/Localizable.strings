@@ -44,6 +44,7 @@
 "Home_A_03" = "There have been no recent transactions";
 "Home_A_04" = "Track transactions";
 "Home_A_05" = "Add new transaction";
+"Home_A_06" = "Features";
 
 "Add_Edit_Category_A_01" = "Create new category";
 "Add_Edit_Category_A_02" = "Enter category name";
@@ -130,3 +131,9 @@
 "Analystic_A_02" = "There have been no recent transactions";
 "Analystic_A_03" = "Track transactions";
 "Analystic_A_04" = "Month";
+
+"Features_A_01" = "Saving";
+
+"Saving_A_01" = "Saving";
+"Saving_A_02" = "There are no savings yet";
+"Saving_A_03" = "Add new savings";
