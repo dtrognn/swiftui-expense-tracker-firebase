@@ -73,7 +73,7 @@ private extension TransactionItemView {
     }
 
     var dateText: some View {
-        return Text(UtilsHelper.doubleToDate(data: transaction.createdAt))
+        return Text(UtilsHelper.doubleToDate(data: transaction.createdAt, type: .dayMonthYear))
             .font(AppStyle.font.regular14)
             .foregroundColor(AppStyle.theme.textNoteColor)
     }
