@@ -16,17 +16,68 @@ struct SavingView: View {
             title: language("Saving_A_01"),
             showBackButton: true,
             showNavibar: true,
-            hidesBottomBarWhenPushed: true
+            hidesBottomBarWhenPushed: true,
+            showNaviUnderline: true
         )
     }
 
     var body: some View {
         ScreenContainerView(screenConfiguration) {
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack {
-                    //
+            VStack(spacing: AppStyle.layout.standardSpace) {
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack {
+                        if vm.savings.isEmpty {
+                            noSavingsView
+                        } else {
+                            // TODO: -
+                        }
+                    }.padding(.all, AppStyle.layout.standardSpace)
+                }
+
+                Spacer()
+                if !vm.savings.isEmpty {
+                    addNewSavingLargeButton
                 }
             }
         }
+    }
+}
+
+private extension SavingView {
+    var noSavingsView: some View {
+        return VStack(spacing: AppStyle.layout.mediumSpace) {
+            noSavingsText
+            addNewSavingSmalButton
+        }.padding(.top, AppStyle.layout.standardButtonHeight)
+    }
+
+    var addNewSavingSmalButton: some View {
+        return Button {
+            Vibration.selection.vibrate()
+            router.push(to: .addEditSaving(nil))
+        } label: {
+            Text(language("Saving_A_03"))
+                .font(AppStyle.font.regular16)
+                .foregroundColor(AppStyle.theme.btTextEnableColor)
+                .padding(.vertical, AppStyle.layout.smallSpace)
+                .padding(.horizontal, AppStyle.layout.mediumSpace)
+                .background(AppStyle.theme.btBackgroundEnableColor)
+                .cornerRadius(AppStyle.layout.standardCornerRadius)
+        }
+    }
+
+    var addNewSavingLargeButton: some View {
+        return Button {
+            Vibration.selection.vibrate()
+            router.push(to: .addEditSaving(nil))
+        } label: {
+            Text(language("Saving_A_03"))
+        }.buttonStyle(.standard())
+    }
+
+    var noSavingsText: some View {
+        return Text(language("Saving_A_02"))
+            .font(AppStyle.font.regular16)
+            .foregroundColor(AppStyle.theme.textNormalColor)
     }
 }

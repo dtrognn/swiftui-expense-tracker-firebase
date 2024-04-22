@@ -8,9 +8,17 @@
 import SwiftUI
 
 class SavingRouter: BaseRouter<SavingRouter.Screen> {
-    enum Screen: IScreen {}
+    enum Screen: IScreen {
+        case addEditSaving(Saving?)
+    }
 
-    override func getInstanceScreen(_ screen: Screen) -> AnyView {}
+    override func getInstanceScreen(_ screen: Screen) -> AnyView {
+        switch screen {
+        case .addEditSaving(let saving):
+            let router = AddEditSavingRouter(navigationPath: navigationPath)
+            return AddEditSavingRouterView(router: router, saving: saving).asAnyView
+        }
+    }
 }
 
 struct SavingRouterView: View {
