@@ -78,7 +78,12 @@ private extension HomeView {
             LazyVGrid(columns: columns, spacing: AppStyle.layout.standardSpace) {
                 ForEach(Feature.allCases) { feature in
                     FeatureItemView(feature) { featureSelected in
-                        print("AAA \(featureSelected)")
+                        switch featureSelected {
+                        case .saving:
+                            router.push(to: .saving)
+                        default:
+                            return
+                        }
                     }
                 }
             }.frame(maxWidth: .infinity)
