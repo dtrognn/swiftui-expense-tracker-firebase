@@ -8,9 +8,20 @@
 import SwiftUI
 
 class AddEditSavingRouter: BaseRouter<AddEditSavingRouter.Screen> {
-    enum Screen: IScreen {}
+    enum Screen: IScreen {
+        case categoryList(CategoryActionType)
+    }
 
-    override func getInstanceScreen(_ screen: Screen) -> AnyView {}
+    override func getInstanceScreen(_ screen: Screen) -> AnyView {
+        switch screen {
+        case .categoryList(let actionType):
+            let router = CategoryListRouter(navigationPath: navigationPath)
+            return CategoryListRouterView(router: router, actionType: actionType, onSelect: { category in
+                AddEditSavingVM.shared.updateCategory(category)
+                self.popView()
+            }).asAnyView
+        }
+    }
 }
 
 struct AddEditSavingRouterView: View {

@@ -48,4 +48,8 @@ class AddEditSavingVM: BaseViewModel {
         print("AAA \(newLog.createdAt) - \(newLog.amount)")
         self.isShowTextField = false
     }
+
+    func updateCategory(_ category: Category) {
+        self.category = category
+    }
 }

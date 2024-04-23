@@ -30,6 +30,7 @@ struct AddEditSavingView: View {
                         VStack(spacing: AppStyle.layout.standardSpace) {
                             amountTextField
                             descriptionTextEditorView
+                            selectCategoryRowView
                         }
                         updateSavingsView
                     }.padding(.all, AppStyle.layout.standardSpace)
@@ -63,6 +64,12 @@ private extension AddEditSavingView {
             disabledPlaceholder: language("Add_Edit_Saving_A_05"),
             regExpUse: .none
         ).frame(height: textEditorHeight)
+    }
+
+    var selectCategoryRowView: some View {
+        return SelectCategoryRowView(category: vm.category) {
+            router.push(to: .categoryList(.select))
+        }
     }
 
     var addEditSavingButton: some View {
