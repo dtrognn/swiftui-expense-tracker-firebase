@@ -24,14 +24,16 @@ class CategoryListRouter: BaseRouter<CategoryListRouter.Screen> {
 struct CategoryListRouterView: View {
     @StateObject private var router: CategoryListRouter
     private var actionType: CategoryActionType
+    private var onSelect: ((Category) -> Void)?
 
-    init(router: CategoryListRouter, actionType: CategoryActionType) {
+    init(router: CategoryListRouter, actionType: CategoryActionType, onSelect: ((Category) -> Void)? = nil) {
         self._router = StateObject(wrappedValue: router)
         self.actionType = actionType
+        self.onSelect = onSelect
     }
 
     var body: some View {
-        CategoryListView(actionType)
+        CategoryListView(actionType, onSelect: onSelect)
             .environmentObject(router)
     }
 }

@@ -10,11 +10,13 @@ import SwiftUI
 struct CategoryListView: View {
     @EnvironmentObject private var router: CategoryListRouter
     @StateObject private var vm: CategoryListVM
+    private var onSelect: ((Category) -> Void)?
 
     @State private var showAlert: Bool = false
 
-    init(_ actionType: CategoryActionType) {
+    init(_ actionType: CategoryActionType, onSelect: ((Category) -> Void)? = nil) {
         self._vm = StateObject(wrappedValue: CategoryListVM(actionType))
+        self.onSelect = onSelect
     }
 
     private var screenConfiguration: ScreenConfiguration {
@@ -42,8 +44,7 @@ struct CategoryListView: View {
                                         CategoryItemView(category) { categorySelected in
                                             switch vm.actionType {
                                             case .select:
-                                                vm.updateCategorySeleted(categorySelected)
-                                                router.popView()
+                                                onSelect?(categorySelected)
                                             case .update:
                                                 router.push(to: .addEditCategory(categorySelected))
                                             }

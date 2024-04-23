@@ -16,7 +16,10 @@ class AddEditTransactionRouter: BaseRouter<AddEditTransactionRouter.Screen> {
         switch screen {
         case .categoryList(let actionType):
             let router = CategoryListRouter(navigationPath: navigationPath)
-            return CategoryListRouterView(router: router, actionType: actionType).asAnyView
+            return CategoryListRouterView(router: router, actionType: actionType, onSelect: { category in
+                AddEditTransactionVM.shared.updateCategory(category)
+                self.popView()
+            }).asAnyView
         }
     }
 }
