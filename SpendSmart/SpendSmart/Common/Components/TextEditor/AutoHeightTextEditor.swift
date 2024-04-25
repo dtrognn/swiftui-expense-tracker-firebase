@@ -195,6 +195,9 @@ private extension AutoHeightEditor {
         GeometryReader { proxy in
             ZStack {
                 ZStack(alignment: .topLeading) {
+                    RoundedRectangle(cornerRadius: AppStyle.layout.standardCornerRadius)
+                        .fill(AppStyle.theme.tfFillNormalColor)
+
                     TextEditor(text: text)
                         .autocorrectionDisabled()
                         .autocapitalization(.none)
@@ -207,7 +210,6 @@ private extension AutoHeightEditor {
                                 horizontalInset: const.TEXTEDITOR_INSET_HORIZONTAL,
                                 bottomInset: const.TEXTEDITOR_INSET_BOTTOM))
                         .padding(.top, AppStyle.layout.mediumSpace)
-                        .background(AppStyle.theme.backgroundColor)
 
                     if text.wrappedValue.isEmpty {
                         placeholderText
@@ -216,8 +218,7 @@ private extension AutoHeightEditor {
 
                 if hasBorder {
                     RoundedRectangle(cornerRadius: const.TEXTEDITOR_STROKE_CORNER_RADIUS)
-                        .stroke()
-                        .foregroundColor(AppStyle.theme.tfBorderNormalColor)
+                        .stroke(AppStyle.theme.tfBorderNormalColor, lineWidth: 1)
                 }
             }
             .onAppear {
@@ -230,6 +231,7 @@ private extension AutoHeightEditor {
             }
         }
         .frame(maxHeight: currentTextEditorHeight)
+        .background(AppStyle.theme.backgroundColor)
     }
 
     var disabledEditor: some View {
