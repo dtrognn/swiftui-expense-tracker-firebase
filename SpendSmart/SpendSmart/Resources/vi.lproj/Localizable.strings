@@ -11,6 +11,7 @@
 "SS_Common_A_11" = "Chi phí";
 "SS_Common_A_12" = "Thu nhập";
 "SS_Common_A_13" = "Đóng";
+"SS_Common_A_14" = "Thêm";
 
 "Tabbar_A_01" = "Home";
 "Tabbar_A_02" = "Phân tích";
@@ -44,6 +45,7 @@
 "Home_A_03" = "Chưa có giao dịch nào gần đây";
 "Home_A_04" = "Theo dõi giao dịch";
 "Home_A_05" = "Thêm giao dịch mới";
+"Home_A_06" = "Tính năng";
 
 "Add_Edit_Category_A_01" = "Tạo danh mục mới";
 "Add_Edit_Category_A_02" = "Nhập tên danh mục";
@@ -130,3 +132,26 @@
 "Analystic_A_02" = "Chưa có giao dịch nào gần đây";
 "Analystic_A_03" = "Theo dõi giao dịch";
 "Analystic_A_04" = "Tháng";
+
+"Features_A_01" = "Tiết kiệm";
+
+"Saving_A_01" = "Tiết kiệm";
+"Saving_A_02" = "Chưa có khoản tiết kiệm nào";
+"Saving_A_03" = "Thêm khoản tiết kiệm mới";
+"Saving_A_04" = "Chưa hoàn thành";
+"Saving_A_05" = "Hoàn thành";
+"Saving_A_06" = "Cập nhật cuối cùng";
+
+"Add_Edit_Saving_A_01" = "Thêm khoản tiết kiệm mới";
+"Add_Edit_Saving_A_02" = "Chỉnh sửa khoản tiết kiệm";
+"Add_Edit_Saving_A_03" = "Nhập số tiền tiết kiệm";
+"Add_Edit_Saving_A_04" = "Số tiền tiết kiệm";
+"Add_Edit_Saving_A_05" = "Nhập mô tả (không bắt buộc)";
+"Add_Edit_Saving_A_06" = "Mô tả";
+"Add_Edit_Saving_A_07" = "Cập nhật tiết kiệm";
+"Add_Edit_Saving_A_08" = "Chưa có cập nhật nào gần đây";
+"Add_Edit_Saving_A_09" = "Thêm số tiền tiết kiệm";
+"Add_Edit_Saving_A_10" = "Nhập số tiền";
+"Add_Edit_Saving_A_11" = "Số tiền";
+"Add_Edit_Saving_A_12" = "Xoá khoản tiết kiệm";
+"Add_Edit_Saving_A_13" = "Bạn có chắc chắn muốn xoá khoản tiết kiệm này không?";

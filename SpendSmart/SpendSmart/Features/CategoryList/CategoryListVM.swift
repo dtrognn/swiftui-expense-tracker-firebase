@@ -27,7 +27,6 @@ class CategoryListVM: BaseViewModel {
     @Published var numberOfItemSelected: Int = 0
     @Published var actionType: CategoryActionType
 
-    var addEditTransitionVM = AddEditTransactionVM.shared
     var categorySelected: Category?
     private var categoryManager = CategoryManager.shared
 
@@ -46,10 +45,6 @@ class CategoryListVM: BaseViewModel {
 
     func deleteCategory() {
         apiDeleteCategory()
-    }
-
-    func updateCategorySeleted(_ categorySelected: Category) {
-        addEditTransitionVM.updateCategory(categorySelected)
     }
 }
 

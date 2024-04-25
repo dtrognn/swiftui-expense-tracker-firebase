@@ -1,13 +1,13 @@
 //
-//  AddEditTransactionRouter.swift
+//  AddEditSavingRouter.swift
 //  SpendSmart
 //
-//  Created by dtrognn on 06/04/2024.
+//  Created by dtrognn on 22/04/2024.
 //
 
 import SwiftUI
 
-class AddEditTransactionRouter: BaseRouter<AddEditTransactionRouter.Screen> {
+class AddEditSavingRouter: BaseRouter<AddEditSavingRouter.Screen> {
     enum Screen: IScreen {
         case categoryList(CategoryActionType)
     }
@@ -17,25 +17,23 @@ class AddEditTransactionRouter: BaseRouter<AddEditTransactionRouter.Screen> {
         case .categoryList(let actionType):
             let router = CategoryListRouter(navigationPath: navigationPath)
             return CategoryListRouterView(router: router, actionType: actionType, onSelect: { category in
-                AddEditTransactionVM.shared.updateCategory(category)
+                AddEditSavingVM.shared.updateCategory(category)
                 self.popView()
             }).asAnyView
         }
     }
 }
 
-struct AddEditTransactionRouterView: View {
-    @StateObject private var router: AddEditTransactionRouter
-    private var transaction: Transaction?
+struct AddEditSavingRouterView: View {
+    @StateObject private var router: AddEditSavingRouter
 
-    init(router: AddEditTransactionRouter, transaction: Transaction? = nil) {
+    init(router: AddEditSavingRouter, saving: Saving? = nil) {
         self._router = StateObject(wrappedValue: router)
-        self.transaction = transaction
-        AddEditTransactionVM.shared.setParams(transaction)
+        AddEditSavingVM.shared.setParams(saving)
     }
 
     var body: some View {
-        AddEditTransactionView()
+        return AddEditSavingView()
             .environmentObject(router)
     }
 }

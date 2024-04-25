@@ -11,6 +11,7 @@
 "SS_Common_A_11" = "Expense";
 "SS_Common_A_12" = "Income";
 "SS_Common_A_13" = "Close";
+"SS_Common_A_14" = "Add";
 
 "Tabbar_A_01" = "Home";
 "Tabbar_A_02" = "Analysis";
@@ -44,6 +45,7 @@
 "Home_A_03" = "There have been no recent transactions";
 "Home_A_04" = "Track transactions";
 "Home_A_05" = "Add new transaction";
+"Home_A_06" = "Features";
 
 "Add_Edit_Category_A_01" = "Create new category";
 "Add_Edit_Category_A_02" = "Enter category name";
@@ -130,3 +132,26 @@
 "Analystic_A_02" = "There have been no recent transactions";
 "Analystic_A_03" = "Track transactions";
 "Analystic_A_04" = "Month";
+
+"Features_A_01" = "Saving";
+
+"Saving_A_01" = "Saving";
+"Saving_A_02" = "There are no savings yet";
+"Saving_A_03" = "Add new savings";
+"Saving_A_04" = "Incomplete";
+"Saving_A_05" = "Completed";
+"Saving_A_06" = "Last update";
+
+"Add_Edit_Saving_A_01" = "Add new savings";
+"Add_Edit_Saving_A_02" = "Edit savings";
+"Add_Edit_Saving_A_03" = "Enter the savings amount";
+"Add_Edit_Saving_A_04" = "Savings amount";
+"Add_Edit_Saving_A_05" = "Enter description (optional)";
+"Add_Edit_Saving_A_06" = "Description";
+"Add_Edit_Saving_A_07" = "Update savings";
+"Add_Edit_Saving_A_08" = "There have been no recent updates";
+"Add_Edit_Saving_A_09" = "Add more savings";
+"Add_Edit_Saving_A_10" = "Enter amount";
+"Add_Edit_Saving_A_11" = "Amount";
+"Add_Edit_Saving_A_12" = "Delete savings";
+"Add_Edit_Saving_A_13" = "Are you sure you want to delete this saving?";

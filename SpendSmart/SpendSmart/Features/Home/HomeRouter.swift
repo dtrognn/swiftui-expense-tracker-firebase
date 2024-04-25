@@ -11,6 +11,7 @@ class HomeRouter: BaseRouter<HomeRouter.Screen> {
     enum Screen: IScreen {
         case addEditTransaction(Transaction?)
         case recentTransaction
+        case saving
     }
 
     override func getInstanceScreen(_ screen: Screen) -> AnyView {
@@ -21,6 +22,9 @@ class HomeRouter: BaseRouter<HomeRouter.Screen> {
         case .recentTransaction:
             let router = RecentTransactionsRouter(navigationPath: navigationPath)
             return RecentTransactionsRouterView(router: router).asAnyView
+        case .saving:
+            let router = SavingRouter(navigationPath: navigationPath)
+            return SavingRouterView(router).asAnyView
         }
     }
 }

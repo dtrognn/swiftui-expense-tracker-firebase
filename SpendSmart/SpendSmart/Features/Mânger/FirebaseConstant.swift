@@ -11,3 +11,4 @@ import Foundation
 let FIRUsersCollection = Firestore.firestore().collection("users")
 let FIRTransactionsCollection = Firestore.firestore().collection("transactions")
 let FIRCategoryCollection = Firestore.firestore().collection("categories")
+let FIRSavingCollection = Firestore.firestore().collection("savings")

@@ -72,12 +72,17 @@ extension UtilsHelper {
 }
 
 extension UtilsHelper {
-    static func doubleToDate(data: Double, type: String = "dd/MM/yyyy", isUseGMT: Bool = false) -> String {
+    static func doubleToDate(data: Double, type: DateFormatType, isUseGMT: Bool = false) -> String {
         let formatter = DateFormatter()
         if isUseGMT {
             formatter.timeZone = TimeZone(identifier: "GMT")
         }
-        formatter.dateFormat = type
+        formatter.dateFormat = type.rawValue
         return formatter.string(from: Date(timeIntervalSince1970: data))
     }
+}
+
+enum DateFormatType: String {
+    case dayMonthYear = "dd/MM/yyyy"
+    case dateFull = "HH:mm:ss dd/MM/yyyy"
 }

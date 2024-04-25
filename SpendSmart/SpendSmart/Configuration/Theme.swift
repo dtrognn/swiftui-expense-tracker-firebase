@@ -61,7 +61,7 @@ protocol STheme {
 struct AppLightTheme: STheme {
     var splashBackgroundColor: Color { return Color(hexString: "#7F3DFF")! }
     var textHightlightColor: Color { return Color(hexString: "#7F3DFF")! }
-    var naviBackgroundColor: Color { return Color(hexString: "#FFFFFF")! }
+    var naviBackgroundColor: Color { return Color(hexString: "#F3F3F3")! }
 
     var whiteTextColor: Color { return Color(hexString: "#FFFFFF")! }
     var authenticationBackgroundColor: Color { return Color(hexString: "#836096")! }
@@ -98,7 +98,7 @@ struct AppLightTheme: STheme {
     var iconColor: Color { return Color(hexString: "#7F3DFF")! }
     var iconNormalColor: Color { return Color(hexString: "#22313F")! }
     var iconHighlightColor: Color { return Color(hexString: "#7F3DFF")! }
-    var backgroundColor: Color { return Color(hexString: "#FFFFFF")! }
+    var backgroundColor: Color { return Color(hexString: "#F3F3F3")! }
     var rowCommonBackgroundColor: Color { return Color(hexString: "#FFFFFF")! }
     var sectionBackgroundColor: Color { return Color(hexString: "#011222", opacity: 0.1)! }
 
