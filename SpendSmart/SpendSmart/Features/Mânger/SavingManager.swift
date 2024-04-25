@@ -24,6 +24,10 @@ class SavingManager: BaseViewModel {
         apiUpdateSaving(saving, completion: completion)
     }
 
+    func deleteSaving(_ savingID: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        apiDeleteSaving(savingID, completion: completion)
+    }
+
     private func apiGetSavingList(completion: @escaping (Result<[Saving], Error>) -> Void) {
         guard let uid = authService.userSesstion?.uid else { return }
 
@@ -67,5 +71,16 @@ class SavingManager: BaseViewModel {
                 }
                 completion(.success(()))
             })
+    }
+
+    private func apiDeleteSaving(_ savingID: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        FIRSavingCollection.document(savingID)
+            .delete { [weak self] error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                completion(.success(()))
+            }
     }
 }

@@ -48,6 +48,10 @@ class AddEditSavingVM: BaseViewModel {
         }
     }
 
+    func deleteSaving() {
+        apiDeleteSaving()
+    }
+
     func addNewLog() {
         let newLog = SavingLog(amount: Double(self.moreAmount) ?? 0.0)
         self.logs.append(newLog)
@@ -105,6 +109,25 @@ extension AddEditSavingVM {
                 self.showSuccessMessage(language("SS_Common_A_02"))
                 self.onAddUpdateSuccess.send(())
             case .failure(let error):
+                guard let self = self else { return }
+                self.showLoading(false)
+                self.showErrorMessage(language("SS_Common_A_06"))
+            }
+        }
+    }
+
+    private func apiDeleteSaving() {
+        guard let saving = self.saving else { return }
+
+        showLoading(true)
+        self.savingsManager.deleteSaving(saving.id) { [weak self] result in
+            switch result {
+            case .success:
+                guard let self = self else { return }
+                self.showLoading(false)
+                self.showSuccessMessage(language("SS_Common_A_02"))
+                self.onAddUpdateSuccess.send(())
+            case .failure:
                 guard let self = self else { return }
                 self.showLoading(false)
                 self.showErrorMessage(language("SS_Common_A_06"))

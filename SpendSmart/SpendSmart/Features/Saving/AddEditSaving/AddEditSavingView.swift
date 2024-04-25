@@ -11,6 +11,8 @@ struct AddEditSavingView: View {
     @EnvironmentObject private var router: AddEditSavingRouter
     @StateObject private var vm = AddEditSavingVM.shared
 
+    @State private var showAlert: Bool = false
+
     private var textEditorHeight: CGFloat = 70
 
     private var screenConfiguration: ScreenConfiguration {
@@ -37,13 +39,17 @@ struct AddEditSavingView: View {
                 }
 
                 Spacer()
-                addEditSavingButton
-                    .padding(.bottom, AppStyle.layout.standardButtonHeight)
+                HStack(spacing: AppStyle.layout.standardSpace) {
+                    if vm.isEdit {
+                        deleteButton
+                    }
+                    addEditSavingButton
+                }.padding(.bottom, AppStyle.layout.standardButtonHeight)
                     .padding(.horizontal, AppStyle.layout.standardSpace)
             }
         }.onReceive(vm.onAddUpdateSuccess) { _ in
             router.popView()
-        }
+        }.alertView(alerConfiguration)
     }
 }
 
@@ -81,6 +87,27 @@ private extension AddEditSavingView {
         } label: {
             Text(language(vm.isEdit ? "SS_Common_A_04" : "SS_Common_A_03"))
         }.buttonStyle(.standard())
+    }
+
+    var deleteButton: some View {
+        return Button {
+            Vibration.selection.vibrate()
+            showAlert = true
+        } label: {
+            Text(language("SS_Common_A_08"))
+        }.buttonStyle(.standard())
+    }
+
+    var alerConfiguration: AlertConfiguration {
+        return AlertConfiguration(
+            isPresented: $showAlert,
+            title: language("Add_Edit_Saving_A_12"),
+            message: language("Add_Edit_Saving_A_13"),
+            primaryButtonText: language("SS_Common_A_09"),
+            secondaryButtonText: language("SS_Common_A_10")
+        ) {} secondaryAction: {
+            vm.deleteSaving()
+        }
     }
 }
 
