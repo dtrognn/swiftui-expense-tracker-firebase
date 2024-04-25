@@ -35,6 +35,8 @@ struct HomeView: View {
                     }.padding(.vertical, AppStyle.layout.standardSpace)
                 }
             }.padding(.bottom, UITabBarController().height + safeAreaInsets.bottom)
+        }.onChange(of: vm.transType) { _ in
+            vm.loadData()
         }
     }
 }
@@ -118,6 +120,8 @@ private extension HomeView {
                 Spacer()
                 seeAllButton
             }
+
+            SelectTransTypeView(type: $vm.transType)
 
             if vm.transactions.isEmpty {
                 VStack(spacing: AppStyle.layout.standardSpace) {
