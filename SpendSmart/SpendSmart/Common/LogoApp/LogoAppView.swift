@@ -11,7 +11,7 @@ struct LogoAppView: View {
     private let logoWidth: CGFloat = 200
     var body: some View {
         VStack {
-            Image("ic_logo_app")
+            Image("ic_logo_app_remoce_bg")
                 .resizable()
                 .scaledToFit()
                 .frame(width: logoWidth, height: logoWidth)

@@ -14,7 +14,7 @@ struct SplashScreenView: View {
         ZStack {
             AppStyle.theme.splashBackgroundColor
 
-            Text("Splash screen")
+            LogoAppView()
         }.ignoresSafeArea()
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
