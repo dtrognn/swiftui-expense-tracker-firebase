@@ -138,6 +138,9 @@
 "Saving_A_01" = "Tiết kiệm";
 "Saving_A_02" = "Chưa có khoản tiết kiệm nào";
 "Saving_A_03" = "Thêm khoản tiết kiệm mới";
+"Saving_A_04" = "Chưa hoàn thành";
+"Saving_A_05" = "Hoàn thành";
+"Saving_A_06" = "Cập nhật cuối cùng";
 
 "Add_Edit_Saving_A_01" = "Thêm khoản tiết kiệm mới";
 "Add_Edit_Saving_A_02" = "Chỉnh sửa khoản tiết kiệm";

@@ -29,7 +29,13 @@ struct SavingView: View {
                         if vm.savings.isEmpty {
                             noSavingsView
                         } else {
-                            // TODO: -
+                            LazyVStack(spacing: AppStyle.layout.standardSpace) {
+                                ForEach(vm.savings) { saving in
+                                    SavingItemView(saving: saving) { savingSelected in
+                                        router.push(to: .addEditSaving(savingSelected))
+                                    }
+                                }
+                            }
                         }
                     }.padding(.all, AppStyle.layout.standardSpace)
                 }
@@ -37,6 +43,8 @@ struct SavingView: View {
                 Spacer()
                 if !vm.savings.isEmpty {
                     addNewSavingLargeButton
+                        .padding(.horizontal, AppStyle.layout.standardSpace)
+                        .padding(.bottom, AppStyle.layout.standardButtonHeight)
                 }
             }
         }

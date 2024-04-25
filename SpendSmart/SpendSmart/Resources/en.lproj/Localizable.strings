@@ -138,6 +138,9 @@
 "Saving_A_01" = "Saving";
 "Saving_A_02" = "There are no savings yet";
 "Saving_A_03" = "Add new savings";
+"Saving_A_04" = "Incomplete";
+"Saving_A_05" = "Completed";
+"Saving_A_06" = "Last update";
 
 "Add_Edit_Saving_A_01" = "Add new savings";
 "Add_Edit_Saving_A_02" = "Edit savings";

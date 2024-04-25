@@ -41,6 +41,8 @@ struct AddEditSavingView: View {
                     .padding(.bottom, AppStyle.layout.standardButtonHeight)
                     .padding(.horizontal, AppStyle.layout.standardSpace)
             }
+        }.onReceive(vm.onAddUpdateSuccess) { _ in
+            router.popView()
         }
     }
 }
