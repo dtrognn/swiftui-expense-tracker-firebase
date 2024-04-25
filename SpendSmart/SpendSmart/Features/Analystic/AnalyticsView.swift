@@ -40,10 +40,10 @@ struct AnalyticsView: View {
             }.refreshable {
                 updateData()
             }
-        }.onAppear {
-            updateData()
         }.onChange(of: vm.timeType) { _ in
             updateData()
+        }.onReceive(vm.onGetDataSuccess) { _ in
+            updateDateFormat()
         }
     }
 }

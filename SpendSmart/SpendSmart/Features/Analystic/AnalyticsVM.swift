@@ -5,6 +5,7 @@
 //  Created by dtrognn on 20/04/2024.
 //
 
+import Combine
 import Foundation
 
 class AnalyticsVM: BaseViewModel {
@@ -18,11 +19,17 @@ class AnalyticsVM: BaseViewModel {
     private var dateSelectedMonth: DateSelected
     private var dateSelectedYear: DateSelected
 
+    var onGetDataSuccess = PassthroughSubject<Void, Never>()
+
     override init() {
         let date = Date()
         self.dateSelectedDay = .init(day: date.day, month: date.month, year: date.year)
         self.dateSelectedMonth = .init(day: date.day, month: date.month, year: date.year)
         self.dateSelectedYear = .init(day: date.day, month: date.month, year: date.year)
+    }
+
+    override func initData() {
+        loadData()
     }
 
     func loadData() {
@@ -113,8 +120,6 @@ extension AnalyticsVM {
         let fromTime = timeRange.fromTime
         let toTime = timeRange.toTime
 
-        print("AAA from: \(fromTime) - to: \(toTime)")
-
         showLoading(true)
         transManager.getTransWithCondition(type: transType, fromTime: fromTime, toTime: toTime) { [weak self] result in
             switch result {
@@ -122,6 +127,7 @@ extension AnalyticsVM {
                 guard let self = self else { return }
                 self.showLoading(false)
                 self.handleFilterData(trans)
+                self.onGetDataSuccess.send(())
             case .failure(let failure):
                 guard let self = self else { return }
                 self.showLoading(false)
